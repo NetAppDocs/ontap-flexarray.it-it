@@ -1,0 +1,14 @@
+---
+permalink: install/concept_determining_the_array_luns_for_specific_aggregates.html 
+sidebar: sidebar 
+keywords: determine, array, luns, specific, aggregates 
+summary: Esistono diverse regole per combinare diversi tipi di storage in aggregati, univoche per i sistemi ONTAP che utilizzano array LUN. È necessario comprendere queste regole durante il planning di array LUN e dischi da aggiungere a quali aggregati. 
+---
+= Determinazione delle LUN degli array per aggregati specifici
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esistono diverse regole per combinare diversi tipi di storage in aggregati, univoche per i sistemi ONTAP che utilizzano array LUN. È necessario comprendere queste regole durante il planning di array LUN e dischi da aggiungere a quali aggregati.

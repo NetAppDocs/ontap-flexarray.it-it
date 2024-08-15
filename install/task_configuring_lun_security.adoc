@@ -1,0 +1,32 @@
+---
+permalink: install/task_configuring_lun_security.html 
+sidebar: sidebar 
+keywords: configure, lun, security 
+summary: 'L"amministratore dello storage array deve configurare lo storage array e creare gruppi di host in modo che gli altri host non possano accedere alle LUN degli array destinate a essere utilizzate da ONTAP.' 
+---
+= Configurazione della protezione LUN in corso
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'amministratore dello storage array deve configurare lo storage array e creare gruppi di host in modo che gli altri host non possano accedere alle LUN degli array destinate a essere utilizzate da ONTAP.
+
+Il concetto di sicurezza LUN è simile alla creazione di zone, con la sola eccezione che la protezione LUN è impostata sullo storage array. La sicurezza LUN impedisce a server diversi di utilizzare lo storage dell'altro sulla SAN. È possibile fare riferimento anche alla sicurezza LUN come _LUN masking_.
+
+.Fasi
+. Configurare la protezione LUN sull'array di storage.
++
+Fare riferimento alla documentazione dell'array di storage per informazioni sulla configurazione della protezione LUN.
+
++
+È inoltre necessario consultare https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["Implementazione della virtualizzazione FlexArray per storage di terze parti"] la sezione per ulteriori dettagli relativi alla sicurezza LUN per gli array di storage del proprio fornitore. Alcuni storage array devono essere dedicati all'utilizzo da parte dei sistemi ONTAP.
+
+. Creare gruppi di host, o l'equivalente, per il sistema ONTAP.
++
+Il termine _host group_ viene utilizzato su alcuni array di archiviazione per descrivere un parametro di configurazione che consente di specificare l'accesso host a porte specifiche sull'array di archiviazione. Per descrivere questo parametro di configurazione, diversi storage array utilizzano termini diversi. Ciascun vendor di storage array dispone di un proprio processo per creare un gruppo di host o un equivalente.
+
+
+
+*Informazioni correlate*

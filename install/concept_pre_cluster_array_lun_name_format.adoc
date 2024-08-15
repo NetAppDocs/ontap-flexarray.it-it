@@ -1,0 +1,58 @@
+---
+permalink: install/concept_pre_cluster_array_lun_name_format.html 
+sidebar: sidebar 
+keywords: pre cluster, array, lun, name, format, ontap, systems 
+summary: Prima che un nodo si unisca a un cluster o quando il sistema è in modalità di manutenzione, il nome LUN della matrice segue un formato utilizzato prima di Data ONTAP 8,3, il formato pre-cluster. 
+---
+= Formato del nome LUN dell'array precedente al cluster
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima che un nodo si unisca a un cluster o quando il sistema è in modalità di manutenzione, il nome LUN della matrice segue un formato utilizzato prima di Data ONTAP 8,3, il formato _pre-cluster_.
+
+In questo formato, il nome LUN dell'array è un nome basato sul percorso che include i dispositivi nel percorso tra il sistema ONTAP e l'array di storage, le porte utilizzate e l'ID LUN SCSI nel percorso che l'array di storage presenta esternamente per la mappatura agli host.
+
+In un sistema ONTAP che supporta array LUN, ogni array LUN può avere più nomi perché ci sono più percorsi per ogni LUN.
+
+
+
+== Formato del nome LUN dell'array per i sistemi ONTAP
+
+|===
+| Configurazione | Formato del nome LUN dell'array | Descrizioni dei componenti 
+
+
+ a| 
+Collegamento diretto
+ a| 
+`node-name.adapter.idlun-id`
+ a| 
+`node-name` è il nome del nodo cluster. Con ONTAP, il nome del nodo è anteposto al nome della LUN, in modo che il nome basato sul percorso sia univoco all'interno del cluster. L'adattatore è il numero dell'adattatore sul sistema ONTAP.
+
+`id` è la porta dell'adattatore di canale sull'array di archiviazione.
+
+`lun-id` È il numero LUN dell'array che lo storage array presenta agli host.
+
+Esempio: `node1.0a.0L1`
+
+
+
+ a| 
+Fabric-attached
+ a| 
+`node-name:switch-name:port.idlun-id`
+ a| 
+`node-name` è il nome del nodo. Con ONTAP, il nome del nodo è anteposto al nome della LUN, in modo che il nome basato sul percorso sia univoco all'interno del cluster. `switch-name` è il nome dell'interruttore.
+
+`port` è la porta dello switch collegata alla porta di destinazione (il punto finale).
+
+`id` È l'ID del dispositivo.
+
+`lun-id` È il numero LUN dell'array che lo storage array presenta agli host.
+
+Esempio: `node1:brocade3:6.126L1`
+
+|===

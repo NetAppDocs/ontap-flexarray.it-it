@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/reference_3par_storage_arrays.html 
+sidebar: sidebar 
+keywords: 3par, storage, arrays 
+summary: 'È necessario soddisfare determinati requisiti durante la configurazione degli storage array per il funzionamento con sistemi ONTAP che utilizzano array LUN. Questi requisiti includono l"impostazione dei parametri di configurazione sugli storage array e l"implementazione solo delle configurazioni supportate.' 
+---
+= Storage array 3PAR
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario soddisfare determinati requisiti durante la configurazione degli storage array per il funzionamento con sistemi ONTAP che utilizzano array LUN. Questi requisiti includono l'impostazione dei parametri di configurazione sugli storage array e l'implementazione solo delle configurazioni supportate.

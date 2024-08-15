@@ -1,0 +1,71 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_3par_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, 3par, arrays, ontap, systems, host, persona, settings, port, 
+summary: Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri. 
+---
+= Parametri necessari per gli array 3PAR con sistemi ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri.
+
+
+
+== Impostazioni delle figure dell'host
+
+Per gli array 3PAR con firmware 2.3.1 e versioni successive, è necessario impostare i valori delle figure host richiesti come illustrato nella tabella seguente:
+
+|===
+| Tipo di connessione | Figura host 
+
+
+ a| 
+Collegamento diretto
+ a| 
+10
+
+
+
+ a| 
+Fabric collegato
+ a| 
+10
+
+|===
+La definizione dell'host, con il modello dell'host richiesto, deve essere creata su uno storage array 3PAR prima che lo switch sia configurato per connettere il sistema ONTAP a un array di storage 3PAR. Se lo zoning è configurato prima della definizione dell'host, ONTAP rileva un LUN 3PAR come LUN 254 e un tipo di prodotto SES, che ONTAP non può utilizzare. Ne risulta che le LUN 3PAR appena mappate non possono essere assegnate al sistema ONTAP e alcune LUN 3PAR che potrebbero essere già state aggiunte a un aggregato non possono essere utilizzate perché ONTAP vede un LUN 254 invece di un LUN 3PAR. Se si verifica questo problema, ONTAP genera il seguente messaggio EMS:
+
+[listing]
+----
+mlm.array.unknown:warning - Array LUN XXXXXXXX.126L254 [S/N 'XXXXXXX' vendor '3PARdata' product 'SES'] is unknown and is not supported in this version of Data ONTAP.
+----
+Se la suddivisione in zone è stata configurata prima della definizione dell'host, è possibile risolvere il problema eseguendo una nuova inizializzazione del percorso per forzare un nuovo rilevamento dei LUN dell'array mappati dall'array di storage 3PAR. Per la soluzione a questo problema, vedere la soluzione alternativa alla sezione problema dispositivo sconosciuto (L254/SES) con array di archiviazione 3PAR.
+
+xref:reference_workaround_for_the_unknown_device_l254_ses_problem_with_3par_storage_arrays.adoc[Soluzione per il problema del dispositivo sconosciuto (L254/SES) con gli array di archiviazione 3PAR]
+
+
+
+== Impostazioni delle figure della porta
+
+Per gli array 3PAR con firmware 2,2.x, è necessario impostare i valori delle figure della porta richiesti come illustrato nella tabella seguente:
+
+|===
+| Tipo di connessione | Figura porta 
+
+
+ a| 
+Collegamento diretto
+ a| 
+18
+
+
+
+ a| 
+Fabric collegato
+ a| 
+19
+
+|===

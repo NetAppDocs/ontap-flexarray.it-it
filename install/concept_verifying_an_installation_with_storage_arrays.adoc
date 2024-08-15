@@ -1,0 +1,30 @@
+---
+permalink: install/concept_verifying_an_installation_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: verify, installation, storage, arrays 
+summary: È importante rilevare e risolvere eventuali errori di configurazione back-end prima di distribuire il sistema in un ambiente di produzione. 
+---
+= Verifica dell'installazione con gli array di storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È importante rilevare e risolvere eventuali errori di configurazione back-end prima di distribuire il sistema in un ambiente di produzione.
+
+Le due fasi per verificare la configurazione di back-end sono le seguenti:
+
+. Controllo di eventuali errori di configurazione back-end che impediscono a ONTAP di funzionare con l'array di archiviazione.
++
+Questi sono gli errori contrassegnati da `storage errors show`. È necessario correggere questi errori.
+
+. Controllare per assicurarsi che la configurazione sia quella desiderata.
++
+Ci sono diverse situazioni che non sono errori dal punto di vista del sistema, ma che potrebbero non essere ciò che si intendeva. Ad esempio, l' `storage array config show` output mostra due gruppi LUN, ma è stato previsto un solo gruppo LUN. Il presente documento si riferisce a situazioni come quelle che non soddisfano le vostre "`intenzioni'".
+
+
+
+L'illustrazione seguente mostra il flusso di lavoro in cui si verifica prima che non vi siano errori di configurazione dal punto di vista del sistema e quindi si verifica che l'installazione sia quella prevista.
+
+image::../media/installation_verification_flowchart.gif[Eseguire prima la visualizzazione della configurazione dell'array di archiviazione. Se richiesto,run storage errors show,review the messages and review the documentation. Contact technical support if the problem is not resolved.]

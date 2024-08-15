@@ -1,0 +1,20 @@
+---
+permalink: install/concept_array_lun_types_supported_by_ontap.html 
+sidebar: sidebar 
+keywords: array, lun, type, supported, ontap 
+summary: È possibile mappare solo le LUN dello storage array a ONTAP. È possibile mappare LUN 0 a ONTAP se si tratta di un tipo di storage LUN. 
+---
+= Tipo di LUN dell'array supportato da ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile mappare solo le LUN dello storage array a ONTAP. È possibile mappare LUN 0 a ONTAP se si tratta di un tipo di storage LUN.
+
+Alcuni storage array hanno un LUN _command_ non storage. Non è possibile mappare un tipo di comando LUN a un sistema ONTAP.
+
+*Informazioni correlate*
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["Implementazione della virtualizzazione FlexArray per storage di terze parti"]

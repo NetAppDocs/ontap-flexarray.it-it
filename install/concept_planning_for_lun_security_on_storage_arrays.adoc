@@ -1,0 +1,22 @@
+---
+permalink: install/concept_planning_for_lun_security_on_storage_arrays.html 
+sidebar: sidebar 
+keywords: plan, lun, security, storage, arrays 
+summary: Se stai utilizzando il tuo sistema ONTAP con gli storage array, devi utilizzare un metodo di sicurezza LUN per eliminare la possibilità che un sistema diverso da ONTAP sovrascriva le LUN degli array di proprietà di un sistema ONTAP o viceversa. 
+---
+= Pianificazione della sicurezza LUN sugli array di storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se stai utilizzando il tuo sistema ONTAP con gli storage array, devi utilizzare un metodo di sicurezza LUN per eliminare la possibilità che un sistema diverso da ONTAP sovrascriva le LUN degli array di proprietà di un sistema ONTAP o viceversa.
+
+La sicurezza LUN è un metodo per isolare gli host che possono accedere a determinati array LUN. La protezione LUN è simile alla zoning degli switch in linea di principio, ma viene eseguita sullo storage array. _LUN Security_ e _LUN masking_ sono termini equivalenti per descrivere questa funzionalità.
+
+[NOTE]
+====
+Lo schema di proprietà dei dischi ONTAP impedisce a un sistema ONTAP di sovrascrivere un array LUN di proprietà di un altro sistema ONTAP. Tuttavia, ciò non impedisce a un sistema ONTAP di sovrascrivere un array LUN accessibile da un host non ONTAP. Analogamente, senza un metodo per impedire la sovrascrittura, un host non ONTAP potrebbe sovrascrivere un array LUN utilizzato da un sistema ONTAP.
+
+====

@@ -1,0 +1,20 @@
+---
+permalink: install/concept_flexarray_virtualization_technology_overview_using_array_luns_for_storage.html 
+sidebar: sidebar 
+keywords: flexarray, virtualization, technology, overview, use, array, luns, storage 
+summary: Il software ONTAP offre una piattaforma software di storage unificato che semplifica la gestione degli shelf di dischi nativi e delle LUN su storage array. Puoi aggiungere storage quando e dove richiesto, senza interruzioni. Questa funzionalità è fornita dal software per la virtualizzazione FlexArray, precedentemente noto come V-Series. 
+---
+= Panoramica della tecnologia di virtualizzazione di FlexArray: ​using array LUN per lo storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il software ONTAP offre una piattaforma software di storage unificato che semplifica la gestione degli shelf di dischi nativi e delle LUN su storage array. Puoi aggiungere storage quando e dove richiesto, senza interruzioni. Questa funzionalità è fornita da _software di virtualizzazione FlexArray_, precedentemente noto come V-Series.
+
+L'illustrazione seguente mostra una configurazione in cui i sistemi ONTAP concessi in licenza per il collegamento agli storage array stanno raggruppando i LUN dagli storage array e lo presentano ai client.
+
+image::../media/how_v_series_uses_storage.gif[Questo grafico è descritto dal testo circostante.]
+
+Un sistema ONTAP presenta lo storage ai client sotto forma di volumi di file system ONTAP, che vengono gestiti nel sistema usando le funzioni di gestione di ONTAP o come destinazione SCSI che crea LUN da utilizzare per i client. In entrambi i casi (client file system e client LUN), sui sistemi che possono utilizzare array LUN, è possibile combinare gli array LUN in uno o più aggregati di array LUN. In un ambiente ONTAP, è possibile associare questi aggregati di array LUN a Storage Virtual Machine (SVM) e creare volumi ONTAP per la presentazione ai client come file o come LUN serviti da ONTAP.

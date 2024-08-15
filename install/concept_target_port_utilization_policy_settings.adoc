@@ -1,0 +1,75 @@
+---
+permalink: install/concept_target_port_utilization_policy_settings.html 
+sidebar: sidebar 
+keywords: target, port, utilization, policy, settings, output, examples, array 
+summary: 'ONTAP è in grado di rilevare eventi di conflitto delle risorse, come la coda i/o piena, il timeout dei comandi o l"esaurimento delle risorse HBA su una porta di destinazione.' 
+---
+= Impostazioni del criterio di utilizzo della porta di destinazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP è in grado di rilevare eventi di conflitto delle risorse, come la coda i/o piena, il timeout dei comandi o l'esaurimento delle risorse HBA su una porta di destinazione.
+
+È possibile impostare i criteri di utilizzo delle porte di destinazione utilizzando il `storage array port modify` comando se si rilevano tali eventi su una determinata porta di destinazione dell'array.
+
+Nella tabella seguente vengono descritti i due criteri di utilizzo associati a una porta di destinazione:
+
+|===
+| Policy | Descrizione 
+
+
+ a| 
+*normale*
+ a| 
+Quando ONTAP rileva un conflitto di risorse della porta di destinazione su una determinata porta di destinazione dell'array, riduce la profondità della coda della porta di destinazione e accelera l'i/o verso la porta di destinazione. In questa modalità, la riduzione della profondità della coda della porta di destinazione è inferiore al criterio *rinvia* per ogni evento di conflitto delle risorse della porta di destinazione. Il successivo aumento della profondità della coda della porta di destinazione è più rapido del criterio *rinvia*. *normal* è il criterio predefinito.
+
+
+
+ a| 
+*rinvia*
+ a| 
+Quando ONTAP rileva un conflitto di risorse della porta di destinazione su una determinata porta di destinazione dell'array, riduce la profondità della coda della porta di destinazione e accelera l'i/o verso la porta di destinazione. In questa modalità, la riduzione della profondità della coda della porta di destinazione è maggiore del criterio *normale* per ogni evento di conflitto delle risorse della porta di destinazione. L'aumento successivo della profondità della coda della porta di destinazione è più lento del criterio di utilizzo *normale*.
+
+|===
+
+
+== Esempi di output per visualizzare e modificare i criteri di utilizzo delle porte di destinazione degli array
+
+Il seguente comando visualizza il criterio di utilizzo della porta di destinazione associato a una porta di destinazione dell'array:
+
+[listing]
+----
+vgv3170_jon::> storage array port show -wwnn 2703750270235
+        Array Name: HITACHI_DF600F_1
+              WWNN: 2703750270235
+              WWPN: 2703750270235
+   Connection Type: fabric
+       Switch Port: vgbr300s89:9
+        Link Speed: 4 GB/s
+   Max Queue Depth: 1024
+Utilization Policy: defer
+                              LUN                                        Link
+Node              Initiator  Count   IOPS    KB/s    %busy    %waiting   Errs
+----------------  ---------  -----  ------  ------  -------  ----------  ----
+     vgv3170f54a         0a      2       50   1956       85           0     0
+     vgv3170f54b         0a      2      350  15366      100          40     0
+----
+Per impostazione predefinita, il criterio di i/o per una determinata porta di destinazione della matrice è *normale*. È possibile modificare il criterio di i/o associato alla porta eseguendo il seguente comando:
+
+[listing]
+----
+vgv3070f50ab::> storage array port modify -wwpn 50014380025d1509 -utilization-policy ?
+
+
+
+normal      This policy aggressively competes for target port resources, in effect competing with other hosts.
+             (normal)
+
+defer      	This policy does not aggressively compete for target port resources, in effect deferring to other hosts.
+
+vgv3070f50ab::> storage array port modify -wwpn 50014380025d1509 -utilization-policy defer
+1 record updated.
+----

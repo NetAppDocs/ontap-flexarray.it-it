@@ -1,0 +1,14 @@
+---
+permalink: install/concept_array_lun_assignment_changes.html 
+sidebar: sidebar 
+keywords: array, lun, assignment, changes 
+summary: 'È possibile modificare l"assegnazione di un LUN di array di riserva da un sistema ONTAP a un altro. È possibile modificare la proprietà per il bilanciamento del carico sui nodi.' 
+---
+= Modifiche all'assegnazione del LUN dell'array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile modificare l'assegnazione di un LUN di array _spare_ da un sistema ONTAP a un altro. È possibile modificare la proprietà per il bilanciamento del carico sui nodi.

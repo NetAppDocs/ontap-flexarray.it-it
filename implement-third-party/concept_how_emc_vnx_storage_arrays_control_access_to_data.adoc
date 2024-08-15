@@ -1,0 +1,24 @@
+---
+permalink: implement-third-party/concept_how_emc_vnx_storage_arrays_control_access_to_data.html 
+sidebar: sidebar 
+keywords: emc, vnx, storage, array, control, access, data 
+summary: 'L"array EMC VNX utilizza i gruppi di storage per controllare l"accesso ai dati. Un gruppo di storage è costituito da una o più LUN all"interno dell"array di storage a cui è possibile accedere solo dall"host o dagli host associati ai LUN dell"array. Un host non può accedere o modificare i dati in LUN di array che non fanno parte del proprio gruppo di archiviazione.' 
+---
+= In che modo lo storage array EMC VNX controlla l'accesso ai dati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'array EMC VNX utilizza i gruppi di storage per controllare l'accesso ai dati. Un gruppo di storage è costituito da una o più LUN all'interno dell'array di storage a cui è possibile accedere solo dall'host o dagli host associati ai LUN dell'array. Un host non può accedere o modificare i dati in LUN di array che non fanno parte del proprio gruppo di archiviazione.
+
+ONTAP supporta più gruppi di archiviazione se vengono seguite queste regole:
+
+* Lo zoning degli switch deve definire le porte di destinazione che le porte iniziatore FC sul sistema ONTAP utilizzano per accedere a ogni gruppo di array LUN.
+* Il masking dei LUN deve essere utilizzato per limitare l'accesso dell'host alle LUN degli array.
+* I gruppi di archiviazione devono definire quali gruppi di array LUN vengono presentati a ciascuna porta iniziatore FC.
+* È necessaria una coppia di porte FC Initiator su ciascun sistema ONTAP per ciascun gruppo di array LUN.
+
+
+Se si utilizzano le vicinanze di array LUN, i sistemi V-Series nelle stesse vicinanze devono trovarsi nello stesso gruppo di storage.

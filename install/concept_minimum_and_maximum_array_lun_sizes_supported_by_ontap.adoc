@@ -1,0 +1,47 @@
+---
+permalink: install/concept_minimum_and_maximum_array_lun_sizes_supported_by_ontap.html 
+sidebar: sidebar 
+keywords: minimum, maximum, array, lun, sizes, supported, ontap, configurations 
+summary: Le array LUN presentate dagli storage array devono rientrare nei requisiti di dimensioni minime e massime per una configurazione ONTAP con array LUN. ONTAP genera un messaggio di errore che identifica un array LUN che non rispetta i requisiti di dimensione minima o massima. 
+---
+= Dimensioni minime e massime di array LUN supportate per le configurazioni ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le array LUN presentate dagli storage array devono rientrare nei requisiti di dimensioni minime e massime per una configurazione ONTAP con array LUN. ONTAP genera un messaggio di errore che identifica un array LUN che non rispetta i requisiti di dimensione minima o massima.
+
+Le dimensioni minime e massime delle LUN dell'array vengono calcolate in base al modo in cui ONTAP definisce le unità di misura. La definizione di ONTAP di GB e TB è la seguente:
+
+[cols="2*"]
+|===
+| Uno... | È uguale a... 
+
+
+ a| 
+GB
+ a| 
+1000 x 1024 x 1024 byte (1000 MB)
+
+
+
+ a| 
+TB
+ a| 
+1000 x 1000 x 1024 x 1024 byte (1000 GB)
+
+|===
+Diversi fornitori di array di storage utilizzano formule diverse per il calcolo delle unità di misura. È necessario utilizzare le unità di misura del fornitore per calcolare le dimensioni delle LUN dell'array equivalenti alle dimensioni minime e massime supportate con una configurazione ONTAP.
+
+Le dimensioni massime supportate da ONTAP sono diverse nelle versioni di ONTAP. Per informazioni sulle dimensioni minime e massime dei LUN dell'array, consultare _Hardware Universe_.
+
+[NOTE]
+====
+Le dimensioni minime LUN dell'array per un LUN di dati (storage) sono diverse dalle dimensioni minime LUN dell'array per il volume root.
+
+====
+*Informazioni correlate*
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

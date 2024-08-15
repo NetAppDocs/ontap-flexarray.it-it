@@ -1,0 +1,97 @@
+---
+permalink: install/reference_reasons_for_more_array_lun_groups_than_expected.html 
+sidebar: sidebar 
+keywords: reasons, array, lun, groups, expected 
+summary: 'Durante la convalida della configurazione, è necessario controllare l"output della configurazione dell"array di archiviazione per assicurarsi che il numero di gruppi LUN sia quello desiderato. Il motivo più comune per gruppi di array LUN aggiuntivi è che il LDEV sta eseguendo lo spanning di coppie di porte di destinazione.' 
+---
+= Motivi per utilizzare più gruppi di array LUN del previsto
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante la convalida della configurazione, è necessario controllare l' `storage array config show` output per assicurarsi che il numero di gruppi LUN sia quello previsto. Il motivo più comune per gruppi di array LUN aggiuntivi è che il LDEV sta eseguendo lo spanning di coppie di porte di destinazione.
+
+
+
+== Spiegazione
+
+Di seguito sono riportati i motivi comuni per cui sarebbe possibile visualizzare un numero maggiore di gruppi di LUN rispetto al previsto:
+
+* Un LDEV non è mappato a una coppia di porte di destinazione ridondanti.
++
+La causa più comune di un gruppo LUN aggiuntivo è che il LDEV sta eseguendo lo spanning delle coppie di percorsi. Un LDEV viene detto essere _coppie di percorsi di spanning_ se gli ID LUN corrispondenti per il LDEV non vengono presentati a una coppia di porte di destinazione ridondanti sull'array di storage.
+
+
+
+[NOTE]
+====
+In molti storage array, non è possibile presentare un LDEV per la destinazione di porte che non sono ridondanti se si segue il processo convenzionale per la creazione e la mappatura di LDEV.
+
+====
+* ONTAP sta cercando di bilanciare il carico sulle porte di destinazione durante la migrazione di array LUN da un gruppo di LUN a un altro.
++
+In questo caso, le coppie di percorsi di spanning LDEV sono uno stato transitorio.
+
+* Sono state impostate troppe connessioni.
+
+
+ONTAP può essere eseguito con un singolo gruppo di array LUN o più gruppi di array LUN. Pertanto, ONTAP non considera alcun numero di gruppi di LUN come una configurazione errata. Tuttavia, più gruppi LUN non sono supportati per tutti gli array di storage in tutte le release di ONTAP. Durante il planning della configurazione, è necessario controllare le informazioni nella matrice di interoperabilità per verificare se sono supportati più gruppi di array LUN per gli array di storage utilizzati nella configurazione ONTAP.
+
+
+
+== Scenario di problema
+
+Si supponga di avere due gruppi di LUN esistenti, il gruppo 0 e il gruppo 1. Il gruppo di LUN 0 ha due array LUN, mentre il gruppo di LUN 1 ne ha tre. L'amministratore ha creato una nuova Z LDEV, con l'intenzione di aggiungere LUN 3 al gruppo LUN 0. L'amministratore ha mappato LDEV Z come LUN 3 su due porte di storage array. Tuttavia, le porte a cui è mappato il LUN 3, le porte di array di storage 1A e 2B, non sono una coppia di porte di destinazione ridondanti, come illustrato nella seguente illustrazione.
+
+image::../media/ldev_spans_path_pairs_v2.gif[Questo grafico è descritto nel testo circostante.]
+
+Il risultato di questo errore è la creazione di un terzo gruppo LUN non desiderato (Gruppo 2), come illustrato nell'esempio seguente:
+
+[listing]
+----
+
+mysystem1::> storage array config show
+
+          LUN   LUN
+Node      Group Count  Array Name  	Array Target Ports     	Switch Port  	Initiator
+-------   ----- ------ ----------- 	-------------------    	-----------  	---------
+
+mysystem1  0     3     DGC_RAID5_1  20:1A:00:a0:b8:0f:ee:04  vnbr20es25:5    0a
+                                   	20:2A:00:a0:b8:0f:ee:04  vnci9124s53:6   0c
+           1     3     DGC_RAID5_1  20:1B:00:a0:b8:0f:ee:04  vnbr20es25:7    0b
+                                   	20:2B:00:a0:b8:0f:ee:04  vnci9124s53:8   0d
+           2     1     DGC_RAID5_1  20:1A:00:a0:b8:0f:ee:04  vnbr20es25:5    0a
+                                   	20:2B:00:a0:b8:0f:ee:04  vnci9124s53:8   0d
+----
+È possibile dedurre dalle informazioni contenute nella colonna Array Target Ports (Porte destinazione array) per i gruppi 0 e 1 che i percorsi verso le porte di destinazione dell'array sono ridondanti. Il gruppo 0 va alle porte di destinazione 1A e 2A, una coppia di porte di destinazione. Il gruppo 1 va a 1B e 2B, una diversa coppia di porte di destinazione.
+
+Tuttavia, le informazioni contenute nella colonna Array Target Ports per il Gruppo 2 suggeriscono che i percorsi non sono ridondanti. Un percorso va alla porta di destinazione 1A e l'altro va alla porta di destinazione 2B. Non si tratta di una coppia di porte di destinazione ridondanti; l'array LUN sta estendendo i gruppi LUN. Il LUN della matrice deve essere stato mappato a 1A e 2A o a 1B e 2B.
+
+Poiché il sistema ONTAP può essere eseguito con coppie di percorsi di spanning LDEV, il messaggio che indica di eseguire `storage errors show` non viene visualizzato dopo aver eseguito il `storage array config show` comando. Tuttavia, questa non è una configurazione di Best practice.
+
+
+
+== Risoluzione del problema
+
+. Attendere un minuto, quindi eseguire `storage array config show` nuovamente per verificare se il gruppo LUN extra è ancora visualizzato nell' `storage array config show` output.
++
+** Se il gruppo LUN extra non è più nell'output, è possibile concludere che il problema era di transizione.
+** Se il gruppo di LUN extra viene ancora visualizzato nell'output, l'amministratore dello storage array deve rimappare il LDEV, come documentato nelle fasi successive.
++
+È necessario mantenere la ridondanza mentre si risolve questo problema. Questa procedura indica di mappare il sistema LDEV alla porta target corretta _prima_ di rimuovere la mappatura alla porta target non corretta. La ridondanza viene mantenuta in questo caso perché si sta aumentando temporaneamente il numero di percorsi a tre, invece di diminuire il numero di percorsi a uno mentre si sta risolvendo il problema.
+
+
+
+. Stabilire quale delle porte di destinazione non coerenti deve essere rimappata.
+. Sull'array di archiviazione, mappare il LDEV alla nuova porta di destinazione (corretta).
+. In ONTAP, eseguire `storage array config show` per confermare che sono visualizzati tre percorsi.
+. Rimuovere la mappatura non corretta.
+. Attendere un minuto mentre ONTAP rileva il LUN.
+. In ONTAP, eseguire `storage array config show` di nuovo l'operazione per assicurarsi che il gruppo di LUN extra sia andato.
+
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

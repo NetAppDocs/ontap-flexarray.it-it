@@ -1,0 +1,39 @@
+---
+permalink: install/concept_number_of_storage_arrays_supported_with_a_ontap_system.html 
+sidebar: sidebar 
+keywords: considerations, connect, multiple, storage, arrays, ontap, system 
+summary: In base ai modelli di array di storage supportati dai sistemi ONTAP, è possibile collegare più array di storage o un singolo array di storage al sistema ONTAP. 
+---
+= Considerazioni sulla connessione di più array di storage a un sistema ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+In base ai modelli di array di storage supportati dai sistemi ONTAP, è possibile collegare più array di storage o un singolo array di storage al sistema ONTAP.
+
+[NOTE]
+====
+La matrice di interoperabilità identifica qualsiasi modello di storage array per cui è supportato un solo storage array con un sistema ONTAP.
+
+====
+Tenere presente quanto segue per la connessione di più array di storage a un sistema ONTAP:
+
+* Se è possibile collegare più array dello stesso modello di storage array supportato al sistema ONTAP, non esiste un limite sul numero di array di storage che è possibile implementare.
+* Gli storage array possono essere dello stesso vendor supportato o di vendor diversi.
++
+Se gli storage array sono dello stesso vendor, possono appartenere alla stessa famiglia o a famiglie diverse.
+
+
+
+[NOTE]
+====
+Gli array di storage della stessa famiglia condividono le stesse prestazioni e caratteristiche di failover. Ad esempio, i membri della stessa famiglia eseguono tutti il failover Active-Active o eseguono tutti il failover Active-passive. Per determinare le famiglie di storage array potrebbe essere utilizzato più di un fattore. Ad esempio, gli storage array con architetture differenti sarebbero in famiglie diverse, anche se altre caratteristiche potrebbero essere le stesse.
+
+====
+*Informazioni correlate*
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["Implementazione della virtualizzazione FlexArray per storage di terze parti"]
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

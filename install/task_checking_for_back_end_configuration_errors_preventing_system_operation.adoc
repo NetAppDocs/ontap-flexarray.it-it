@@ -1,0 +1,58 @@
+---
+permalink: install/task_checking_for_back_end_configuration_errors_preventing_system_operation.html 
+sidebar: sidebar 
+keywords: check, back-end, configuration, errors, prevent, system, operation 
+summary: 'ONTAP richiede la risoluzione dei comuni errori di configurazione back-end che impedirebbero a uno storage array e a un sistema ONTAP di funzionare normalmente. Il comando di configurazione dell"array di archiviazione mostra consente di determinare se sono presenti errori di configurazione back-end.' 
+---
+= Controllo degli errori di configurazione back-end che impediscono il funzionamento del sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP richiede la risoluzione dei comuni errori di configurazione back-end che impedirebbero a uno storage array e a un sistema ONTAP di funzionare normalmente. Il `storage array config show` comando consente di determinare se sono presenti errori di configurazione back-end.
+
+.Fasi
+. Immettere il seguente comando: `storage array config show`
++
+Il primo passo nella verifica dell'installazione (e nella risoluzione dei problemi) consiste nell'eseguire il `storage array config show` comando. Se ONTAP rileva un errore nella configurazione back-end, nella parte inferiore dell'uscita viene visualizzato il seguente messaggio `storage array config show` :
+
++
+[listing]
+----
+Warning: Configuration errors were detected.  Use 'storage errors show' for detailed information.
+----
+. Intraprendere l'azione appropriata, come segue:
++
+|===
+| Se... | Quindi... 
+
+
+ a| 
+`storage array config show` indica di eseguire `storage errors show`
+ a| 
+Passare alla fase 3.
+
+
+
+ a| 
+`storage array config show` NON indica all'utente di eseguire `storage errors show`
+ a| 
+Esaminare l' `storage array config show` output per assicurarsi che rifletta la configurazione desiderata. Vedere verifica della corrispondenza tra la configurazione di back-end e la sezione di output prevista. Non è necessario continuare con le fasi successive di questa procedura. xref:task_verifying_if_the_back_end_configuration_matches_the_expected_output.adoc[Verificare se la configurazione back-end corrisponde all'output previsto]
+
+|===
+. Immettere il seguente comando: `storage errors show`
++
+Il `storage errors show` comando consente di visualizzare i dettagli del problema a livello di array LUN.
+
+. Esaminare il messaggio di errore e correggere gli eventuali errori visualizzati.
++
+È necessario correggere eventuali errori visualizzati da `storage errors show`. Consultare la `storage errors show` sezione messaggi e relativa risoluzione per informazioni sulla causa di ciascun problema rilevato da `storage errors show` e su come risolverlo. xref:reference_the_storage_errors_show_messages_and_their_resolution.adoc[Gli errori di memorizzazione mostrano i messaggi e la relativa risoluzione]
+
+. Dopo aver risolto il problema, eseguire `storage errors show` nuovamente per confermare che l'errore è stato risolto.
++
+Se `storage errors show` il problema persiste, consultare nuovamente la documentazione per ulteriori informazioni sulle operazioni da eseguire oppure contattare il supporto tecnico.
+
+. Dopo aver risolto l'errore di configurazione back-end, eseguire `storage array config show` nuovamente in modo da poter rivedere l'output per assicurarsi che la configurazione soddisfi l'output previsto.
+

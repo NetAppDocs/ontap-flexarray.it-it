@@ -1,0 +1,24 @@
+---
+permalink: install/concept_spare_core_array_lun_requirement_for_core_dumps.html 
+sidebar: sidebar 
+keywords: spare, array, lun, requirement, core, dumps 
+summary: Sia per i sistemi ONTAP standalone che per i nodi in coppie ha, è necessario creare un LUN array spare di dimensioni adeguate per contenere dump core, se non è disponibile un disco spare. 
+---
+= Requisito LUN dell'array di ricambio per i core dump
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sia per i sistemi ONTAP standalone che per i nodi in coppie ha, è necessario creare un LUN array spare di dimensioni adeguate per contenere dump core, se non è disponibile un disco spare.
+
+In un sistema che utilizza sia dischi che array LUN, non è necessario un array LUN di riserva per un core dump se è disponibile un disco di riserva. Se non è disponibile né un LUN array di riserva né un disco di riserva, non c'è spazio per il core da scaricare.
+
+Un core dump contiene il contenuto della memoria e di NVRAM. Durante un'emergenza del sistema, ONTAP scarica il core su un LUN di array libero o su un disco di riserva, se esiste una parte di ricambio. Al riavvio, il core viene letto dal disco di riserva e salvato in un core dump sul filesystem di root. Il supporto tecnico può quindi utilizzare il core dump per risolvere il problema.
+
+Il _Hardware Universe_ contiene le dimensioni minime del LUN dell'array core di riserva per ciascuna piattaforma.
+
+*Informazioni correlate*
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

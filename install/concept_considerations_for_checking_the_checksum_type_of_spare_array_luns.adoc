@@ -1,0 +1,28 @@
+---
+permalink: install/concept_considerations_for_checking_the_checksum_type_of_spare_array_luns.html 
+sidebar: sidebar 
+keywords: checksum, type, considerations, add, spare, array, luns, aggregates 
+summary: 'Quando si aggiungono LUN di array spare agli aggregati, occorre tenere in considerazione alcune considerazioni correlate ai tipi di checksum. Ad esempio, se si prevede di aggiungere un LUN di array di riserva a un aggregato specificando il relativo nome, è necessario assicurarsi che l"array LUN e l"aggregato abbiano lo stesso tipo di checksum.' 
+---
+= Considerazioni sul tipo di checksum per l'aggiunta di LUN di array spare agli aggregati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando si aggiungono LUN di array spare agli aggregati, occorre tenere in considerazione alcune considerazioni correlate ai tipi di checksum. Ad esempio, se si prevede di aggiungere un LUN di array di riserva a un aggregato specificando il relativo nome, è necessario assicurarsi che l'array LUN e l'aggregato abbiano lo stesso tipo di checksum.
+
+Di seguito sono riportate alcune considerazioni sul tipo di checksum per l'aggiunta di LUN di array spare agli aggregati:
+
+* Non è possibile combinare array LUN di diversi tipi di checksum in un aggregato LUN di un array.
+* Se si specifica un numero di array LUN di riserva da aggiungere a un aggregato, ONTAP seleziona per impostazione predefinita le array LUN dello stesso tipo di checksum dell'aggregato.
+* I LUN di array del tipo di checksum con zoning, quando vengono aggiunti a un aggregato di checksum con zoning esistente, continuano a essere LUN di array di checksum con zoning.
+* I LUN di array di riserva con checksum con zoning aggiunti a un aggregato di tipo AZCS (Advanced zone checksum) utilizzano lo schema di checksum AZCS.
+
+
+[NOTE]
+====
+È possibile controllare il tipo di checksum dei LUN dell'array di riserva utilizzando il `storage disk show` comando. Per ulteriori informazioni sul comando, vedere le pagine man.
+
+====

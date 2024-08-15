@@ -1,0 +1,28 @@
+---
+permalink: install/concept_elements_that_reduce_the_usable_space_in_an_array_lun.html 
+sidebar: sidebar 
+keywords: elements, reduce, usable, space, array, lun 
+summary: 'Diversi fattori influiscono sullo spazio utilizzabile in un array LUN. Durante il planning per il numero e le dimensioni richiesti delle LUN dell"array, è necessario considerare lo spazio utilizzabile nel LUN dell"array in base al tipo di checksum utilizzato e agli elementi che è possibile configurare.' 
+---
+= Elementi che riducono lo spazio utilizzabile in un array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Diversi fattori influiscono sullo spazio utilizzabile in un array LUN. Durante il planning per il numero e le dimensioni richiesti delle LUN dell'array, è necessario considerare lo spazio utilizzabile nel LUN dell'array in base al tipo di checksum utilizzato e agli elementi che è possibile configurare.
+
+Quando si calcola lo spazio utilizzabile in un array LUN, è necessario considerare i seguenti fattori che riducono lo spazio utilizzabile del LUN:
+
+* Spazio riservato ad uso di ONTAP
+* Spazio per il core dump
+* Riserva Snapshot a livello di volume
+* Copia Snapshot a livello di aggregato
+* Tipo di checksum (viene assegnato un tipo):
++
+** Checksum blocco (BCS)
+** Advanced Zoned checksum (AZCS)
+
+
+

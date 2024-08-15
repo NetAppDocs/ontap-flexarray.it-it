@@ -1,0 +1,30 @@
+---
+permalink: install/concept_guidelines_for_specifying_the_appropriate_target_queue_depth.html 
+sidebar: sidebar 
+keywords: guidelines, specify, appropriate, target, queue, depth 
+summary: 'È necessario considerare l"impatto di tutti gli iniziatori che accedono alla porta array di storage quando si sta pianificando la configurazione per un sistema ONTAP specifico o per un host specifico che non esegue ONTAP.' 
+---
+= Linee guida per specificare la profondità della coda di destinazione appropriata
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario considerare l'impatto di tutti gli iniziatori che accedono alla porta array di storage quando si sta pianificando la configurazione per un sistema ONTAP specifico o per un host specifico che non esegue ONTAP.
+
+Se la distribuzione include più di un iniziatore su una porta di destinazione, è necessario considerare il numero totale di comandi inviati a una porta di destinazione da tutti gli iniziatori quando si imposta la profondità della coda di destinazione.
+
+Le linee guida per specificare la profondità appropriata della coda di destinazione sono le seguenti:
+
+* Non configurare un valore pari a 0 (zero).
++
+Un valore pari a 0 indica che non vi sono limiti ai comandi in sospeso.
+
+* Si consideri il volume di comandi che iniziatori specifici potrebbero inviare alla porta di destinazione.
++
+È quindi possibile configurare valori più elevati per gli iniziatori che potrebbero inviare un numero maggiore di richieste e un valore più basso per gli iniziatori che potrebbero inviare un numero minore di richieste.
+
+* Configurare gli host che non eseguono ONTAP in base alle linee guida fornite per tali host.
+* Considerare l'impostazione della profondità della coda di destinazione in base alla porta di destinazione quando i carichi di lavoro differiscono tra le porte.
+

@@ -1,0 +1,18 @@
+---
+permalink: implement-third-party/concept_use_of_storage_array_advanced_features.html 
+sidebar: sidebar 
+keywords: support, advanced, features, storage, arrays 
+summary: ONTAP non supporta funzionalità avanzate degli storage array, se non diversamente specificato nella matrice di interoperabilità. 
+---
+= Supporto per le funzionalità avanzate degli storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP non supporta funzionalità avanzate degli storage array, se non diversamente specificato nella matrice di interoperabilità.
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

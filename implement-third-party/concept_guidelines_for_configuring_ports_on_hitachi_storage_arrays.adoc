@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/concept_guidelines_for_configuring_ports_on_hitachi_storage_arrays.html 
+sidebar: sidebar 
+keywords: guidelines, configuring, ports, hitachi, storage, arrays 
+summary: È necessario seguire determinate linee guida quando si configurano le porte sugli array di storage Hitachi. 
+---
+= Linee guida per la configurazione delle porte sugli array di storage Hitachi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario seguire determinate linee guida quando si configurano le porte sugli array di storage Hitachi.
+
+Le linee guida per la configurazione delle porte sugli array di storage Hitachi sono le seguenti:
+
+* Aggiungere un solo gruppo di host per porta.
+* È necessario assicurarsi che un gruppo host includa tutte le porte FC Initiator dei sistemi V-Series in una risorsa LUN di array.
+

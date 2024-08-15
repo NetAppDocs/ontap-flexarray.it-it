@@ -1,0 +1,69 @@
+---
+permalink: install/reference_array_lun_is_either_smaller_or_larger_than_the_supported_values.html 
+sidebar: sidebar 
+keywords: array, lun, size, smaller, larger, supported, values, show, message, storage, errors 
+summary: 'Durante il planning delle dimensioni delle LUN degli array, occorre rispettare i limiti minimi e massimi delle dimensioni delle LUN degli array ONTAP. Questi limiti variano in base alla versione ONTAP. Gli errori di storage mostrano l"output identificano i LUN dell"array che non soddisfano i requisiti di dimensioni.' 
+---
+= Le dimensioni del LUN dell'array sono inferiori o superiori ai valori supportati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante il planning delle dimensioni delle LUN degli array, occorre rispettare i limiti minimi e massimi delle dimensioni delle LUN degli array ONTAP. Questi limiti variano in base alla versione ONTAP. L' `storage errors show` output identifica i LUN dell'array che non soddisfano i requisiti di dimensione.
+
+Non è possibile assegnare array LUN con problemi di dimensioni a un sistema ONTAP.
+
+
+
+== Gli errori di memorizzazione mostrano il messaggio
+
+[listing]
+----
+NAME (Serial #): This array LUN is too large and is not usable. The maximum array LUN size supported is xTB
+----
+OPPURE
+
+[listing]
+----
+NAME (Serial #): This array LUN is too small and is not usable. The minimum array LUN size supported is xGB.
+----
+
+
+== Spiegazione
+
+Questo messaggio viene generato quando il LUN dell'array è più piccolo delle dimensioni minime del LUN dell'array supportate da ONTAP o supera le dimensioni massime supportate. I motivi principali per cui le dimensioni delle LUN dell'array devono essere maggiori o minori rispetto ai valori supportati possono essere i seguenti:
+
+* L'amministratore dello storage array non ha convertito i limiti di dimensioni delle LUN degli array ONTAP in limiti equivalenti in base alla definizione di unità di misura da parte del vendor.
++
+Alcuni vendor calcolano i limiti delle dimensioni delle LUN dell'array in modo diverso da ONTAP per determinare i limiti minimi e massimi delle dimensioni delle LUN dell'array.
+
++
+_Hardware Universe_ elenca i valori dei limiti di dimensioni massime e minime dell'array LUN supportati.
+
+* I LUN degli array si riferiscono a un altro host il cui limite di dimensioni è diverso dai limiti ONTAP.
++
+In una SAN aperta, ONTAP è esposto a array LUN destinati ad altri host, se tali array LUN non sono stati mascherati.
+
++
+ONTAP genera un messaggio di errore relativo ai problemi di dimensione per qualsiasi array LUN esposto.
+
+
+
+
+
+== Risoluzione dei problemi e risoluzione dei problemi
+
+. Esaminare l' `storage errors show` output in modo da individuare quale array LUN ha problemi di dimensione.
++
+** Se il LUN dell'array con problemi di dimensioni è per ONTAP, l'amministratore dello storage array deve ridimensionare la LUN dell'array per soddisfare i requisiti di ONTAP, quindi presentarla nuovamente a ONTAP.
+** Se il LUN dell'array con problemi di dimensioni è per un altro host, l'amministratore dello storage array deve mascherare il LUN dell'array in modo che non sia esposto a ONTAP.
+
+
+. Una volta risolto il problema, eseguire nuovamente l'esecuzione `storage array config show` per confermare che l'errore non persiste.
+
+
+*Informazioni correlate*
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

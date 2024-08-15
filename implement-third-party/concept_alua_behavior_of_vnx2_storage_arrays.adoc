@@ -1,0 +1,22 @@
+---
+permalink: implement-third-party/concept_alua_behavior_of_vnx2_storage_arrays.html 
+sidebar: sidebar 
+keywords: alua, behavior, vnx2, storage, arrays 
+summary: 'Sebbene tutti gli array EMC CLARiiON e VNX utilizzino la modalità di failover ALUA (Asymmetric Active-Active), gli storage array VNX2 possono differire nel comportamento ALUA.' 
+---
+= Comportamento ALUA degli storage array VNX2
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sebbene tutti gli array EMC CLARiiON e VNX utilizzino la modalità di failover ALUA (Asymmetric Active-Active), gli storage array VNX2 possono differire nel comportamento ALUA.
+
+Come tutti gli altri array LUN EMC, gli array LUN VNX2 presentati al sistema ONTAP dai Dynamic disk pool utilizzano la modalità di failover ALUA. Tuttavia, gli array LUN VNX2 presentati al sistema ONTAP da gruppi RAID tradizionali utilizzano la modalità di failover Active-Active, con tutti i percorsi segnalati come *`AO`* (Active Optimized). Questo comportamento delle LUN dell'array cambia durante determinate operazioni, come la creazione di Snapshot nell'array di backend.
+
+Pertanto, per mantenere un comportamento coerente delle array LUN VNX2, ONTAP le considera come ALUA, indipendentemente dal fatto che tali array LUN siano presentati da gruppi RAID tradizionali o da Dynamic Disk Pool.
+
+In una situazione del genere, le richieste di i/o per un dato LUN da VNX2 GB vengono distribuite solo sui percorsi indicati *`INU`come in stato * (in uso) e non su tutti i percorsi indicati come *`AO`* (Active-Optimized).
+
+Ad esempio, se sono presenti quattro percorsi a un LUN di array VNX2 presentati al sistema ONTAP da un gruppo RAID tradizionale, tutti i percorsi sono riportati come *`AO`*; tuttavia, solo due dei percorsi sono in *`INU`stato *, mentre gli altri due non sono utilizzati ma sono in *`RDY`stato * (pronto).

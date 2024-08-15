@@ -1,0 +1,20 @@
+---
+permalink: install/concept_supported_methods_for_connecting_a_v_series_system_to_a_storage_array.html 
+sidebar: sidebar 
+keywords: supported, methods, connect, ontap, system, storage, array 
+summary: Puoi collegare il sistema ONTAP in una configurazione fabric-attached con storage array. Le configurazioni fabric-attached sono supportate sia per sistemi standalone che per coppie ha. Le configurazioni a collegamento diretto sono limitate ad alcuni storage array e ad alcune release di ONTAP. 
+---
+= Metodi supportati per la connessione di un sistema ONTAP a un array di storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi collegare il sistema ONTAP in una configurazione fabric-attached con storage array. Le configurazioni fabric-attached sono supportate sia per sistemi standalone che per coppie ha. Le configurazioni a collegamento diretto sono limitate ad alcuni storage array e ad alcune release di ONTAP.
+
+La matrice di interoperabilità contiene informazioni sui metodi di connessione supportati per storage array e piattaforme che eseguono ONTAP specifici.
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

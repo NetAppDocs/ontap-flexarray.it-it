@@ -1,0 +1,41 @@
+---
+permalink: implement-third-party/concept_configuring_fill_word_settings_for_8_gb_brocade_switch_ports_concept.html 
+sidebar: sidebar 
+keywords: required fill word, settings, 8 gb, brocade, switch, ports 
+summary: Se si utilizzano switch Brocade da 8 GB con versione firmware FOS 6.3.1 o successiva nel proprio ambiente di archiviazione, è necessario verificare che le impostazioni della parola di riempimento appropriate siano configurate sulle porte dello switch collegate ai sistemi ONTAP e che le porte dello switch siano collegate agli array di archiviazione. Se le parole di riempimento non sono corrette, potrebbero verificarsi errori di inizializzazione del collegamento nelle porte dello switch. 
+---
+= Impostazioni della parola di riempimento richieste per le porte degli switch Brocade da 8 GB
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si utilizzano switch Brocade da 8 GB con versione firmware FOS 6.3.1 o successiva nel proprio ambiente di archiviazione, è necessario verificare che le impostazioni della parola di riempimento appropriate siano configurate sulle porte dello switch collegate ai sistemi ONTAP e che le porte dello switch siano collegate agli array di archiviazione. Se le parole di riempimento non sono corrette, potrebbero verificarsi errori di inizializzazione del collegamento nelle porte dello switch.
+
+Per i sistemi ONTAP, è necessario impostare la parola di riempimento sulle porte dello switch corrispondenti su 3.
+
+Per gli array di archiviazione, è necessario impostare la parola di riempimento in base ai seguenti valori consigliati, utilizzando la documentazione dello switch Brocade per le istruzioni:
+
+[cols="2*"]
+|===
+| Array di storage | Valore della parola di riempimento sulle porte dello switch Brocade 
+
+
+ a| 
+Hitachi
+| 2 
+
+
+ a| 
+HP XP
+|  
+
+
+ a| 
+Tutti gli altri storage array supportati con i sistemi Data ONTAP
+| 3 
+|===
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

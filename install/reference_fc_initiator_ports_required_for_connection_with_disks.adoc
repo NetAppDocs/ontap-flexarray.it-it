@@ -1,0 +1,38 @@
+---
+permalink: install/reference_fc_initiator_ports_required_for_connection_with_disks.html 
+sidebar: sidebar 
+keywords: fc initiator, ports, required, connection, native, disks 
+summary: 'È necessario collegare un sistema V-Series agli shelf di dischi nativi tramite le porte FC Initiator. Il numero di porte Initiator richieste per la connessione dipende dall"esistenza o meno di un sistema V-Series standalone o in una coppia ha.' 
+---
+= Porte FC Initiator richieste per il collegamento ai dischi nativi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario collegare un sistema V-Series agli shelf di dischi nativi tramite le porte FC Initiator. Il numero di porte Initiator richieste per la connessione dipende dall'esistenza o meno di un sistema V-Series standalone o in una coppia ha.
+
+Nella tabella seguente è indicato il numero richiesto di porte FC Initiator per il collegamento di un sistema V-Series agli shelf di dischi nativi, in base alla configurazione del sistema:
+
+|===
+| Configurazione | Numero di porte FC Initiator 
+
+
+ a| 
+Sistema autonomo
+ a| 
+* Se si utilizza un loop, una porta FC Initiator
+* Se si collegano due loop, due porte FC Initiator, una per ciascun loop
+
+
+
+
+ a| 
+Coppia HA
+ a| 
+* Se si utilizza storage multipath, due porte FC Initiator per ciascun loop
+* Se non stai utilizzando uno storage multipath, una porta FC Initiator per controller per ciascun loop della configurazione
+
+
+|===

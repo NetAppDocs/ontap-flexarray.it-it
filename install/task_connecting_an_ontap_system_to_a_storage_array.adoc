@@ -1,0 +1,85 @@
+---
+permalink: install/task_connecting_an_ontap_system_to_a_storage_array.html 
+sidebar: sidebar 
+keywords: connect, ontap, system, storage, array 
+summary: Il collegamento del sistema ONTAP a un array di storage implica il cablaggio del sistema ONTAP, degli switch e degli array di storage insieme e il collegamento di dispositivi aggiuntivi, come i dispositivi di backup su nastro. 
+---
+= Connessione di un sistema ONTAP a uno storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il collegamento del sistema ONTAP a un array di storage implica il cablaggio del sistema ONTAP, degli switch e degli array di storage insieme e il collegamento di dispositivi aggiuntivi, come i dispositivi di backup su nastro.
+
+*Cosa ti serve*
+
+* Per la connessione all'array di storage, è necessario aver identificato le porte integrate e le porte della scheda di espansione del sistema ONTAP.
+* È necessario aver individuato le porte sull'array di storage che si desidera utilizzare per la connessione al sistema ONTAP.
+
+
+Questa procedura descrive come collegare un sistema ONTAP a uno storage array attraverso due percorsi, con ogni iniziatore dedicato a una porta di destinazione.
+
+.Fasi
+. Collegare il sistema ONTAP agli switch come indicato nella seguente tabella:
++
+|===
+| Per... | Attenersi alla procedura descritta di seguito... 
+
+
+ a| 
+Un sistema autonomo
+ a| 
+.. Collegare un cavo da una porta FC Initiator del sistema ONTAP a una porta dello switch 1.
+.. Collegare un altro cavo da una porta FC Initiator ridondante a una porta sullo Switch 2.
+
+
+
+
+ a| 
+Una coppia ha
+ a| 
+.. Sul primo nodo della coppia ha, collegare un cavo da una porta FC Initiator a una porta sullo Switch 1.
+.. Collegare un altro cavo da una porta FC Initiator ridondante sullo stesso nodo a una porta sullo switch 2.
+.. Sul secondo nodo della coppia ha, collegare un cavo da una porta FC Initiator a una porta sullo Switch 1.
+.. Collegare un altro cavo da una porta FC Initiator ridondante sullo stesso nodo a una porta sullo switch 2.
+
+
+|===
+. Collegare gli switch allo storage array seguendo le istruzioni nella seguente tabella e, per una coppia ha, l'illustrazione seguente:
++
+|===
+| Per un sistema autonomo... | Per una coppia ha... 
+
+
+ a| 
+.. Collegare lo switch 1 al controller dello storage array 1, porta 1A.
+.. Collegare lo switch 2 al controller dello storage array 2, porta 2A.
+
+ a| 
+.. Collegare lo switch 1 al controller dello storage array 1, porta 1A.
+.. Collegare lo switch 2 al controller dello storage array 2, porta 2A.
+.. Collegare lo switch 1 al controller dello storage array 1, porta 1B.
+.. Collegare lo switch 2 al controller dello storage array 2, porta 2B.
+
+
+|===
++
+La seguente illustrazione mostra le connessioni per una coppia ha.
+
++
+image::../media/one_4_port_array_lun_gp.gif[Le connessioni da VS1 0A e VS2 0A vanno al controller dello storage array 1,ports 1A and 1B. Connections from vs1 0c and vs2 0c go to storage array controller 2,ports 2A and 2B.]
+
+. *Opzionale:* collegare il sistema ONTAP a un dispositivo di backup su nastro tramite una porta FC Initiator separata o un adattatore a nastro SCSI.
+. Verificare che l'array di archiviazione sia configurato e collegato correttamente e che sia acceso.
++
+Prima di accendere il sistema ONTAP, è necessario accendere lo storage array configurato e connesso. Consultare la documentazione dell'array di storage per informazioni su come accendere l'array di storage.
+
+. Se l'implementazione include gli switch, assicurarsi che tutti gli ID switch siano impostati, quindi attivarli a intervalli di 10 minuti.
+. *Opzionale:* se applicabile, accendere tutti i dispositivi di backup su nastro.
+. Accendere il sistema ONTAP ed eseguire la configurazione e la configurazione iniziale della rete.
+. Se lo storage array non rileva automaticamente i WWN del sistema ONTAP dopo aver collegato il sistema ONTAP allo storage array, è necessario ottenere i WWN manualmente.
+
+
+È necessario continuare con l'impostazione appropriata delle funzioni di gestione di ONTAP per lavorare con gli storage array.

@@ -1,0 +1,215 @@
+---
+permalink: install/concept_example_configuration_shared_fc_initiator_ports.html 
+sidebar: sidebar 
+keywords: example, configuration, shared, fc initiator, ports, separate, storage, arrays, multiple, targets 
+summary: È possibile collegare una porta FC Initiator su un sistema ONTAP a un massimo di quattro porte di destinazione su storage array separati o, per alcuni storage array, a quattro porte di destinazione sugli stessi storage array. 
+---
+= Configurazione di esempio: Porte FC Initiator condivise
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile collegare una porta FC Initiator su un sistema ONTAP a un massimo di quattro porte di destinazione su storage array separati o, per alcuni storage array, a quattro porte di destinazione sugli stessi storage array.
+
+La procedura consigliata per la creazione di zone prevede che ogni coppia di porte FC Initiator-Target si trovi in una zona separata (1:1), anche se lo stesso iniziatore FC è in comunicazione con più porte di destinazione.
+
+
+
+== Porta iniziatore FC condivisa collegata a più porte di destinazione su array di storage _separati_
+
+L'illustrazione seguente mostra le connessioni e la suddivisione in zone per la condivisione di una porta iniziatore FC con porte di destinazione su array di storage _diversi_.
+
+Le linee continue nella seguente illustrazione mostrano le connessioni dalle porte di iniziatore FC sul sistema VS1 e le linee tratteggiate mostrano le connessioni dalle porte di iniziatore FC sul sistema VS2.
+
+image::../media/shared_initiator_ports_different_arrays.gif[porte iniziatore condivise diversi array]
+
+La seguente tabella mostra le definizioni dello zoning 1:1 per l'esempio di una porta initiator FC che condivide più porte di destinazione su array di storage diversi.
+
+|===
+| Zona | Sistema ONTAP e porta FC Initiator | Array di storage 
+
+
+ a| 
+*Switch 1*
+
+
+
+ a| 
+z1
+ a| 
+vs1:0a
+ a| 
+Storage array 1: Controller 1 porta 1A
+
+
+
+ a| 
+z2
+ a| 
+vs1:0a
+ a| 
+Storage array 2: Controller 1 porta 1A
+
+
+
+ a| 
+z3
+ a| 
+vs2:0a
+ a| 
+Storage array 1: Controller 1 porta 1B
+
+
+
+ a| 
+z4
+ a| 
+vs2:0a
+ a| 
+Storage array 2: Controller 1 porta 1B
+
+
+
+ a| 
+*Switch 2*
+
+
+
+ a| 
+z5
+ a| 
+vs1:0c
+ a| 
+Storage array 1: Controller 2 porta 2A
+
+
+
+ a| 
+z6
+ a| 
+vs1:0c
+ a| 
+Storage array 2: Controller 2 porta 2A
+
+
+
+ a| 
+z7
+ a| 
+vs2:0c
+ a| 
+Storage array 1: Controller 2 porta 2B
+
+
+
+ a| 
+z8
+ a| 
+vs2:0c
+ a| 
+Storage array 2: Controller 2 porta 2B
+
+|===
+
+
+== Porta iniziatore FC condivisa collegata a più porte di destinazione sull'array di storage _same_
+
+È possibile utilizzare questa configurazione solo con storage array la cui funzionalità di masking, presentazione o gruppo host LUN consente a diversi gruppi di presentazioni di LUN con lo stesso FC Initiator in base alla porta di destinazione a cui si accede.
+
+Alcuni array di storage possono presentare diversi set di dispositivi logici a un iniziatore FC in base alla porta di destinazione a cui si accede. Questi tipi di array di storage consentono che lo stesso iniziatore FC si trovi in più gruppi di host. Negli storage array con questa funzionalità, ciascun iniziatore FC può accedere a più porte di destinazione di array sullo stesso storage array, con ciascuna porta di destinazione che presenta un gruppo LUN diverso per l'iniziatore FC. Verificare la documentazione dell'array di storage per determinare se lo storage array consente che lo stesso iniziatore FC si trovi in più gruppi di host.
+
+L'illustrazione seguente mostra le connessioni e la suddivisione in zone per la condivisione di una porta iniziatore FC con più porte di destinazione sull'array di storage _same_. In questo esempio, le definizioni di zoning sono configurate come 1:1, vale a dire un iniziatore FC su una porta di destinazione.
+
+Le linee continue nella seguente illustrazione mostrano le connessioni dalle porte di iniziatore FC sul sistema VS1 e le linee tratteggiate mostrano le connessioni dalle porte di iniziatore FC sul sistema VS2. Per questa configurazione sono necessari due gruppi di LUN.
+
+image::../media/shared_initiator_ports_same_array.gif[Le connessioni e la suddivisione in zone sono descritte nel testo circostante.]
+
+Nella tabella seguente sono riportate le definizioni dello zoning 1:1 per l'esempio di una porta initiator FC che condivide più porte di destinazione sullo stesso array di storage.
+
+|===
+| Zona | Sistema ONTAP e porta FC Initiator | Porta e array di storage 
+
+
+ a| 
+Interruttore 1
+
+
+
+ a| 
+z1
+ a| 
+vs1:0a
+ a| 
+Controller 1 porta 1A
+
+
+
+ a| 
+z2
+ a| 
+vs1:0a
+ a| 
+Controller 1 porta 1C
+
+
+
+ a| 
+z3
+ a| 
+vs2:0a
+ a| 
+Controller 1 porta 1B
+
+
+
+ a| 
+z4
+ a| 
+vs2:0a
+ a| 
+Controller 1 porta 1D
+
+
+
+ a| 
+Interruttore 2
+
+
+
+ a| 
+z5
+ a| 
+vs1:0c
+ a| 
+Controller 2 porta 2A
+
+
+
+ a| 
+z6
+ a| 
+vs1:0c
+ a| 
+Controller 2 porta 2C
+
+
+
+ a| 
+z7
+ a| 
+vs2:0c
+ a| 
+Controller 2 porta 2B
+
+
+
+ a| 
+z8
+ a| 
+vs2:0c
+ a| 
+Controller 2 porta 2D
+
+|===

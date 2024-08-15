@@ -1,0 +1,47 @@
+---
+permalink: install/concept_stages_of_implementation_for_a_system_using_array_luns.html 
+sidebar: sidebar 
+keywords: stages, implementation, system, use, array, luns, back end, front end 
+summary: 'L"implementazione di una configurazione in cui il sistema utilizza LUN da uno storage array prevede due fasi: Un"implementazione back-end e un"implementazione front-end. È utile quando si pianifica la configurazione per comprendere le attività di alto livello in ogni fase.' 
+---
+= Fasi di implementazione per un sistema che utilizza array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'implementazione di una configurazione in cui il sistema utilizza LUN da uno storage array prevede due fasi: Un'implementazione back-end e un'implementazione front-end. È utile quando si pianifica la configurazione per comprendere le attività di alto livello in ogni fase.
+
+
+
+== Fase 1: Implementazione back-end
+
+La configurazione dell'implementazione di backup include tutte le attività necessarie per configurare il sistema ONTAP con un array di storage, fino al punto in cui è possibile installare il software ONTAP.
+
+Le attività per configurare l'implementazione di back-end includono quanto segue:
+
+. Creazione e formattazione di array LUN
+. Assegnazione delle porte
+. Cablaggio
+. Switch zoning (se presenti)
+. In ONTAP, assegnazione di LUN di array specifici a un sistema ONTAP
+. In ONTAP, fornisce informazioni sulla configurazione di un sistema ONTAP sulla rete
+. Installazione del software ONTAP
+
+
+Se si ordina un sistema ONTAP con shelf di dischi, il software ONTAP viene installato in fabbrica. In una configurazione di questo tipo, non è necessario creare il volume root e installare le licenze e il software ONTAP.
+
+Se si ordina un sistema ONTAP senza shelf di dischi, occorre configurare ONTAP prima di configurare il cluster.
+
+
+
+== Fase 2: Implementazione front-end
+
+Le attività per configurare l'implementazione front-end sono le stesse di un sistema che utilizza dischi, tra cui:
+
+* Configurazione del sistema ONTAP per tutti i protocolli (NAS, FC o entrambi)
+* Configurazione delle funzionalità di ONTAP come SnapVault, SnapMirror, SnapValidator e copie Snapshot
+* Creazione di volumi e aggregati
+* Configurazione della protezione dati, inclusi dump NDMP su nastri
+

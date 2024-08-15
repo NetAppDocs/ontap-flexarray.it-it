@@ -1,0 +1,62 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_emc_vnx_storage_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, emc, vnx, storage, arrays, ontap, systems 
+summary: Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri. 
+---
+= Parametri necessari per gli storage array EMC VNX con sistemi ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri.
+
+I parametri di configurazione dell'host che devono essere impostati nell'array di archiviazione sono elencati nella tabella seguente.
+
+|===
+| Parametro | Impostazione 
+
+
+ a| 
+`Initiator type`
+ a| 
+CLARiiON/VNX
+
+
+
+ a| 
+`Array Com Path`
+ a| 
+Attivato
+
+
+
+ a| 
+`Failover mode`
+ a| 
+4
+
+
+
+ a| 
+`Unit serial number`
+ a| 
+LUN
+
+
+
+ a| 
+`Host name`
+ a| 
+Nome host e numero di porta forniti dall'utente
+
+
+
+ a| 
+`IP address`
+ a| 
+Indirizzo IP falso univoco è necessario assicurarsi di non aver inserito questo indirizzo IP in nessun altro punto della configurazione dell'array di storage e che non sia presente un indirizzo IP nella rete.
+
+|===

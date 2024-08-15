@@ -1,0 +1,41 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_hp_eva_storage_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, hp, eva, arrays, ontap, systems 
+summary: Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri. 
+---
+= Parametri richiesti per gli array HP EVA con sistemi ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri.
+
+Le impostazioni dei parametri di sistema sono riportate nella tabella seguente:
+
+|===
+| Parametro | Impostazione 
+
+
+ a| 
+`Redundancy`
+ a| 
+Qualsiasi livello RAID tranne Vraid0
+
+
+
+ a| 
+`Preferred path/mode`
+ a| 
+Nessuna preferenza (impostazione predefinita)
+
+
+
+ a| 
+`Host type`
+ a| 
+SUN Solaris
+
+|===

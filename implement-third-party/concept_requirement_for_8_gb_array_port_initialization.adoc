@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/concept_requirement_for_8_gb_array_port_initialization.html 
+sidebar: sidebar 
+keywords: requirement, 8-Gb array, port, initialization 
+summary: 'In un fabric Fibre Channel (FC) tipico, le porte dello storage array vengono inizializzate come N-Ports (porte di nodo) e le corrispondenti porte dello switch vengono inizializzate come F-Ports (porte fabric). In alcuni casi, queste porte F potrebbero andare offline e riprendere il funzionamento come porte L (porte loop), con conseguenti errori fabric.' 
+---
+= Requisito per l'inizializzazione della porta dell'array da 8 GB
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+In un fabric Fibre Channel (FC) tipico, le porte dello storage array vengono inizializzate come N-Ports (porte di nodo) e le corrispondenti porte dello switch vengono inizializzate come F-Ports (porte fabric). In alcuni casi, queste porte F potrebbero andare offline e riprendere il funzionamento come porte L (porte loop), con conseguenti errori fabric.
+
+Questo comportamento è causato da problemi di negoziazione automatica della topologia nello switch Brocade.
+
+Per garantire che le porte dello switch vengano sempre inizializzate come porte F, è necessario eseguire il `portcfggport` ``<portnumber> 1` comando sulle porte dello switch Brocade collegate agli array di storage. È necessario eseguire questo comando quando si avvia la configurazione del sistema per evitare questo problema ed è necessario risolvere il problema se si verifica.
+
+Per promuovere l'efficienza nel suo complesso, è anche possibile utilizzare questa soluzione alternativa su qualsiasi porta Brocade collegata alle porte iniziatore ONTAP.

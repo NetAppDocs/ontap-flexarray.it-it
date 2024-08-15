@@ -1,0 +1,24 @@
+---
+permalink: implement-third-party/concept_single_4_port_array_lun_group_configuration.html 
+sidebar: sidebar 
+keywords: single, 4-port, array, lun, group, configuration 
+summary: Questa configurazione contiene un singolo gruppo di LUN a 4 porte con ciascuna porta di destinazione a cui si accede da una singola porta initiator ONTAP FC della coppia ha. A causa della suddivisione in zone, solo due percorsi sono consentiti a un array LUN specifico da ciascun sistema ONTAP. 
+---
+= Configurazione di un singolo gruppo LUN di array a 4 porte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questa configurazione contiene un singolo gruppo di LUN a 4 porte con ciascuna porta di destinazione a cui si accede da una singola porta initiator ONTAP FC della coppia ha. A causa della suddivisione in zone, solo due percorsi sono consentiti a un array LUN specifico da ciascun sistema ONTAP.
+
+Questa configurazione è supportata per l'utilizzo con tutti gli storage array elencati nella matrice di interoperabilità, così come supportata per la release di ONTAP in esecuzione sul tuo sistema.
+
+La figura seguente mostra questa configurazione:
+
+image::../media/one_4_port_array_lun_gp.gif[Questo grafico è descritto dal testo circostante.]
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

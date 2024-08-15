@@ -1,0 +1,80 @@
+---
+permalink: install/task_displaying_target_port_queue_depth_statistics_clustered_data_ontap_8_2_and_later.html 
+sidebar: sidebar 
+keywords: display, target, queue, depth, statistics 
+summary: 'Se si sospetta che un"impostazione di profondità della coda di destinazione stia causando problemi di prestazioni sull"array di storage, è necessario controllare il valore impostato per la profondità della coda e lo stato delle richieste sulle porte dell"iniziatore FC.' 
+---
+= Visualizzazione delle statistiche di profondità della coda di destinazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si sospetta che un'impostazione di profondità della coda di destinazione stia causando problemi di prestazioni sull'array di storage, è necessario controllare il valore impostato per la profondità della coda e lo stato delle richieste sulle porte dell'iniziatore FC.
+
+Esistono diversi livelli di dettaglio a cui è possibile accedere per determinare se vi sono problemi nell'elaborazione delle richieste sulle porte di destinazione. La seguente procedura descrive come determinare l'impostazione corrente per la profondità della coda della porta di destinazione, determinare se vi sono richieste in attesa sulle porte e visualizzare statistiche dettagliate sulle porte per aiutare a comprendere il carico di lavoro sulla porta.
+
+.Fasi
+. Utilizzare il `storage array show` comando con il `-instance` parametro per visualizzare il valore corrente della profondità della coda della porta di destinazione.
++
+[listing]
+----
+> set advanced
+> storage array show -instance
+
+Name: HP2
+                 Prefix: HP-2
+                 Vendor: HP
+                  Model: HSV300
+                options:
+          Serial Number: 50014380025d1500
+Target Port Queue Depth: 512
+        LUN Queue Depth: 32
+        Upgrade Pending: false
+    Optimization Policy: eALUA
+               Affinity: aaa
+             Error Text: -
+----
+. Utilizzare il `storage array port show -fields max-queue-depth` comando per visualizzare l'impostazione di profondità della coda per ciascuna porta sull'array di archiviazione.
++
+[listing]
+----
+> set advanced
+> storage array port show -fields max-queue-depth
+
+name            wwnn             wwpn             max-queue-depth
+--------------- ---------------- ---------------- ---------------
+EMC_SYMMETRIX_1 50060480000001a0 50060480000001a0 -
+EMC_SYMMETRIX_1 50060480000001a1 50060480000001a1 -
+EMC_SYMMETRIX_1 50060480000001b0 50060480000001b0 -
+EMC_SYMMETRIX_1 50060480000001b1 50060480000001b1 256
+----
++
+Un valore di "`-' per `Max Queue Depth` indica che la porta non ha una specifica impostazione di profondità massima della coda e sta utilizzando il valore impostato a livello di array di archiviazione.
+
+. Utilizzare il `storage array port show` comando per visualizzare le informazioni sulle prestazioni relative alle porte di destinazione degli array di storage.
++
+I risultati di questo comando consentono di determinare se vi sono problemi di prestazioni correlati alle porte. I `%busy` valori e `%waiting` forniscono una visione di alto livello delle prestazioni su una porta. Se questi valori mostrano un'alta percentuale di richieste in attesa di essere elaborate o indicano che la porta è occupata per una grande percentuale di tempo, è possibile esaminare ulteriormente lo stato della porta.
+
++
+[listing]
+----
+
+vgv3070f51::*> storage array port show
+
+Array Name: HP2
+WWNN: 50014380025d1500
+WWPN: 50014380025d1508
+Connection Type: fabric
+Switch Port: vgbr300s70:9
+Link Speed: 4   GB/s
+Max Queue Depth: -
+                              LUN                                 Link
+Node       Initiator  Count   IOPS    KB/s    %busy    %waiting   Errs
+---------  ---------  -----  ------  ------  -------  ----------  ----
+vgv51-02       0a     21       2      53        0           0     0
+vgv51-01       0a     21       2      48        1           0     0
+----
+. È possibile ottenere informazioni più dettagliate sulle porte utilizzando il `storage array port show -fields` comando con i `average-latency-per-iop`campi , `average-pending`, `average-waiting`, `max-pending`o `max-waiting` .
+

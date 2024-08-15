@@ -1,0 +1,24 @@
+---
+permalink: implement-e-series/concept_two_4_port_array_lun_group_configuration.html 
+sidebar: sidebar 
+keywords: two, 4-port, array, lun, group, configuration 
+summary: In questa configurazione, ogni coppia di porte initiator FC ONTAP accede a un gruppo LUN di array separato. Lo zoning è un singolo iniziatore FC ONTAP per una porta di destinazione di un singolo array. 
+---
+= Configurazione di due gruppi LUN di array a 4 porte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+In questa configurazione, ogni coppia di porte initiator FC ONTAP accede a un gruppo LUN di array separato. Lo zoning è un singolo iniziatore FC ONTAP per una porta di destinazione di un singolo array.
+
+Questa configurazione è supportata per l'utilizzo con tutti gli storage array elencati nella matrice di interoperabilità, così come supportata per la release di ONTAP in esecuzione sul tuo sistema.
+
+La figura seguente mostra uno schema a blocchi di questa configurazione:
+
+image::../media/two_4_port_array_lun_groups.gif[due gruppi lun di array di porte 4]
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

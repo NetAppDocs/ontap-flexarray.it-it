@@ -1,0 +1,62 @@
+---
+permalink: install/concept_example_configuration_shared_target_ports.html 
+sidebar: sidebar 
+keywords: example, configuration, shared, target, ports, multiple, initiator 
+summary: 'È possibile collegare un massimo di due ONTAP porte FC Initiator a una singola porta di destinazione sull"array di storage.' 
+---
+= Configurazione di esempio: Porte di destinazione condivise
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile collegare un massimo di due ONTAP porte FC Initiator a una singola porta di destinazione sull'array di storage.
+
+La procedura consigliata per la creazione di zone consiste nel fare in modo che ogni coppia di porte FC Initiator-target venga eseguita in una zona separata (1:1).
+
+
+
+== Porta di destinazione condivisa collegata a più porte iniziatore
+
+L'illustrazione seguente mostra le connessioni e la suddivisione in zone per la condivisione di una porta di destinazione con più porte FC Initiator su sistemi ONTAP diversi.
+
+Le linee continue nella seguente illustrazione mostrano le connessioni dalle porte di iniziatore FC sul sistema VS1 e le linee tratteggiate mostrano le connessioni dalle porte di iniziatore FC sul sistema VS2.
+
+image::../media/shared_target_ports.gif[Le connessioni e la suddivisione in zone per la configurazione della porta di destinazione condivisa sono descritte nel testo circostante.]
+
+La tabella seguente mostra le definizioni dello zoning 1:1 per l'esempio di una porta di destinazione che condivide due porte FC initiator dai controller in una coppia ha:
+
+|===
+| Zona | Sistema ONTAP e porta FC Initiator | Array di storage 
+
+
+ a| 
+*Switch 1*
+
+
+
+ a| 
+z1
+| vs1:0a | Controller 1: Porta 1A 
+
+
+ a| 
+z3
+| vs2:0a |  
+
+
+ a| 
+*Switch 2*
+
+
+
+ a| 
+z2
+| vs1:0c | Controller 2: Porta 2A 
+
+
+ a| 
+z4
+| vs2:0c |  
+|===

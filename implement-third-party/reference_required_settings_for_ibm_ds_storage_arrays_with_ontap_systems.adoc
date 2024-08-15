@@ -1,0 +1,36 @@
+---
+permalink: implement-third-party/reference_required_settings_for_ibm_ds_storage_arrays_with_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, settings, ibm ds, storage, arrays, ontap, systems. host type, ds8xxx, configuring, ds8300 9a2 lpar models 
+summary: Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri. 
+---
+= Impostazioni richieste per gli storage array IBM DS con i sistemi ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Affinché lo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri.
+
+
+
+== Tipo di host richiesto per gli storage array DS8xxx
+
+L'impostazione del tipo di host richiesto è illustrata nella tabella seguente:
+
+|===
+| Parametro | Impostazione 
+
+
+ a| 
+`Host type`
+ a| 
+Gateway serie N.
+
+|===
+
+
+== Requisiti per la configurazione dei modelli DS8300 9A2 LPAR
+
+Quando si imposta il modello DS8300 9A2 LPAR (partizione logica di sistema) per interagire con i sistemi ONTAP, è necessario impostare l'accesso a ciascun LUN dell'array in modo che entrambi i percorsi ridondanti accedano allo stesso LPAR.

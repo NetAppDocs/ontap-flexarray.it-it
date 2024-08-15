@@ -1,0 +1,36 @@
+---
+permalink: install/concept_valid_pathing_a_single_4_port_array_lun_group_in_a_fabric_attached_configuration.html 
+sidebar: sidebar 
+keywords: valid, path, single, 4, port, array, lun, group, fabric attached, configuration 
+summary: Una singola configurazione di un gruppo LUN di array a 4 porte funziona con tutti gli array di storage per tutte le release ONTAP. 
+---
+= Percorso valido: Un singolo gruppo di array LUN a 4 porte in una configurazione fabric-attached
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Una singola configurazione di un gruppo LUN di array a 4 porte funziona con tutti gli array di storage per tutte le release ONTAP.
+
+La seguente illustrazione mostra il percorso in una configurazione con un singolo gruppo di array LUN a 4 porte:
+
+image::../media/one_4_port_array_lun_gp.gif[Questo grafico è descritto dal testo circostante.]
+
+In questa configurazione, con un singolo gruppo LUN a 4 porte, gli array LUN vengono mappati a quattro porte sullo storage array. Il gruppo di array LUN viene presentato a entrambi i nodi nella coppia ha su diverse porte di destinazione di array. Tuttavia, ogni nodo può vedere un array LUN, end-to-end, attraverso solo due percorsi. Lo zoning è configurato in modo che ogni porta FC Initiator su un nodo possa accedere solo a una singola porta array di destinazione.
+
+È utile confrontare l'output con quello valido `storage array config show` quando si verifica il numero di gruppi LUN previsti impostati. L'esempio di output seguente `storage array config show` mostra l'output previsto per questa configurazione - un singolo gruppo di array LUN:
+
+[listing]
+----
+vs::> storage array config show
+             LUN   LUN
+Node         Group Count  Array Name     Array Target Port     Initiator
+------------ ----- ----- ------------- ----------------------- ---------
+vs1            1    10   DGC_RAID5_1      50050763030301241A     0a
+                                          50050763031301242A     0c
+vs2            1    10   DGC_RAID5_1      50050763030881241B     0a
+                                          50050763031881242B     0c
+
+4 entries were displayed.
+----

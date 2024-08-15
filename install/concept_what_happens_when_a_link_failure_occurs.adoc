@@ -1,0 +1,34 @@
+---
+permalink: install/concept_what_happens_when_a_link_failure_occurs.html 
+sidebar: sidebar 
+keywords: happens, link, failure, occurs 
+summary: 'ONTAP monitora periodicamente l"utilizzo di un collegamento. La risposta di ONTAP a un errore di collegamento differisce a seconda del punto in cui si verifica l"errore.' 
+---
+= Cosa accade quando si verifica un errore di collegamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP monitora periodicamente l'utilizzo di un collegamento. La risposta di ONTAP a un errore di collegamento differisce a seconda del punto in cui si verifica l'errore.
+
+La tabella seguente mostra cosa accade in caso di guasto in una configurazione fabric-attached:
+
+|===
+| Se si verifica un errore nel collegamento tra... | Quindi... 
+
+
+ a| 
+Sistema ONTAP e interruttore
+ a| 
+ONTAP riceve immediatamente la notifica e invia immediatamente il traffico all'altro percorso.
+
+
+
+ a| 
+Switch e l'array di storage
+ a| 
+ONTAP non è immediatamente consapevole che si è verificato un errore di collegamento poiché il collegamento tra il sistema ONTAP e lo switch è ancora stabilito. ONTAP si rende conto che si è verificato un guasto al timeout dell'i/O. ONTAP riprova tre volte a inviare il traffico sul percorso originale, quindi esegue il failover del traffico verso l'altro percorso.
+
+|===

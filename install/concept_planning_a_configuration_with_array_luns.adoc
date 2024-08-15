@@ -1,0 +1,20 @@
+---
+permalink: install/concept_planning_a_configuration_with_array_luns.html 
+sidebar: sidebar 
+keywords: plan, configuration, array, luns 
+summary: 'Per pianificare una configurazione ONTAP con array LUN, è necessario verificare se lo storage array è supportato per una particolare release di ONTAP. Inoltre, è necessario verificare l"interoperabilità e le informazioni di supporto per assicurarsi che tutti i sistemi soddisfino i requisiti di una configurazione con array LUN.' 
+---
+= Pianificazione di una configurazione con array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per pianificare una configurazione ONTAP con array LUN, è necessario verificare se lo storage array è supportato per una particolare release di ONTAP. Inoltre, è necessario verificare l'interoperabilità e le informazioni di supporto per assicurarsi che tutti i sistemi soddisfino i requisiti di una configurazione con array LUN.
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/site/global/dashboard["Supporto NetApp"]
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

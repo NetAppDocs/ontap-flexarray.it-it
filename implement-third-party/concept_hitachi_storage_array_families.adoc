@@ -1,0 +1,31 @@
+---
+permalink: implement-third-party/concept_hitachi_storage_array_families.html 
+sidebar: sidebar 
+keywords: hitachi, storage, array, families 
+summary: ONTAP non supporta la combinazione di alcuni tipi di storage in aggregati. Per aiutarti a determinare le LUN degli array che possono essere miste in un aggregato, gli storage array di ciascun vendor sono raggruppati in famiglie. Quando crei degli aggregati, non puoi combinare array LUN di vendor diversi e famiglie di storage array differenti nello stesso aggregato. 
+---
+= Famiglie di storage array Hitachi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP non supporta la combinazione di alcuni tipi di storage in aggregati. Per aiutarti a determinare le LUN degli array che possono essere miste in un aggregato, gli storage array di ciascun vendor sono raggruppati in famiglie. Quando crei degli aggregati, non puoi combinare array LUN di vendor diversi e famiglie di storage array differenti nello stesso aggregato.
+
+Gli array di storage della stessa famiglia condividono le stesse prestazioni e caratteristiche di failover. Ad esempio, i membri della stessa famiglia eseguono tutti il failover Active-Active o eseguono tutti il failover Active-passive. Per determinare le famiglie di storage array potrebbe essere utilizzato più di un fattore. Ad esempio, gli storage array con architetture differenti sarebbero in famiglie diverse, anche se altre caratteristiche potrebbero essere le stesse.
+
+Il seguente elenco mostra le famiglie di array di storage Hitachi supportate con i sistemi ONTAP:
+
+* Famiglia 1: VSP
+* Famiglia 2: VSP Gx00
+* Famiglia 3: AMS 2x00
+* Famiglia 4: HUS
+* Famiglia 5: HUS VM
+
+
+La matrice di interoperabilità è l'autorità finale per le informazioni sugli storage array supportati per ogni vendor.
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

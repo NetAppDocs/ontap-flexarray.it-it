@@ -1,0 +1,106 @@
+---
+permalink: install/concept_guidelines_for_connecting_a_v_series_system_to_native_disk_shelves.html 
+sidebar: sidebar 
+keywords: guidelines, connect, v-series, system, native, disk, shelves, fc initiator, ports 
+summary: Durante la pianificazione del collegamento del sistema V-Series agli shelf di dischi nativi, il piano di connettività porta-a-porta dovrebbe affrontare la ridondanza e altre linee guida. 
+---
+= Linee guida per il collegamento di un sistema V-Series agli shelf di dischi nativi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante la pianificazione del collegamento del sistema V-Series agli shelf di dischi nativi, il piano di connettività porta-a-porta dovrebbe affrontare la ridondanza e altre linee guida.
+
+
+
+== Numero di porte FC Initiator necessarie per i dischi
+
+Il numero di porte FC Initiator richieste per la connessione di un sistema V-Series a uno shelf di dischi dipende dal fatto che il sistema V-Series sia un sistema standalone o in una coppia ha
+
+[cols="2*"]
+|===
+| Configurazione | Numero di porte FC Initiator 
+
+
+ a| 
+Sistema autonomo
+ a| 
+* Se si utilizza un loop: Una porta FC Initiator.
+* Se si collegano due loop, due porte FC Initiator, una per ciascun loop.
+
+
+
+
+ a| 
+In una coppia ha
+ a| 
+* Se si utilizza multipath Storage, due porte FC Initiator per ciascun loop.
+* Se non si utilizza multipath Storage, una porta FC Initiator per ciascun controller per ciascun loop della configurazione.
+
+
+|===
+
+
+== Connessioni tra un sistema V-Series e i dischi
+
+Seguono le stesse procedure per collegare un sistema V-Series a uno shelf di dischi nativo e per collegare un sistema FAS a uno shelf di dischi nativo. Quando si crea uno schema di connettività da porta a porta, questa guida e le guide ONTAP e hardware nella seguente tabella forniscono informazioni sulla configurazione e la gestione dei dischi e degli shelf di dischi.
+
+[cols="2*"]
+|===
+| Per informazioni su... | Vedi... 
+
+
+ a| 
+Supporto dei dischi, comprese le velocità supportate e la capacità dei dischi
+ a| 
+https://mysupport.netapp.com/site/global/dashboard["Supporto NetApp"]
+
+
+
+ a| 
+Installazione di un sistema V-Series in un rack o in un cabinet di sistema
+ a| 
+Nei nuovi sistemi, questa attività viene in genere eseguita dalla fabbrica. Per istruzioni, consultare la guida del cabinet.
+
+
+
+ a| 
+Connessione di uno shelf di dischi a un sistema V-Series standalone
+ a| 
+Le istruzioni per l'installazione e il setup della piattaforma.
+
+* https://library.netapp.com/ecm/ecm_download_file/ECMP1213632["Istruzioni per l'installazione e il setup sistemi 32xx"]
+* https://library.netapp.com/ecm/ecm_download_file/ECMP1147995["Istruzioni per l'installazione e il setup sistemi 62xx"]
+
+
+
+
+ a| 
+Connessione di una coppia ha a uno shelf di dischi
+ a| 
+https://docs.netapp.com/us-en/ontap/high-availability/index.html["Configurazione ad alta disponibilità"]
+
+
+
+ a| 
+Aggiunta di uno shelf di dischi
+ a| 
+La guida appropriata per il tipo di shelf di dischi.
+
+
+
+ a| 
+Spostamento degli shelf di dischi
+ a| 
+La guida appropriata per il tipo di shelf di dischi.
+
+
+
+ a| 
+Gestione del disco
+ a| 
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["Gestione di dischi e aggregati"]
+
+|===

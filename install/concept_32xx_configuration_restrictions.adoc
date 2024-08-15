@@ -1,0 +1,16 @@
+---
+permalink: install/concept_32xx_configuration_restrictions.html 
+sidebar: sidebar 
+keywords: 32xx, system, configuration, restrictions 
+summary: Esistono alcune limitazioni per i sistemi 32xx che non si applicano ad altri modelli. È necessario essere a conoscenza di questi elementi durante la configurazione dei sistemi. 
+---
+= 32xx limitazioni alla configurazione del sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esistono alcune limitazioni per i sistemi 32xx che non si applicano ad altri modelli. È necessario essere a conoscenza di questi elementi durante la configurazione dei sistemi.
+
+Le due porte FC integrate etichettate 0C e 0d non si trovano su bus indipendenti. Pertanto, non forniscono ridondanza di storage. Alcuni guasti alle porte possono causare il panico del sistema. Per configurare coppie di porte ridondanti, è necessario utilizzare un HBA FC in uno slot di espansione disponibile.

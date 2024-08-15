@@ -1,0 +1,50 @@
+---
+permalink: install/reference_an_access_control_lun_is_presented_to_ontap.html 
+sidebar: sidebar 
+keywords: access, control, lun, presented, ontap 
+summary: ONTAP non supporta i LUN degli array di controllo degli accessi. Gli errori di archiviazione mostrano avvisi di output se viene presentato un LUN per il controllo degli accessi. 
+---
+= Viene presentata a ONTAP una LUN per il controllo degli accessi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP non supporta i LUN degli array di controllo degli accessi. L' `storage errors show` output avvisa l'utente se viene presentato un LUN per il controllo dell'accesso.
+
+
+
+== Gli errori di memorizzazione mostrano il messaggio
+
+[listing]
+----
+
+NAME (UID): This array LUN is an access control LUN. It is not supported and should be masked off or disabled.
+----
+
+
+== Spiegazione
+
+ONTAP supporta solo LUN di storage array. Quando un array LUN, ad esempio, un E-Series access control LUN viene presentato a ONTAP, l' `storage array config show` output sembra normale; mostra il controllo di accesso LUN in un gruppo LUN, come mostrato nell'esempio seguente. Il messaggio di avvertenza nella parte inferiore dello schermo indica il problema. È necessario eseguire `storage errors show` per scoprire che il problema è che è stato presentato un LUN per il controllo degli accessi e quale LUN è.
+
+[listing]
+----
+
+mysystem1::> storage array config show
+
+          LUN     LUN
+Node      Group   Count  Array Name    Array Target Port       Initiator
+------    ------  -----  ------------ ------------------       --------
+mysystem1   0       1    NETAPP_INF_1  20:1A:00:a0:b8:0f:ee:04   0a
+                                       20:2A:00:a0:b8:0f:ee:04   0c
+
+Warning: Configuration errors were detected.  Use 'storage errors show' for detailed information.
+----
+
+
+== Risoluzione dei problemi e risoluzione dei problemi
+
+. Sullo storage array, mascherare il LUN di controllo dell'accesso.
+. In ONTAP, eseguire `storage errors show` di nuovo per confermare che il LUN di controllo dell'accesso non viene più presentato a ONTAP.
+

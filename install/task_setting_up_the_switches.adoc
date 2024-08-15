@@ -1,0 +1,78 @@
+---
+permalink: install/task_setting_up_the_switches.html 
+sidebar: sidebar 
+keywords: set, up, switches 
+summary: 'La configurazione dello switch viene in genere eseguita dall"amministratore dello storage o SAN. È necessario assegnare uno zoning agli switch per permettere la visione reciproca dei sistemi ONTAP e degli storage array. È necessario utilizzare la suddivisione in zone a singolo iniziatore come strategia di zoning.' 
+---
+= Impostazione degli interruttori
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La configurazione dello switch viene in genere eseguita dall'amministratore dello storage o SAN. È necessario assegnare uno zoning agli switch per permettere la visione reciproca dei sistemi ONTAP e degli storage array. È necessario utilizzare la suddivisione in zone a singolo iniziatore come strategia di zoning.
+
+.Fasi
+. Accedere allo storage array e ottenere i WWPN degli adattatori FC dello storage array.
+. Utilizza i comandi degli switch Fibre Channel per dividere in zone ogni switch, in modo che lo storage array e il sistema ONTAP vedano i WWPN dell'altro.
++
+Prendiamo in considerazione il seguente esempio di sistemi ONTAP in una coppia ha:
+
++
+image::../media/one_4_port_array_lun_gp.gif[Questo grafico è descritto dal testo circostante.]
+
++
+Nella configurazione di esempio, le zone sono le seguenti:
+
++
+|===
+| Zona | Sistema ONTAP e porta | Porta e controller dello storage array 
+
+
+ a| 
+Interruttore 1
+
+
+
+ a| 
+z1
+ a| 
+vs1, 0a
+ a| 
+Controller 1, 1A
+
+
+
+ a| 
+z2
+ a| 
+vs2, 0a
+ a| 
+Controller 1, 1B
+
+
+
+ a| 
+Interruttore 2
+
+
+
+ a| 
+z3
+ a| 
+vs1, 0c
+ a| 
+Controller 2, 2A
+
+
+
+ a| 
+z4
+ a| 
+vs2, 0c
+ a| 
+Controller 2, 2B
+
+|===
+

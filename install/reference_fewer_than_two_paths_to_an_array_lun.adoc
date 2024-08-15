@@ -1,0 +1,112 @@
+---
+permalink: install/reference_fewer_than_two_paths_to_an_array_lun.html 
+sidebar: sidebar 
+keywords: fewer, two, paths, array, lun 
+summary: 'I motivi comuni per meno di due percorsi a un array LUN sono un errore di mappatura, un errore di zoning o un cavo che cade. L"output degli errori di storage identifica gli array LUN con un solo percorso.' 
+---
+= Meno di due percorsi a un array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I motivi comuni per meno di due percorsi a un array LUN sono un errore di mappatura, un errore di zoning o un cavo che cade. L' `storage errors show` output identifica i LUN dell'array con un singolo percorso.
+
+ONTAP richiede percorsi ridondanti verso un array LUN, in modo che l'accesso al LUN venga mantenuto in caso di errore di un dispositivo. Per ogni LUN di array devono esistere due percorsi.
+
+
+
+== Gli errori di memorizzazione mostrano il messaggio
+
+[listing]
+----
+
+NAME (UID):  This Array LUN is only available on one path.  Proper configuration requires two paths.
+----
+
+
+== Spiegazione
+
+I motivi per cui è possibile visualizzare meno di due percorsi di un array LUN includono:
+
+* L'LDEV è mappato su una sola porta di array di storage.
+* Il secondo percorso del LUN dell'array non viene sottoposto a zoning.
+* Si è verificato un problema con la mappatura del gruppo host.
+* Si è verificato un problema con i collegamenti dell'interruttore.
+* Il cavo è caduto.
+* SFP non riusciti sulla scheda di rete.
+
+
+[NOTE]
+====
+Se un percorso cade su un sistema in esecuzione, viene generato un messaggio EMS.
+
+====
+
+
+== Scenario di problema
+
+Per questo esempio di errore di mapping, si supponga che l'amministratore dello storage abbia creato un nuovo LDEV Z. l'amministratore ha mappato LDEV Z come ID LUN 3 alla porta di destinazione 1A. Tuttavia, l'amministratore non ha mappato il LDEV alla porta di destinazione 2A, come illustrato nella figura seguente. Il risultato è un solo percorso verso il LUN dell'array.
+
+image::../media/ldev_mapped_on_only_one_array_port.gif[Questo grafico è descritto nel testo circostante.]
+
+Quando viene generato questo errore, l' `storage array config show` output mostra solo un percorso al LUN, come illustrato nell'esempio seguente.
+
+[listing]
+----
+
+mysystem1::> storage array config show
+           LUN     LUN
+Node       Group   Count  Array Name    Array Target Ports      Switch Port   Initiator
+-------   -------  -----  ----------   -------------------      -----------    ---------
+mysystem1a    0      1    DGC_RAID5_1  20:1A:00:a0:b8:0f:ee:04  vnbr20es25:5   0a
+
+Warning: Configuration errors were detected.  Use 'storage errors show' for detailed information.
+----
+Il `storage errors show` comando fornisce i dettagli necessari per determinare quale LUN ha meno di due percorsi.
+
+[listing]
+----
+
+mysystem1a::> storage errors show
+Disk: EMC-1.2
+UID: 600508B4:000B6314:00008000:00200000:00000000:00000000:00000000:...
+--------------------
+EMC-1.2 (600508b4000b63140000800000200000): This array LUN is only available on one path. Proper configuration requires two paths.
+----
+[NOTE]
+====
+L'UID per questo esempio è 600508B4:000B6314:00008000:00200000:00000000:00000000:00000000:00000000:00000000:00000000. È troncato a causa dello spazio.
+
+====
+
+
+== Risoluzione dei problemi e risoluzione dei problemi
+
+L'analisi sia dell' `storage array config show` output che degli errori di archiviazione mostra che l'output è utile quando si risolvono meno di due percorsi a un array LUN.
+
+. Esaminare l' `storage errors show` output per ottenere il numero di serie del LUN dell'array disponibile su un solo percorso.
+. Esaminare l' `storage array config show` output per cercare di isolare la causa del problema.
++
+|===
+| Se l' `storage array config show` output mostra... | La causa è molto probabile... 
+
+
+ a| 
+Altre LUN di array
+ a| 
+Errore di mappatura
+
+
+
+ a| 
+Nessun altro array LUN
+ a| 
+Errore di cablaggio, errore di zoning o problema hardware
+
+|===
+. Se la causa è un errore di mappatura, chiedere all'amministratore dell'array di storage di mappare il LUN dell'array identificato a due porte di array di storage ridondanti.
+. Se la causa sembra essere un problema diverso dalla mappatura, controllare la suddivisione in zone, la mappatura dei gruppi di host, il cablaggio e la connettività.
+. Dopo aver risolto il problema, eseguire `storage array config show` di nuovo per confermare che l'errore è stato risolto.
+

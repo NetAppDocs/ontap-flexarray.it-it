@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/reference_emc_vnx_storage_arrays.html 
+sidebar: sidebar 
+keywords: emc, vnx, storage, arrays 
+summary: 'È necessario soddisfare requisiti specifici durante la configurazione degli storage array EMC VNX per il funzionamento con sistemi ONTAP che utilizzano LUN degli array. Questi requisiti includono l"impostazione dei parametri di configurazione sugli storage array e la distribuzione solo delle configurazioni supportate.' 
+---
+= Storage array EMC VNX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario soddisfare requisiti specifici durante la configurazione degli storage array EMC VNX per il funzionamento con sistemi ONTAP che utilizzano LUN degli array. Questi requisiti includono l'impostazione dei parametri di configurazione sugli storage array e la distribuzione solo delle configurazioni supportate.

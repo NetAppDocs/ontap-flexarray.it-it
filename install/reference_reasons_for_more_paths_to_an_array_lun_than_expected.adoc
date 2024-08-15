@@ -1,0 +1,60 @@
+---
+permalink: install/reference_reasons_for_more_paths_to_an_array_lun_than_expected.html 
+sidebar: sidebar 
+keywords: reasons, paths, array, lun, expected, output, show, config, issue 
+summary: I motivi principali di un percorso aggiuntivo imprevisto a un array LUN sono problemi di suddivisione in zone e troppi cavi. Non è consigliabile utilizzare tre percorsi per un array LUN, ma non è necessario risolvere il problema. 
+---
+= Motivi per creare un numero maggiore di percorsi a un array LUN rispetto al previsto
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I motivi principali di un percorso aggiuntivo imprevisto a un array LUN sono problemi di suddivisione in zone e troppi cavi. Non è consigliabile utilizzare tre percorsi per un array LUN, ma non è necessario risolvere il problema.
+
+
+
+== Esempio di output di configurazione di array di storage
+
+La coppia di porte FC Initiator sul sistema ONTAP è 0A e 0C. L'esempio seguente mostra un percorso extra, 0b, nell' `storage array config show` output:
+
+[listing]
+----
+
+mysystem1::> storage array config show
+             LUN   LUN
+Node         Group Count   Array Name       Array Target Port   Initiator
+----------   ----- -----  ----------------  ------------------  ----------
+mysystem1a    1     3     HITACHI_DF600F_1  50060e80004291c0    0a
+                                            50060e80004291c1    0b
+                                                                0c
+
+3 entries were displayed.
+----
+[NOTE]
+====
+Se un iniziatore nell' `storage array config show` output non è preceduto da una porta di destinazione dell'array, l'iniziatore si sta connettendo alla stessa porta di destinazione dell'array dell'iniziatore precedente.
+
+====
+
+
+== Spiegazione
+
+Tre percorsi all'interno di un gruppo di LUN indicano la presenza di un percorso extra. Per le configurazioni ONTAP, la Best practice è costituita da due o quattro percorsi.
+
+I motivi per cui potrebbero esserci più percorsi del previsto sono i seguenti:
+
+* Sono stati collegati più cavi di quanto necessario.
+* Un errore di configurazione dello zoning ha causato un percorso extra.
+
+
+
+
+== Risoluzione del problema
+
+Avere un percorso extra non è una Best practice, ma non è errato dal punto di vista del sistema. Non è necessario risolvere questo problema. Se si desidera risolvere il problema per allinearlo alla configurazione desiderata, attenersi alla seguente procedura:
+
+. Controllare il cablaggio e la configurazione della suddivisione in zone per individuare la causa, quindi risolvere il problema che causa il percorso aggiuntivo.
+. Una volta risolto il problema, eseguire nuovamente l'esecuzione `storage array config show` per confermare che il percorso extra è scomparso.
+

@@ -1,0 +1,29 @@
+---
+permalink: implement-e-series/reference_required_host_type_for_e_series_storage_arrays_reference.html 
+sidebar: sidebar 
+keywords: required, host, type, e-series, storage, arrays 
+summary: 'È necessario impostare l"opzione del tipo di host appropriata affinché l"array di storage E-Series comunichi con i sistemi ONTAP. È possibile utilizzare SANtricity Storage Manager per impostare il tipo di host.' 
+---
+= Tipo di host richiesto per gli storage array E-Series
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario impostare l'opzione del tipo di host appropriata affinché l'array di storage E-Series comunichi con i sistemi ONTAP. È possibile utilizzare SANtricity Storage Manager per impostare il tipo di host.
+
+Per una data release di ONTAP, è possibile impostare il tipo di host richiesto in base alla versione del firmware dello storage array.
+
+Se la versione del firmware è la 08.10.15.00 e successive, impostare il tipo di host su _Data ONTAP (ALUA)_.
+
+[NOTE]
+====
+La versione minima supportata di SANtricity Storage Manager per la versione firmware 08.10.15.00 e successive è 11.10.0G00.0026.
+
+====
+Quando si utilizza il firmware del controller E-Series 8,25, ONTAP RDAC non è più supportato come tipo di host sul sistema E-Series. Pertanto, se si utilizza ONTAP RDAC, prima di aggiornare l'array di backend a CFW 8,25 o versione successiva è necessario seguire questo articolo della Knowledge base per convertirlo in ONTAP ALUA.
+
+*Informazioni correlate*
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/E-Series_Storage_Array/How_to_non-disruptively_change_between_Active-Passive_and_ALUA_failover_modes["Come cambiare senza interruzioni tra le modalità di failover Active-passive e ALUA sugli array NetApp E-Series connessi ai sistemi Clustered Data ONTAP"]

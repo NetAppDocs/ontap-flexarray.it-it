@@ -1,0 +1,57 @@
+---
+permalink: install/task_configuring_fc_ports_as_initiators_clustered_data_ontap.html 
+sidebar: sidebar 
+keywords: configure, fc ports, initiators 
+summary: È possibile configurare singole porte FC come initiator dei sistemi ONTAP. La modalità Initiator consente la connessione delle porte agli storage array. 
+---
+= Configurazione delle porte FC come iniziatori
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile configurare singole porte FC come initiator dei sistemi ONTAP. La modalità Initiator consente la connessione delle porte agli storage array.
+
+.Fasi
+. *Opzionale:* se la porta della scheda di rete ha già configurato le LIF, eliminarle usando il `network interface delete` comando.
++
+Se la LIF si trova in un set di porte, è necessario rimuovere la LIF dal set di porte prima di poter eliminare la LIF.
+
++
+Questo esempio illustra come eliminare le LIF in una SVM VS3: `network interface delete -vserver vs3 -lif lif2,lif0`
+
+. Portare la porta offline utilizzando il `network fcp adapter modify` comando.
++
+L'esempio seguente mostra come puoi portare la porta 0C offline per il nodo sysnode: `network fcp adapter modify -node sysnode1 -adapter 0c -state down`
+
+. Utilizzare il `system hardware unified-connect modify` comando per modificare la porta offline da destinazione a iniziatore.
++
+Nell'esempio seguente viene illustrato come modificare il tipo di porta per 0C da destinazione a iniziatore: `system node hardware unified-connect modify -node sysnode1 -adapter 0c -type initiator`
+
+. Riavviare il nodo che ospita l'adattatore modificato.
+. Utilizzare il `system hardware unified-connect show` comando per verificare che le porte FC siano configurate correttamente per la configurazione in uso.
++
+Nell'esempio seguente viene illustrata la modifica del tipo di porta per 0C:
+
++
+`system node hardware unified-connect show -node sysnode1`
+
++
+[listing]
+----
+
+
+                       Current  Current    Pending  Pending
+Node          Adapter  Mode     Type       Mode     Type       Status
+------------  -------  -------  ---------  -------  ---------  -----------
+sysnode1      0a       fc       target     -        -          online
+sysnode1      0b       fc       target     -        -          online
+sysnode1      0c       fc       initiator  -        -          offline
+sysnode1      0d       fc       target     -        -          online
+----
+. Utilizzare il `storage enable adapter` comando per riportare la porta offline in linea.
++
+Nell'esempio seguente viene illustrato come rendere la porta 0C online: `node run -node sysnode1 -command storage enable adapter -e 0c`
+
+

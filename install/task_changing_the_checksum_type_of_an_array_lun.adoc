@@ -1,0 +1,48 @@
+---
+permalink: install/task_changing_the_checksum_type_of_an_array_lun.html 
+sidebar: sidebar 
+keywords: change, checksum, type, array, lun 
+summary: È necessario modificare il tipo di checksum di un array LUN se si desidera aggiungerlo a un aggregato con un tipo di checksum diverso rispetto al tipo di checksum del LUN. 
+---
+= Modifica del tipo di checksum di un array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario modificare il tipo di checksum di un array LUN se si desidera aggiungerlo a un aggregato con un tipo di checksum diverso rispetto al tipo di checksum del LUN.
+
+*Cosa ti serve*
+
+È necessario rivedere i compromessi tra le performance di determinati tipi di workload e l'utilizzo della capacità di storage di ciascun tipo di checksum.
+
+Puoi anche contattare il tuo Sales Engineer per informazioni sull'utilizzo dei checksum.
+
+* È necessario assegnare un tipo di checksum *zoned* a un array LUN che si intende aggiungere a un aggregato AZCS (Advanced Zoned checksum). Quando un LUN di array di checksum con zoning viene aggiunto a un aggregato AZCS, diventa un LUN di array di checksum con zoning avanzato. Analogamente, quando un LUN di array di checksum con zoning viene aggiunto a un aggregato con zoning, si tratta di un tipo di checksum con zoning.
+* Non è possibile modificare il checksum dei LUN dell'array durante l'assegnazione della proprietà. È possibile modificare il checksum solo su array LUN già assegnati.
+
+
+.Fasi
+. Immettere il seguente comando per modificare il tipo di checksum: `storage disk assign -disk disk name -owner owner -c new_checksum_type`
++
+_Disk name_ è il LUN della matrice di cui si desidera modificare il tipo di checksum.
+
++
+_Owner_ è il nodo a cui è assegnato il LUN della matrice.
+
++
+_new_checksum_type_ può essere a blocchi o a zone.
+
++
+`storage disk assign -disk EMC-1.1 -owner system147b -c block`
+
++
+Il tipo di checksum dell'array LUN viene modificato in base al nuovo tipo di checksum specificato.
+
+. Immettere il seguente comando per accedere alla nodeshell: `system node run -node node_name`
++
+_node_name_ è il nome del sistema.
+
+. Immettere il seguente comando per uscire dalla noteskell: `exit`
+

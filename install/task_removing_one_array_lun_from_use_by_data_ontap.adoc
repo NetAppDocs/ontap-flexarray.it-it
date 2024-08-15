@@ -1,0 +1,25 @@
+---
+permalink: install/task_removing_one_array_lun_from_use_by_data_ontap.html 
+sidebar: sidebar 
+keywords: remove, one, array, lun, use, ontap 
+summary: 'Se l"amministratore dello storage array non desidera più utilizzare un determinato array LUN per ONTAP, è necessario rimuovere le informazioni scritte da ONTAP sul LUN (ad esempio, dimensioni e proprietà) prima che l"amministratore possa riconfigurare il LUN per l"utilizzo da parte di un altro host.' 
+---
+= Rimozione di un array LUN da ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se l'amministratore dello storage array non desidera più utilizzare un determinato array LUN per ONTAP, è necessario rimuovere le informazioni scritte da ONTAP sul LUN (ad esempio, dimensioni e proprietà) prima che l'amministratore possa riconfigurare il LUN per l'utilizzo da parte di un altro host.
+
+*Cosa ti serve*
+
+Se il LUN che l'amministratore dello storage array non desidera più utilizzare per ONTAP è contenuto in un aggregato, occorre portare l'aggregato offline e distruggerlo prima di iniziare questa procedura. Portando un aggregato offline e distruggendolo, il LUN dei dati viene modificato in un LUN libero.
+
+.Fase
+. Immettere il seguente comando: `storage disk removeowner -disk LUN_name`
++
+_LUN_name_ è il nome dell'array LUN.
+
+

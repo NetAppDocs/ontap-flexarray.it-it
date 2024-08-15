@@ -1,0 +1,32 @@
+---
+permalink: install/concept_prerequisites_to_reconfiguring_an_array_lun_on_the_storage_array.html 
+sidebar: sidebar 
+keywords: prerequisites, reconfigure, array. lun, storage, array 
+summary: 'Se un array LUN è già stato assegnato (tramite ONTAP) a un particolare sistema ONTAP, le informazioni scritte da ONTAP sul array LUN devono essere rimosse prima che l"amministratore dello storage tenti di riconfigurare il LUN dell"array sullo storage array.' 
+---
+= Prerequisiti per riconfigurare un array LUN sullo storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un array LUN è già stato assegnato (tramite ONTAP) a un particolare sistema ONTAP, le informazioni scritte da ONTAP sul array LUN devono essere rimosse prima che l'amministratore dello storage tenti di riconfigurare il LUN dell'array sullo storage array.
+
+Quando lo storage array presenta un array LUN a ONTAP, ONTAP raccoglie le informazioni sul array LUN (ad esempio, le sue dimensioni) e scrive tali informazioni sul array LUN. ONTAP non è in grado di aggiornare dinamicamente le informazioni che ha scritto su un array LUN. Pertanto, prima che l'amministratore dello storage array riconfiguri un array LUN, è necessario utilizzare ONTAP per modificare lo stato del array LUN in _inutilizzato_. L'array LUN non è utilizzato dal punto di vista di ONTAP.
+
+Mentre si modifica lo stato del LUN dell'array in inutilizzato, ONTAP esegue le seguenti operazioni:
+
+* Termina le operazioni di i/o al LUN dell'array
+* Rimuove l'etichetta per le informazioni di configurazione RAID e le prenotazioni persistenti dal LUN dell'array, il che rende il LUN dell'array privo di proprietà di qualsiasi sistema ONTAP
+
+
+Al termine di questo processo, nel LUN dell'array non rimangono informazioni ONTAP.
+
+È possibile effettuare le seguenti operazioni dopo che lo stato del LUN della matrice viene modificato in non utilizzato:
+
+* Rimuovere la mappatura del LUN dell'array a ONTAP e rendere il LUN dell'array disponibile ad altri host.
+* Ridimensionare il LUN della matrice o modificarne la composizione.
+
+
+Se si desidera che ONTAP riprenda a utilizzare il LUN dell'array dopo che le dimensioni o la composizione sono state modificate, è necessario presentare nuovamente il LUN dell'array a ONTAP e assegnare nuovamente il LUN dell'array a un sistema ONTAP. ONTAP è a conoscenza delle dimensioni o della composizione del nuovo array LUN.

@@ -1,0 +1,41 @@
+---
+permalink: install/task_setting_the_target_queue_depth_clustered_data_ontap_8_2_and_later.html 
+sidebar: sidebar 
+keywords: set, target, queue, depth 
+summary: La profondità predefinita della coda di destinazione è accettabile per la maggior parte delle implementazioni, ma può essere modificata in caso di problemi di prestazioni. 
+---
+= Impostazione della profondità della coda di destinazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La profondità predefinita della coda di destinazione è accettabile per la maggior parte delle implementazioni, ma può essere modificata in caso di problemi di prestazioni.
+
+È possibile impostare la profondità della coda di destinazione in base all'array di storage o in base alla porta di destinazione.
+
+.Fase
+. Utilizzare uno dei seguenti comandi per impostare la profondità della coda della porta di destinazione su tutte le porte di destinazione o su una porta di destinazione specifica di un array di storage.
++
+|===
+| Se si desidera... | Utilizzare questa sequenza di comandi... 
+
+
+ a| 
+Impostare la profondità della coda della porta di destinazione su tutte le porte di destinazione di un array di storage
+ a| 
+`set advanced` `storage array port modify -name array_name -max-queue-depth value`
+
+
+
+ a| 
+Impostare la profondità della coda della porta di destinazione su una specifica porta di destinazione su un array di archiviazione
+ a| 
+`set advanced` `storage array port modify -name array_name -wwnn value -wwpn value -max-queue-depth value`
+
+|===
++
+Per ulteriori informazioni su questi comandi, consulta le pagine man.
+
+

@@ -1,0 +1,33 @@
+---
+permalink: install/concept_support_for_metrocluster_configurations_that_can_use_array_luns.html 
+sidebar: sidebar 
+keywords: requirements, metrocluster, configurations, array, luns 
+summary: Prima di impostare una configurazione MetroCluster con array LUN, è necessario verificare che i sistemi ONTAP e lo storage utilizzato nella configurazione seguano i requisiti di supporto di base. 
+---
+= Requisiti per le configurazioni MetroCluster con array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di impostare una configurazione MetroCluster con array LUN, è necessario verificare che i sistemi ONTAP e lo storage utilizzato nella configurazione seguano i requisiti di supporto di base.
+
+Di seguito sono riportati i requisiti di base per il supporto delle configurazioni MetroCluster con array LUN:
+
+* È possibile utilizzare sia sistemi V-Series che sistemi FAS con il supporto di array LUN nelle configurazioni MetroCluster.
++
+Tuttavia, è necessario assicurarsi che tutti i sistemi ONTAP utilizzati in una configurazione MetroCluster siano dello stesso modello.
+
+* I sistemi ONTAP possono utilizzare solo dischi nativi, LUN solo sugli storage array, o entrambi.
+* Se si sta configurando una configurazione MetroCluster con dischi nativi e array LUN, è necessario utilizzare bridge FC-to-SAS e dischi nativi supportati da tali bridge.
+* I sistemi ONTAP e gli storage array devono essere identificati nella _matrice di interoperabilità_ come supportati nelle configurazioni MetroCluster.
+
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["Installazione e configurazione di Fabric-Attached MetroCluster"]
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-stretch/index.html["Estensione dell'installazione e della configurazione di MetroCluster"]

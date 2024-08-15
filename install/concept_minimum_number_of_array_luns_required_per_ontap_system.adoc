@@ -1,0 +1,18 @@
+---
+permalink: install/concept_minimum_number_of_array_luns_required_per_ontap_system.html 
+sidebar: sidebar 
+keywords: minimum, number, array, luns, required, ontap, system 
+summary: Il numero di array LUN necessari per ogni sistema ONTAP dipende dalla posizione del volume root. 
+---
+= Numero minimo di array LUN richiesti per ogni sistema ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il numero di array LUN necessari per ogni sistema ONTAP dipende dalla posizione del volume root.
+
+Il volume root può trovarsi su un disco o su array LUN. La posizione del volume root determina quindi il numero minimo di array LUN necessari. Se il volume root si trova su uno storage array, ogni sistema ONTAP standalone e ogni nodo in una coppia ha deve possedere almeno una LUN dell'array. Se il volume root si trova su un disco nativo, gli unici array LUN necessari sono quelli per lo storage dei dati.
+
+Per una configurazione MetroCluster che utilizza LUN array, sono necessarie due LUN array (una LUN per ogni sito) se il volume root si trova su uno storage array. Sono necessarie le due LUN in modo che possa essere eseguito il mirroring del volume root.

@@ -1,0 +1,222 @@
+---
+permalink: install/concept_valid_pathing_eight_port_array_lun_group_configuration.html 
+sidebar: sidebar 
+keywords: valid, path, eight-port, array, lun, group, configuration, variation, back-end, connections, crossed, fc initiator, maximum 
+summary: È possibile utilizzare una configurazione di gruppo LUN a otto porte per collegare gli array di storage ai sistemi ONTAP in grandi implementazioni in cluster che richiedono una maggiore ridondanza del percorso e un bilanciamento del carico del possibile con un numero inferiore di porte per gruppo LUN. 
+---
+= Percorso valido: Configurazione di un gruppo LUN di array a otto porte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile utilizzare una configurazione di gruppo LUN a otto porte per collegare gli array di storage ai sistemi ONTAP in grandi implementazioni in cluster che richiedono una maggiore ridondanza del percorso e un bilanciamento del carico del possibile con un numero inferiore di porte per gruppo LUN.
+
+È possibile impostare questa configurazione con le connessioni back-end incrociate o non incrociate.
+
+
+
+== Variazione di attraversamento delle connessioni back-end
+
+In una configurazione con connessioni di back-end incrociate, le connessioni FC dallo stesso controller di storage array vanno a entrambi gli switch fabric (ridondanti).
+
+Questo schema di connessione utilizza in modo migliore sia le porte dello switch che le porte di storage array rispetto a quando non vengono attraversate le connessioni back-end, il che riduce l'impatto di un guasto a uno switch o a un controller di storage array.
+
+Per gli array di storage con due soli controller, è preferibile una configurazione incrociata con gruppo LUN a otto porte rispetto a una configurazione con gruppo LUN a otto porte non incrociata.
+
+È possibile attraversare il gruppo LUN di array a otto porte solo se sono presenti percorsi dedicati da ciascun nodo (un zoning di porte tra initiator FC e una porta target per percorso).
+
+image::../media/eight_port_array_lun_group_configuration_crossed.gif[configurazione di gruppo lun con otto porte incrociata]
+
+In questa illustrazione sono illustrate le connessioni back-end incrociate, si noti il modo in cui i sistemi ONTAP sono collegati agli switch e all'array di storage. VS1 utilizza lo switch 1 quando si collega alla porta 1A del controller di array di memoria 1 e alla porta 2C del controller 2, e utilizza lo switch 2 quando si collega alle porte 2A del controller di array di memoria 2 e alla porta 1C del controller 1.
+
+La tabella seguente riassume lo zoning di un gruppo LUN di array a otto porte con connessioni back-end incrociate. La definizione di zone a singolo iniziatore è la strategia di zoning consigliata.
+
+|===
+| Zona | Porta FC Initiator sul sistema ONTAP | Array di storage 
+
+
+ a| 
+Interruttore 1
+
+
+
+ a| 
+z1
+ a| 
+VS1, porta 0A
+ a| 
+Controller 1, porta 1A
+
+
+
+ a| 
+z2
+ a| 
+VS2, porta 0A
+ a| 
+Controller 1, porta 1B
+
+
+
+ a| 
+z3
+ a| 
+VS1, porta 0b
+ a| 
+Controller 2, porta 2C
+
+
+
+ a| 
+z4
+ a| 
+VS2, porta 0b
+ a| 
+Controller 2, porta 2D
+
+
+
+ a| 
+Interruttore 2
+
+
+
+ a| 
+z5
+ a| 
+VS1, porta 0C
+ a| 
+Controller 2, porta 2A
+
+
+
+ a| 
+z6
+ a| 
+VS2, porta 0C
+ a| 
+Controller 2, porta 2B
+
+
+
+ a| 
+z7
+ a| 
+VS1, porta 0d
+ a| 
+Controller 1, porta 1C
+
+
+
+ a| 
+z8
+ a| 
+VS2, porta 0d
+ a| 
+Controller 1, porta 1D
+
+|===
+
+
+== Variazione in cui le connessioni back-end sono _non_ incrociate
+
+In una configurazione in cui le connessioni back-end non sono incrociate, le connessioni FC dallo stesso controller di storage array passano a un solo fabric switch.
+
+La seguente illustrazione mostra il percorso in una configurazione con un gruppo LUN di array a otto porte in cui le connessioni back-end non sono incrociate:
+
+image::../media/eight_port_array_lun_group_configuration.gif[configurazione gruppo lun con otto porte array]
+
+Nella tabella seguente viene riepilogato lo zoning di un gruppo LUN di array a otto porte quando le connessioni back-end non vengono incrociate. La definizione di zone a singolo iniziatore è la strategia di zoning consigliata.
+
+|===
+| Zona | Porta FC Initiator sul sistema ONTAP | Array di storage 
+
+
+ a| 
+Interruttore 1
+
+
+
+ a| 
+z1
+ a| 
+VS1, porta 0A
+ a| 
+Controller 1, porta 1A
+
+
+
+ a| 
+z2
+ a| 
+VS2, porta 0A
+ a| 
+Controller 1, porta 1B
+
+
+
+ a| 
+z3
+ a| 
+VS1, porta 0b
+ a| 
+Controller 1, porta 1C
+
+
+
+ a| 
+z4
+ a| 
+VS2, porta 0b
+ a| 
+Controller 1, porta 1D
+
+
+
+ a| 
+Interruttore 2
+
+
+
+ a| 
+z5
+ a| 
+VS1, porta 0C
+ a| 
+Controller 2, porta 2A
+
+
+
+ a| 
+z6
+ a| 
+VS2, porta 0C
+ a| 
+Controller 2, porta 2B
+
+
+
+ a| 
+z7
+ a| 
+VS1, porta 0d
+ a| 
+Controller 2, porta 2C
+
+
+
+ a| 
+z8
+ a| 
+VS2, porta 0d
+ a| 
+Controller 2, porta 2D
+
+|===
+
+
+== Considerazioni sul numero massimo di array LUN per iniziatore FC
+
+Quando si imposta una configurazione con un gruppo LUN di array a otto porte, non è possibile superare il numero di array LUN supportati da ONTAP per porta iniziatore FC.

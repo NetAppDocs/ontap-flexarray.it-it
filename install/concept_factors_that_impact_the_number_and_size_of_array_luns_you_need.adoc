@@ -1,0 +1,14 @@
+---
+permalink: install/concept_factors_that_impact_the_number_and_size_of_array_luns_you_need.html 
+sidebar: sidebar 
+keywords: factors, impact, number, size, array, luns, need 
+summary: È necessario prendere in considerazione una serie di fattori, incluso lo spazio utilizzabile in un LUN, quando si determina il numero di array LUN necessari e le relative dimensioni. 
+---
+= Fattori che influiscono sul numero e sulle dimensioni delle array LUN di cui hai bisogno
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario prendere in considerazione una serie di fattori, incluso lo spazio utilizzabile in un LUN, quando si determina il numero di array LUN necessari e le relative dimensioni.

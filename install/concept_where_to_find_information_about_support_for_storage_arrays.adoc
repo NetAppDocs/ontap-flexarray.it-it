@@ -1,0 +1,77 @@
+---
+permalink: install/concept_where_to_find_information_about_support_for_storage_arrays.html 
+sidebar: sidebar 
+keywords: non-ontap, storage, third-party, storage, e-series 
+summary: 'Non tutte le release di ONTAP supportano le stesse funzioni, configurazioni, modelli di sistema e modelli di storage array. Durante la pianificazione dell"implementazione, è necessario controllare le informazioni di supporto ONTAP per verificare che l"implementazione sia conforme ai requisiti hardware e software di ONTAP per tutti i sistemi dell"implementazione.' 
+---
+= Dove trovare informazioni sul supporto ONTAP per gli storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Non tutte le release di ONTAP supportano le stesse funzioni, configurazioni, modelli di sistema e modelli di storage array. Durante la pianificazione dell'implementazione, è necessario controllare le informazioni di supporto ONTAP per verificare che l'implementazione sia conforme ai requisiti hardware e software di ONTAP per tutti i sistemi dell'implementazione.
+
+Nella tabella seguente sono elencate le fonti di informazioni che contengono i dettagli dei requisiti hardware e software associati ai sistemi ONTAP:
+
+|===
+| Per informazioni su... | Dovreste guardare qui... 
+
+
+ a| 
+ONTAP che funziona con i dispositivi, tra cui:
+
+* Firmware degli storage array e degli storage array supportati
+* Switch supportati e firmware degli switch
+* Se l'array di storage supporta l'aggiornamento live (senza interruzione) del firmware dell'array di storage
+* Se una configurazione MetroCluster è supportata con il tuo storage array
+
+ a| 
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]
+
+
+
+ a| 
+Limiti ONTAP per release e piattaforme, tra cui:
+
+* Dimensioni minime e massime di array LUN, incluse le dimensioni minime di array LUN per il volume root e di array core di ricambio
+* Dimensione minima dell'aggregato per aggregati con array LUN
+* Dimensioni dei blocchi supportate
+* Capacità minima e massima
+* Limiti di vicinato
+
+ a| 
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+
+
+ a| 
+Configurazione degli storage array E-Series, compresi i seguenti:
+
+* Requisiti di preparazione del sito
+* Istruzioni per il cablaggio
+* Istruzioni di installazione e configurazione del software SANtricity
+
+ a| 
+La seguente documentazione E-Series:
+
+* _Guida alla preparazione del sito per i sistemi di storage E-Series_
+* _Guida al cablaggio hardware dei sistemi di storage E-Series_
+* _Documentazione di SANtricity ES Storage Manager_
+
+
+È possibile accedere a questi documenti dal sito del supporto NetApp.
+
+https://mysupport.netapp.com/site/global/dashboard["Supporto NetApp"]
+
+
+
+ a| 
+Quali elementi sono supportati per array di storage specifici, incluse le configurazioni supportate
+ a| 
+* https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["Implementazione della virtualizzazione FlexArray per storage di terze parti"]
+* https://docs.netapp.com/us-en/ontap-flexarray/implement-e-series/index.html["Implementazione della virtualizzazione FlexArray per lo storage NetApp e-Series"]
+
+
+|===

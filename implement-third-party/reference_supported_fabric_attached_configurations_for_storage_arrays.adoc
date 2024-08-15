@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/reference_supported_fabric_attached_configurations_for_storage_arrays.html 
+sidebar: sidebar 
+keywords: support, fabric-attached, configurations 
+summary: Varie configurazioni fabric-attached sono supportate per tutti i vendor di storage array, salvo diverse indicazioni. 
+---
+= Configurazioni fabric-attached supportate
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Varie configurazioni fabric-attached sono supportate per tutti i vendor di storage array, salvo diverse indicazioni.
+
+La matrice di interoperabilità contiene informazioni aggiuntive su specifici modelli di array.
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

@@ -1,0 +1,36 @@
+---
+permalink: implement-third-party/concept_requirements_for_formatting_array_luns.html 
+sidebar: sidebar 
+keywords: requirements, formatting, array, luns 
+summary: 'È possibile eseguire diversi tipi di formattazione di array LUN. Ciascun tipo ha un impatto sulla disponibilità di LUN o dell"intero storage array.' 
+---
+= Requisiti per la formattazione delle LUN degli array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile eseguire diversi tipi di formattazione di array LUN. Ciascun tipo ha un impatto sulla disponibilità di LUN o dell'intero storage array.
+
+Se è necessario presentare immediatamente un nuovo LUN al sistema ONTAP, è necessario utilizzare la formattazione rapida. Se si prevede di presentare i LUN al sistema ONTAP in futuro, si consiglia una formattazione rapida, ma la formattazione online è accettabile.
+
+La formattazione rapida è consigliata poiché sia la formattazione online che quella offline ritardano il rilevamento del disco fino al completamento della formattazione LUN, come descritto nel seguente elenco:
+
+* La formattazione online porta il LUN dell'array formattato completamente offline e il LUN dell'array non risponde ad alcun comando SCSI.
++
+La formattazione viene eseguita su un LUN di array alla volta fino a quando tutti i LUN di array non vengono formattati.
+
+* La formattazione offline porta l'intero storage array offline e lo storage array non risponde ad alcun comando SCSI.
++
+I LUN degli array vengono formattati sei alla volta per controller fino al completamento della formattazione.
+
++
+L'array di storage non risponde fino al completamento della formattazione.
+
+* Se si stanno creando LUN di array (per qualsiasi host) dopo la configurazione iniziale del sistema ONTAP e si sta utilizzando la formattazione offline, il panico di sistema.
++
+Tutti gli array LUN mappati al sistema ONTAP, inclusi gli array LUN nel volume root, non sono disponibili fino al completamento della formattazione.
+
+* La formattazione rapida e online dei LUN per altri host non influisce sul sistema ONTAP.
+

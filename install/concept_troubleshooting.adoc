@@ -1,0 +1,14 @@
+---
+permalink: install/concept_troubleshooting.html 
+sidebar: sidebar 
+keywords: troubleshoot, configurations, storage, arrays 
+summary: 'È necessario convalidare la configurazione durante l"installazione iniziale in modo da poter risolvere i problemi prima che la configurazione venga inserita in un ambiente di produzione.' 
+---
+= Troubleshooting delle configurazioni con gli storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario convalidare la configurazione durante l'installazione iniziale in modo da poter risolvere i problemi prima che la configurazione venga inserita in un ambiente di produzione.

@@ -1,0 +1,49 @@
+---
+permalink: install/concept_aggregate_rules_when_the_storage_arrays_are_from_the_same_family.html 
+sidebar: sidebar 
+keywords: aggregate, rules, storage, arrays, same, family, add, luns, single, multiple, distribute 
+summary: Regole specifiche si applicano alla modalità di lay-out di array LUN in aggregati quando gli storage array appartengono allo stesso vendor e alla stessa famiglia di modelli di storage array. 
+---
+= Regole di aggregazione per gli storage array appartenenti alla stessa famiglia
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Regole specifiche si applicano alla modalità di lay-out di array LUN in aggregati quando gli storage array appartengono allo stesso vendor e alla stessa famiglia di modelli di storage array.
+
+Se gli storage array appartengono allo stesso vendor, le regole per aggiungere array LUN agli aggregati sono le seguenti:
+
+* Se gli storage array si trovano nella stessa famiglia, puoi combinare array LUN degli storage array nello stesso aggregato.
+* È possibile separare le array LUN in diversi aggregati.
+
+
+I seguenti esempi mostrano alcune opzioni per la disposizione delle LUN degli array in aggregati quando gli storage array dietro un sistema ONTAP sono nella stessa famiglia di vendor_.
+
+[NOTE]
+====
+Per semplicità, le illustrazioni mostrano solo due array di storage; la distribuzione può includere più array di storage.
+
+====
+
+
+== Esempio 1: Aggiunta di LUN da tutti gli storage array a un singolo aggregato
+
+Come illustrato nella seguente illustrazione, è possibile creare un aggregato e aggiungere tutte le LUN di tutti gli storage array della stessa famiglia allo stesso aggregato:
+
+image::../media/luns_assigned_to_same_aggr_same_family.gif[Questo grafico è descritto dal testo circostante.]
+
+
+
+== Esempio 2: Distribuisci e mischia le LUN dagli storage array su aggregati multipli
+
+Come illustrato nella seguente illustrazione, è possibile creare più aggregati, quindi distribuire e mischiare le LUN degli array dei diversi storage array della stessa famiglia sugli aggregati:
+
+image:../media/luns_from_same_family_mixed_in_multiple_aggrs.gif[""]
+
+[NOTE]
+====
+Questo esempio non è supportato se si dispone di array di storage dello stesso modello e uno dispone di unità Fibre Channel e l'altro array di storage dispone di unità SATA. In tal caso, tali array di storage non sono considerati appartenenti alla stessa famiglia.
+
+====

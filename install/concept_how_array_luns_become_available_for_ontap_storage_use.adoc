@@ -1,0 +1,28 @@
+---
+permalink: install/concept_how_array_luns_become_available_for_ontap_storage_use.html 
+sidebar: sidebar 
+keywords: how, array, luns, available, ontap, storage, use 
+summary: 'Un sistema ONTAP non può utilizzare un array LUN presentato fino a quando ONTAP non è stato configurato per utilizzare l"array LUN.' 
+---
+= Modalità di disponibilità delle LUN degli array per l'utilizzo dello storage ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un sistema ONTAP non può utilizzare un array LUN presentato fino a quando ONTAP non è stato configurato per utilizzare l'array LUN.
+
+Sebbene l'amministratore dello storage array renda un array LUN accessibile a ONTAP, ONTAP non può utilizzare l'array LUN per lo storage fino al completamento di entrambe le seguenti attività:
+
+. Un sistema ONTAP (concesso in licenza per l'utilizzo di array LUN) deve essere assegnato per essere il _proprietario_ del LUN dell'array.
+. La LUN dell'array deve essere aggiunta a un aggregato.
+
+
+Quando si assegna un array LUN a un sistema ONTAP, ONTAP scrive i dati sul array LUN per identificare il sistema assegnato come proprietario del array LUN. Questa relazione logica viene definita _proprietà del disco_.
+
+Quando si assegna un array LUN a un sistema ONTAP, diventa un LUN libero di proprietà di quel sistema e non è più disponibile per altri sistemi ONTAP.
+
+Un array LUN di riserva non può essere utilizzato per lo storage fino a quando non viene aggiunto a un aggregato. Successivamente, ONTAP garantisce che solo il proprietario del LUN dell'array possa scrivere e leggere i dati dal LUN.
+
+In una coppia ha, entrambi i nodi devono poter vedere lo stesso storage, ma solo un nodo nella coppia è il proprietario della LUN dell'array. Il nodo partner assume il controllo dell'accesso in lettura/scrittura a un array LUN in caso di guasto del nodo proprietario. Il nodo proprietario originale riprende la proprietà dopo che il problema che ha causato la mancata disponibilità del nodo è stato risolto.

@@ -1,0 +1,26 @@
+---
+permalink: implement-third-party/concept_emc_symmetrix_storage_array_families.html 
+sidebar: sidebar 
+keywords: emc, symmetrix, storage, array, families 
+summary: ONTAP non supporta la combinazione di alcuni tipi di storage in aggregati. Per aiutarti a determinare le LUN degli array che possono essere miste in un aggregato, gli storage array di ciascun vendor sono raggruppati in famiglie. Quando crei degli aggregati, non puoi combinare array LUN di vendor diversi e famiglie di storage array differenti nello stesso aggregato. 
+---
+= Famiglie di storage array EMC Symmetrix
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP non supporta la combinazione di alcuni tipi di storage in aggregati. Per aiutarti a determinare le LUN degli array che possono essere miste in un aggregato, gli storage array di ciascun vendor sono raggruppati in famiglie. Quando crei degli aggregati, non puoi combinare array LUN di vendor diversi e famiglie di storage array differenti nello stesso aggregato.
+
+Con i sistemi ONTAP sono supportate le seguenti famiglie di array di storage EMC Symmetrix:
+
+* Famiglia 1: VMAX
+* Famiglia 2: VMAX3
+
+
+La matrice di interoperabilità è l'autorità finale per le informazioni sugli storage array supportati per ogni vendor.
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

@@ -1,0 +1,33 @@
+---
+permalink: install/task_checking_the_checksum_type_of_spare_array_luns.html 
+sidebar: sidebar 
+keywords: check, checksum, type, spare, array, luns 
+summary: Se si prevede di aggiungere un LUN di array di riserva a un aggregato specificandone il nome, è necessario assicurarsi che il tipo di checksum del LUN di array che si desidera aggiungere sia lo stesso del tipo di checksum di aggregato. 
+---
+= Controllo del tipo di checksum dei LUN dell'array di riserva
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si prevede di aggiungere un LUN di array di riserva a un aggregato specificandone il nome, è necessario assicurarsi che il tipo di checksum del LUN di array che si desidera aggiungere sia lo stesso del tipo di checksum di aggregato.
+
+Non è possibile combinare array LUN di diversi tipi di checksum in un aggregato LUN di un array. Il tipo di checksum dell'aggregato e del tipo di checksum dei LUN dell'array aggiunti devono essere identici.
+
+Se si specifica un numero di LUN di array di riserva da aggiungere a un aggregato, per impostazione predefinita ONTAP seleziona le LUN di array dello stesso tipo di checksum dell'aggregato.
+
+[NOTE]
+====
+Il tipo di checksum di tutti gli aggregati appena creati che utilizzano LUN DI array di checksum con zoning è _Advanced Zoned checksum_ (AZCS). Il tipo di checksum con zoning continua a essere supportato per gli aggregati esistenti con zoning. I LUN di riserva di checksum con zoning aggiunti a un aggregato di checksum con zoning esistente continuano a essere LUN di array di checksum con zoning. I LUN di array di riserva di checksum con zoning aggiunti a un aggregato di tipo di checksum AZCS utilizzano lo schema di checksum AZCS per la gestione dei checksum.
+
+====
+.Fase
+. Controllare il tipo di checksum dei LUN di array di riserva immettendo il seguente comando:
++
+`storage disk show -fields checksum-compatibility -container-type spare`
+
++
+È possibile aggiungere un LUN di array checksum a blocchi a un aggregato di checksum a blocchi e un LUN di array con zoning a un aggregato _Advanced zoned checksum_ (AZCS).
+
+

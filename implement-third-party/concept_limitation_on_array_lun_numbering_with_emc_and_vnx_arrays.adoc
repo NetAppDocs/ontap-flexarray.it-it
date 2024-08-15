@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/concept_limitation_on_array_lun_numbering_with_emc_and_vnx_arrays.html 
+sidebar: sidebar 
+keywords: limitation, array, lun, numbering, emc, vnx, array 
+summary: Lo storage array EMC VNX supporta solo la numerazione LUN degli array da 0 a 255. Gli array LUN numerati oltre questo intervallo non sono visibili a ONTAP. 
+---
+= Limitazione della numerazione delle LUN degli array con l'array EMC VNX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lo storage array EMC VNX supporta solo la numerazione LUN degli array da 0 a 255. Gli array LUN numerati oltre questo intervallo non sono visibili a ONTAP.

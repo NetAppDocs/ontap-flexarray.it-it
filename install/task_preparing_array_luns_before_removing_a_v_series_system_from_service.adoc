@@ -1,0 +1,20 @@
+---
+permalink: install/task_preparing_array_luns_before_removing_a_v_series_system_from_service.html 
+sidebar: sidebar 
+keywords: prepare, array, luns, before, remove, ontap, system, service 
+summary: È necessario rilasciare le prenotazioni persistenti su tutti i LUN degli array assegnati a un sistema ONTAP prima di rimuovere il sistema dal servizio. 
+---
+= Preparazione dei LUN degli array prima di rimuovere un sistema ONTAP dal servizio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario rilasciare le prenotazioni persistenti su tutti i LUN degli array assegnati a un sistema ONTAP prima di rimuovere il sistema dal servizio.
+
+Quando si assegna la proprietà ONTAP di un array LUN, ONTAP colloca le prenotazioni persistenti (blocchi di proprietà) su tale array LUN per identificare quale sistema ONTAP è proprietario del LUN. Se si desidera che le array LUN siano disponibili per essere utilizzate da altri tipi di host, è necessario rimuovere le prenotazioni persistenti che ONTAP ha inserito in tali array LUN; alcuni array non consentono di distruggere un LUN riservato se non si rimuovono la proprietà e le prenotazioni persistenti che ONTAP ha scritto a tale LUN.
+
+Ad esempio, l'array di storage USP Hitachi non dispone di un comando utente per rimuovere le prenotazioni persistenti dai LUN. Se non si rimuovono prenotazioni persistenti tramite ONTAP prima di rimuovere il sistema ONTAP dall'assistenza, è necessario contattare il supporto tecnico Hitachi per rimuovere le prenotazioni.
+
+Consultare l'articolo della Knowledge base https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/What_are_SCSI_Reservations_and_SCSI_Persistent_Reservations["Cosa sono le Prenotazioni SCSI e le Prenotazioni persistenti SCSI"^]

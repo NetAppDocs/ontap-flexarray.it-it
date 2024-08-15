@@ -1,0 +1,42 @@
+---
+permalink: implement-e-series/concept_eight_port_array_lun_group_configuration.html 
+sidebar: sidebar 
+keywords: eight-port, array, lun group, configuration, crossed, back-end, connections, not 
+summary: Una configurazione del gruppo LUN a otto porte è supportata sui sistemi V-Series in cluster e sui sistemi ONTAP che possono utilizzare array LUN. 
+---
+= Configurazione di un gruppo LUN di array a otto porte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Una configurazione del gruppo LUN a otto porte è supportata sui sistemi V-Series in cluster e sui sistemi ONTAP che possono utilizzare array LUN.
+
+Questa configurazione è supportata per l'utilizzo con tutti gli storage array elencati nella matrice di interoperabilità, così come supportata per la release di ONTAP in esecuzione sul tuo sistema.
+
+Esistono due modi per implementare questa configurazione: Connessioni back-end incrociate e non incrociate.
+
+
+
+== Connessioni back-end incrociate
+
+In questa configurazione, con le connessioni di back-end incrociate, le connessioni FC dallo stesso controller di storage array vanno a entrambi gli switch fabric (ridondanti).
+
+In questa illustrazione di connessioni back-end incrociate, osservare come i nodi sono collegati agli switch e allo storage array. VS1 utilizza lo switch 1 quando si collega alla porta 1A del controller di array di memoria 1 e alla porta 2C del controller 2, e utilizza lo switch 2 quando si collega alle porte 2A del controller di array di memoria 2 e alla porta 1C del controller 1. Questa caratteristica ottimizza l'utilizzo delle porte di switch e array, riducendo l'impatto del guasto di uno switch o di uno storage array controller.
+
+image::../media/eight_port_array_lun_group_configuration_crossed.gif[configurazione di gruppo lun con otto porte incrociata]
+
+
+
+== Le connessioni back-end non sono incrociate
+
+In questa configurazione, in cui non vengono incrociate le connessioni back-end, le connessioni FC dallo stesso controller di storage array passano a un solo fabric switch.
+
+La figura seguente mostra questa configurazione quando le connessioni back-end non sono incrociate.
+
+image::../media/eight_port_array_lun_group_configuration.gif[configurazione gruppo lun con otto porte array]
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

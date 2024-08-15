@@ -1,0 +1,62 @@
+---
+permalink: install/concept_requirements_for_v_series_fc_initiator_port_usage.html 
+sidebar: sidebar 
+keywords: requirements, use, fc initiator, ports 
+summary: Se si desidera utilizzare le porte FC Initiator in una configurazione ONTAP con array LUN, è necessario attenersi a requisiti specifici per la ridondanza della coppia di porte, le impostazioni delle porte per gli HBA, la connessione alle porte di destinazione, i limiti di array LUN e la connessione a dispositivi e dispositivi diversi. 
+---
+= Requisiti per l'utilizzo delle porte FC Initiator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si desidera utilizzare le porte FC Initiator in una configurazione ONTAP con array LUN, è necessario attenersi a requisiti specifici per la ridondanza della coppia di porte, le impostazioni delle porte per gli HBA, la connessione alle porte di destinazione, i limiti di array LUN e la connessione a dispositivi e dispositivi diversi.
+
+|===
+| Per questa funzione... | I requisiti sono... 
+
+
+ a| 
+Ridondanza delle coppie di porte
+ a| 
+È necessario utilizzare coppie di porte initiator FC ridondanti durante la connessione di un sistema ONTAP a LUN array.
+
+
+
+ a| 
+Impostazione della porta per HBA
+ a| 
+È necessario impostare tutti gli HBA utilizzati per accedere a dischi o array LUN come porte _Initiator_.
+
+
+
+ a| 
+Collegamento alle porte di destinazione dell'array di storage
+ a| 
+È possibile collegare la stessa porta FC Initiator a più porte di destinazione sull'array di storage.
+
+È possibile collegare un massimo di due porte FC Initiator a una singola porta di destinazione.
+
+
+
+ a| 
+Limiti delle LUN degli array
+ a| 
+Esistono limiti sul numero di array LUN visibili su una porta FC Initiator. Questi limiti variano a seconda delle versioni di ONTAP.
+
+
+
+ a| 
+Collegamento a dispositivi e dispositivi di archiviazione diversi
+ a| 
+È necessario utilizzare una porta FC Initiator separata per collegare il sistema ONTAP a ciascuno dei seguenti dispositivi:
+
+* Shelf di dischi
+* LUN array
+* Dispositivi a nastro
+
+
+Se il sistema ONTAP non dispone di porte interne sufficienti per soddisfare le proprie esigenze, è necessario ordinare un HBA aggiuntivo.
+
+|===

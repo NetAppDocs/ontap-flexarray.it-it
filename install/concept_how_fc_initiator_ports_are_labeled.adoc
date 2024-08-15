@@ -1,0 +1,27 @@
+---
+permalink: install/concept_how_fc_initiator_ports_are_labeled.html 
+sidebar: sidebar 
+keywords: how, fc initiator, ports, labeled 
+summary: 'Tutte le porte FC Initiator su sistemi ONTAP sono identificate da un numero e da una lettera. L"etichettatura varia a seconda che le porte siano sulla scheda madre o sulle schede negli slot di espansione.' 
+---
+= Come vengono etichettate le porte FC Initiator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tutte le porte FC Initiator su sistemi ONTAP sono identificate da un numero e da una lettera. L'etichettatura varia a seconda che le porte siano sulla scheda madre o sulle schede negli slot di espansione.
+
+* Numerazione delle porte sulla scheda madre
++
+Le porte sono numerate 0A, 0b, 0C, 0d...
+
+* Numerazione delle porte sulle schede di espansione
++
+Le porte sono numerate in base all'alloggiamento in cui è installata la scheda di espansione. Una scheda nello slot 3 produce le porte 3A e 3B.
+
++
+Le porte dell'iniziatore FC sono contrassegnate con 1 e 2. Tuttavia, il software li fa riferimento come A e B. queste etichette vengono visualizzate nell'interfaccia utente e i messaggi di sistema visualizzati sulla console.
+
+

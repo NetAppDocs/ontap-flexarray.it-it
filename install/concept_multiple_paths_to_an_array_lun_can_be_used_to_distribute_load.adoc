@@ -1,0 +1,33 @@
+---
+permalink: install/concept_multiple_paths_to_an_array_lun_can_be_used_to_distribute_load.html 
+sidebar: sidebar 
+keywords: multiple, paths, array, lun, used, distribute, load, commands 
+summary: Le richieste di i/o per un dato LUN possono essere distribuite su tutti i percorsi ottimizzati disponibili verso il LUN. Ciò è diverso dalle precedenti release, in cui nonostante la disponibilità di più percorsi, le richieste di i/o per una determinata LUN sono state inviate su un singolo percorso ottimizzato attivo. 
+---
+= È possibile utilizzare più percorsi a un array LUN per distribuire il carico
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le richieste di i/o per un dato LUN possono essere distribuite su tutti i percorsi ottimizzati disponibili verso il LUN. Ciò è diverso dalle precedenti release, in cui nonostante la disponibilità di più percorsi, le richieste di i/o per una determinata LUN sono state inviate su un singolo percorso ottimizzato attivo.
+
+La distribuzione delle richieste di i/o per una determinata LUN su più percorsi comporta i seguenti vantaggi:
+
+* Maggiore efficienza grazie all'utilizzo massimo di tutti i percorsi disponibili e ottimizzati
+* Prestazioni migliorate grazie al bilanciamento del carico su percorsi multipli
+
+
+Ad esempio, su un array Active-Active, le richieste di i/o di un dato LUN possono essere distribuite su tutte le quattro porte di destinazione disponibili per tale LUN. Per un array LUN asimmetrico Active-Active, le richieste di i/o possono essere distribuite su tutti i percorsi ottimizzati per una determinata LUN.
+
+
+
+== Comandi per visualizzare il bilanciamento del carico su più percorsi per una determinata LUN
+
+È possibile eseguire i seguenti comandi per visualizzare la distribuzione del carico di una data LUN su più percorsi:
+
+* ``storage disk show -disk <LUN name>`` Distribuzione del carico di i/o nei percorsi disponibili per un determinato array LUN.
+* ``storage path show-by-initiator -array-name <array name>`` Visualizza la distribuzione del carico di i/o su tutte le porte Initiator sul sistema ONTAP collegato a un determinato array di storage.
+* ``storage path show -by-target -array-name <array name>`` Distribuzione del carico i/o su tutte le porte di destinazione di un determinato array di storage.
+

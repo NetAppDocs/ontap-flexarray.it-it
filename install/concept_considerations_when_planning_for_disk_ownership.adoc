@@ -1,0 +1,30 @@
+---
+permalink: install/concept_considerations_when_planning_for_disk_ownership.html 
+sidebar: sidebar 
+keywords: considerations, plan, disk, ownership 
+summary: Se stai implementando più sistemi ONTAP da utilizzare con le LUN degli array, devi determinare quale sistema possiede quali LUN degli array. La proprietà del disco garantisce che solo il sistema ONTAP proprietario di un determinato array LUN possa leggere i dati e scriverli sul array LUN. 
+---
+= Considerazioni per la pianificazione della proprietà del disco
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se stai implementando più sistemi ONTAP da utilizzare con gli array LUN, devi determinare quale sia il _proprietario_ delle array LUN. La proprietà del disco garantisce che solo il sistema ONTAP proprietario di un determinato array LUN possa leggere i dati e scriverli sul array LUN.
+
+Per pianificare quale sistema sarà proprietario degli array LUN, è necessario considerare quanto segue:
+
+* Il limite massimo di dispositivi assegnato supportato dalla piattaforma
++
+Il _Hardware Universe_ mostra il limite massimo di dispositivi assegnati supportato da diverse piattaforme. Questo è un limite hard-coded. Se il sistema utilizza sia array LUN che dischi, questo limite massimo è costituito dal numero massimo di dischi e array LUN combinati. Per determinare il numero di array LUN e dischi che è possibile assegnare a un sistema, è necessario tenere conto di entrambi i tipi di storage.
+
+* La quantità di carico che si prevede venga generata da diverse applicazioni utilizzate nel proprio ambiente
++
+È probabile che alcuni tipi di applicazioni generino molte richieste, mentre altre (ad esempio, applicazioni di archiviazione) generano un numero inferiore di richieste. È possibile valutare la pesatura delle assegnazioni di proprietà in base al carico previsto da applicazioni specifiche.
+
+
+
+*Informazioni correlate*
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

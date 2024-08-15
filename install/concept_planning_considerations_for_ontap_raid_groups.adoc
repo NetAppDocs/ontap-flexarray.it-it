@@ -1,0 +1,32 @@
+---
+permalink: install/concept_planning_considerations_for_ontap_raid_groups.html 
+sidebar: sidebar 
+keywords: plan, considerations, ontap, raid, groups 
+summary: 'Prima di configurare i gruppi RAID ONTAP per gli array LUN, è necessario pianificare le dimensioni degli aggregati, il numero e le dimensioni dei gruppi RAID e le dimensioni dei array LUN. I gruppi RAID che soddisfano al meglio i requisiti dei dati garantiscono un"adeguata protezione dell"array per i dati e la relativa disponibilità.' 
+---
+= Considerazioni sulla pianificazione per i gruppi RAID ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di configurare i gruppi RAID ONTAP per gli array LUN, è necessario pianificare le dimensioni degli aggregati, il numero e le dimensioni dei gruppi RAID e le dimensioni dei array LUN. I gruppi RAID che soddisfano al meglio i requisiti dei dati garantiscono un'adeguata protezione dell'array per i dati e la relativa disponibilità.
+
+La pianificazione dei gruppi RAID ONTAP implica le seguenti attività:
+
+. Planning delle dimensioni dell'aggregato in grado di soddisfare al meglio i tuoi requisiti in termini di dati.
+. Pianificazione del numero e delle dimensioni dei gruppi RAID necessari per le dimensioni dell'aggregato.
+. Pianificazione delle dimensioni delle array LUN richieste nei gruppi ONTAP RAID:
++
+** Per evitare penalizzazioni in termini di performance, tutti i LUN di array di un particolare gruppo RAID ONTAP devono avere le stesse dimensioni.
+** Gli array LUN devono avere le stesse dimensioni in tutti i gruppi RAID nello stesso aggregato.
+
+
+. Comunicando con l'amministratore dello storage array per creare il numero di array LUN delle dimensioni necessarie per l'aggregato.
++
+I LUN degli array devono essere ottimizzati per le performance secondo le istruzioni contenute nella documentazione del vendor dello storage array.
+
+
+
+Per ulteriori consigli sull'impostazione dei gruppi RAID ONTAP da utilizzare con gli array di archiviazione, vedere https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["_Gestione di dischi e aggregati_"].

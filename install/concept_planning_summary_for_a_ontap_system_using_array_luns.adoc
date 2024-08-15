@@ -1,0 +1,71 @@
+---
+permalink: install/concept_planning_summary_for_a_ontap_system_using_array_luns.html 
+sidebar: sidebar 
+keywords: plan, summary, ontap, systems, array, luns 
+summary: Quando intendi utilizzare array LUN con i sistemi ONTAP, devi comunicare con gli amministratori dello storage array e degli switch in modo che i dispositivi back-end siano configurati per il funzionamento con i sistemi ONTAP. 
+---
+= Riepilogo della pianificazione per i sistemi ONTAP che utilizzano array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando intendi utilizzare array LUN con i sistemi ONTAP, devi comunicare con gli amministratori dello storage array e degli switch in modo che i dispositivi back-end siano configurati per il funzionamento con i sistemi ONTAP.
+
+Nella tabella seguente sono riepilogate le principali attività di pianificazione e la posizione delle informazioni necessarie per ciascuna attività.
+
+|===
+| Attività di pianificazione | Dove trovare informazioni 
+
+
+ a| 
+Determinazione dei requisiti per la configurazione dello storage array da utilizzare con ONTAP
+ a| 
+* https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["Implementazione della virtualizzazione FlexArray per storage di terze parti"]
+* https://docs.netapp.com/us-en/ontap-flexarray/implement-e-series/index.html["Implementazione della virtualizzazione FlexArray per lo storage NetApp e-Series"]
+* https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]
+
+
+
+
+ a| 
+Linee guida per l'utilizzo delle array LUN con ONTAP
+ a| 
+xref:concept_planning_for_ontap_use_of_array_luns.adoc[Pianificazione dell'utilizzo di array LUN da parte di ONTAP]
+
+
+
+ a| 
+Determinazione dei limiti ONTAP relativi agli array LUN
+ a| 
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+
+
+ a| 
+Determinazione di uno schema di protezione LUN, impostazione dei controlli di accesso sullo storage array e, se gli switch vengono implementati, impostazione della zoning sugli switch
+ a| 
+* xref:concept_planning_for_lun_security_on_storage_arrays.adoc[Pianificazione della sicurezza LUN sugli array di storage]
+* xref:concept_zoning_for_a_configuration_with_storage_arrays.adoc[Requisiti di zoning]
+
+
+
+
+ a| 
+Determinazione di uno schema di connettività da porta a porta tra i sistemi ONTAP e lo storage array
+ a| 
+* xref:concept_planning_a_port_to_port_connectivity_scheme.adoc[Pianificazione di uno schema di connettività da porta a porta]
+* https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]
+
+
+
+
+ a| 
+Determinare quale sistema ONTAP deve ""possedere"" quale array LUN (proprietà del disco)
+ a| 
+* xref:concept_how_array_luns_become_available_for_ontap_storage_use.adoc[Modalità di disponibilità delle LUN degli array per l'utilizzo dello storage ONTAP]
+* xref:task_assigning_ownership_of_array_luns.adoc[Assegnazione della proprietà delle LUN degli array]
+
+
+|===

@@ -1,0 +1,30 @@
+---
+permalink: implement-third-party/concept_emc_vnx_storage_array_families.html 
+sidebar: sidebar 
+keywords: emc, vnx, storage, array, families 
+summary: ONTAP non supporta la combinazione di alcuni tipi di storage in aggregati. Per aiutarti a determinare le LUN degli array che possono essere miste in un aggregato, gli storage array di ciascun vendor sono raggruppati in famiglie. Quando crei degli aggregati, non puoi combinare array LUN di vendor diversi e famiglie di storage array differenti nello stesso aggregato. 
+---
+= Famiglie di storage array EMC VNX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP non supporta la combinazione di alcuni tipi di storage in aggregati. Per aiutarti a determinare le LUN degli array che possono essere miste in un aggregato, gli storage array di ciascun vendor sono raggruppati in famiglie. Quando crei degli aggregati, non puoi combinare array LUN di vendor diversi e famiglie di storage array differenti nello stesso aggregato.
+
+Gli array di storage della stessa famiglia condividono le stesse prestazioni e caratteristiche di failover. Ad esempio, i membri della stessa famiglia eseguono tutti il failover Active-Active o eseguono tutti il failover Active-passive. Per determinare le famiglie di storage array potrebbe essere utilizzato più di un fattore. Ad esempio, gli storage array con architetture differenti sarebbero in famiglie diverse, anche se altre caratteristiche potrebbero essere le stesse.
+
+Con i sistemi ONTAP sono supportate le seguenti famiglie di storage array EMC VNX:
+
+* Famiglia 1: VNX1
+* Famiglia 2: VNX2
+
+
+Questi array utilizzano la modalità di failover Asymmetric Active-Active (ALUA).
+
+La matrice di interoperabilità è l'autorità finale per le informazioni sugli storage array supportati per ogni vendor.
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

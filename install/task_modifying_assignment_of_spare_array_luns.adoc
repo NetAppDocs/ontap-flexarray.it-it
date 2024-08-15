@@ -1,0 +1,36 @@
+---
+permalink: install/task_modifying_assignment_of_spare_array_luns.html 
+sidebar: sidebar 
+keywords: modify, assignment, spare, array, luns 
+summary: È possibile modificare la proprietà di un array LUN di riserva in un altro nodo. Questa operazione può essere utile per il bilanciamento del carico sui nodi. 
+---
+= Modifica dell'assegnazione dei LUN degli array di riserva
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile modificare la proprietà di un array LUN _spare_ in un altro nodo. Questa operazione può essere utile per il bilanciamento del carico sui nodi.
+
+.Fasi
+. Nella console del nodo proprietario dell'array LUN che si desidera riassegnare, immettere il seguente comando per visualizzare un elenco di array LUN spare sul nodo: `storage disk show -owner local`
++
+Vengono elencate le LUN degli array di proprietà del nodo, di spare e LUN in aggregati.
+
+. Verificare che la LUN che si desidera riassegnare a un altro nodo sia una LUN di riserva.
+. Immettere il seguente comando per assegnare la proprietà del LUN dell'array a un altro nodo: `storage disk assign arrayLUNname -owner new_owner_name -force`
++
+[NOTE]
+====
+La proprietà di array LUN non viene modificata se non viene utilizzata l'opzione -force o se la array LUN è già stata aggiunta a un aggregato.
+
+====
+. Immettere il seguente comando per verificare che la proprietà del LUN dell'array di riserva sia stata modificata nell'altro nodo: `storage disk show -owner local`
++
+Il LUN dell'array di riserva modificato per il nuovo proprietario non dovrebbe più essere visualizzato nell'elenco delle unità di riserva. Se l'array LUN continua a essere visualizzato, ripetere il comando per modificare la proprietà.
+
+. Nel nodo di destinazione, immettere il seguente comando per verificare che il LUN dell'array di riserva la cui proprietà è stata modificata sia elencato come un ricambio di proprietà del nodo di destinazione: `storage disk show -owner local`
+
+
+È necessario aggiungere la LUN dell'array a un aggregato prima di poter essere utilizzata per lo storage.

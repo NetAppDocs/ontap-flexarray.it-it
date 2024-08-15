@@ -1,0 +1,32 @@
+---
+permalink: install/concept_when_to_check_for_redundant_paths_to_array_luns.html 
+sidebar: sidebar 
+keywords: when, check, redundant, paths, array, luns 
+summary: 'È necessario verificare la presenza di percorsi ridondanti verso un array LUN dopo l"installazione e durante le attività di manutenzione del fabric.' 
+---
+= Quando verificare la presenza di percorsi ridondanti verso i LUN dell'array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario verificare la presenza di percorsi ridondanti verso un array LUN dopo l'installazione e durante le attività di manutenzione del fabric.
+
+È necessario ricontrollare la ridondanza del percorso quando si eseguono le seguenti attività:
+
+* Installazione iniziale
+* Manutenzione dei tessuti, ad esempio:
++
+** Prima, durante e dopo un upgrade dell'infrastruttura
+** Prima e dopo aver disattivato un interruttore per la manutenzione
++
+Verificare che i percorsi siano stati configurati come percorsi ridondanti prima di rimuovere uno switch tra i sistemi ONTAP e lo storage array in modo che l'accesso alle LUN dell'array non venga interrotto.
+
+** Prima e dopo la manutenzione dell'hardware su uno storage array
++
+Ad esempio, è necessario controllare nuovamente la ridondanza del percorso quando si gestisce il componente hardware su cui si trovano le schede host e le porte. (Il nome di questo componente varia in base ai diversi modelli degli storage array).
+
+
+
+

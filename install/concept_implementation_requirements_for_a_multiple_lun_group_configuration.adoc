@@ -1,0 +1,43 @@
+---
+permalink: install/concept_implementation_requirements_for_a_multiple_lun_group_configuration.html 
+sidebar: sidebar 
+keywords: implementation, requirements, multiple, lun, group, configuration 
+summary: 'È possibile migliorare le prestazioni del sistema implementando una configurazione con più gruppi LUN nel proprio ambiente di storage. Per l"implementazione di questa configurazione, è necessario eseguire alcune attività di configurazione sui sistemi ONTAP e sugli array di storage.' 
+---
+= Requisiti di implementazione per una configurazione con più gruppi di LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile migliorare le prestazioni del sistema implementando una configurazione con più gruppi LUN nel proprio ambiente di storage. Per l'implementazione di questa configurazione, è necessario eseguire alcune attività di configurazione sui sistemi ONTAP e sugli array di storage.
+
+Per la maggior parte degli array di storage è supportata una configurazione con più gruppi di LUN. Consulta _Interoperability Matrix_ per confermare che questa configurazione è supportata con il tuo specifico array di storage.
+
+È necessario collaborare con l'amministratore dell'array di archiviazione per impostare quanto segue sul _storage array_ per una configurazione di più gruppi LUN:
+
+* Utilizzare il maggior numero di porte possibile, per fornire accesso agli array LUN allocati per il sistema ONTAP.
+* Utilizzare gruppi di host (o equivalenti del fornitore) per definire quali gruppi di LUN di array devono essere presentati a ciascuna porta iniziatore FC su un sistema ONTAP.
+
+
+È possibile impostare quanto segue sul sistema ONTAP per implementare una configurazione di più gruppi LUN:
+
+* Utilizzare una coppia di porte FC Initiator per ciascun gruppo di array LUN.
++
+Ogni coppia di porte FC Initiator accede a un diverso gruppo LUN sullo storage array tramite percorsi ridondanti.
+
+* Creazione di un ampio aggregato nella configurazione ONTAP e aggiunta di array LUN da diversi gruppi RAID (gruppi di parità) all'aggregato.
++
+In questo modo, l'i/o viene distribuito su più dischi. La combinazione di diffusione dell'i/o tra i gruppi RAID e la creazione di un aggregato di grandi dimensioni offre un significativo miglioramento delle performance.
+
+
+
+Per implementare una configurazione di più gruppi LUN, è necessario impostare quanto segue sul _switch_:
+
+* Configurare lo zoning degli switch per definire le porte di destinazione che le porte iniziatore FC sul sistema ONTAP devono utilizzare per accedere a ciascun gruppo di LUN di array.
+
+
+*Informazioni correlate*
+
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]

@@ -1,0 +1,20 @@
+---
+permalink: install/concept_minimum_array_lun_size_for_the_root_volume.html 
+sidebar: sidebar 
+keywords: array, lun, size, required, root, volume 
+summary: 'È necessario impostare la dimensione del volume root su una dimensione superiore alla dimensione minima del LUN dell"array supportata, per assicurarsi che nel volume root sia presente spazio sufficiente per i file di sistema, i file di log e i file core. Se si verifica un problema di sistema, è necessario fornire questi file al supporto tecnico.' 
+---
+= Dimensioni LUN array richieste per il volume root
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario impostare la dimensione del volume root su una dimensione superiore alla dimensione minima del LUN dell'array supportata, per assicurarsi che nel volume root sia presente spazio sufficiente per i file di sistema, i file di log e i file core. Se si verifica un problema di sistema, è necessario fornire questi file al supporto tecnico.
+
+_Hardware Universe_ elenca le dimensioni minime del LUN dell'array per un volume root.
+
+*Informazioni correlate*
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

@@ -1,0 +1,30 @@
+---
+permalink: install/concept_location_of_the_root_volume.html 
+sidebar: sidebar 
+keywords: location, root, volume 
+summary: La posizione del volume root dipende dal fatto che il sistema ONTAP sia preordinato con dischi nativi o che si stiano aggiungendo dischi a un sistema ONTAP configurato per i LUN degli array. 
+---
+= Posizione del volume root
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La posizione del volume root dipende dal fatto che il sistema ONTAP sia preordinato con dischi nativi o che si stiano aggiungendo dischi a un sistema ONTAP configurato per i LUN degli array.
+
+Seguire queste linee guida per determinare la posizione del volume root nel sistema ONTAP:
+
+* Il volume root può trovarsi su uno storage array o su uno shelf di dischi nativo.
++
+Tuttavia, è necessario installare il volume root su un disco nativo se il sistema ONTAP dispone sia di dischi nativi che di array LUN.
+
++
+Se si ordina il sistema di archiviazione con i dischi, il volume principale viene installato in fabbrica su un disco nativo.
+
+* In una coppia ha, si consiglia di collocare il volume root nello stesso tipo di storage per entrambi i nodi, su uno shelf di dischi nativo o su uno storage array per entrambi i nodi.
+* Per le configurazioni MetroCluster con dischi e array LUN, è necessario creare il volume root su un disco se si sta impostando una nuova configurazione.
++
+Se si aggiungono dischi a una configurazione MetroCluster esistente con array LUN, è possibile lasciare il volume root su un array LUN.
+
+

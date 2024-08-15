@@ -1,0 +1,30 @@
+---
+permalink: install/concept_limits_information_for_a_configuration_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: limit, types, configurations, storage, arrays 
+summary: Durante il planning di una configurazione ONTAP, è necessario considerare alcuni limiti di storage array. 
+---
+= Limite di tipi per le configurazioni con storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante il planning di una configurazione ONTAP, è necessario considerare alcuni limiti di storage array.
+
+_Hardware Universe_ contiene valori limite specifici per gli array di archiviazione e i dischi nativi.
+
+I seguenti tipi di limiti si applicano solo agli storage array e non ai dischi nativi:
+
+* Dimensioni minime e massime dell'array LUN supportate da ONTAP
+* Dimensione minima per il LUN dell'array per il volume root
+* Dimensione minima dell'array LUN del core di ricambio
+* Limiti per i gruppi RAID con array LUN
+* Dimensione minima dell'aggregato per un aggregato di array LUN
+* Numero massimo di array LUN e dischi combinati, per piattaforma
+
+
+*Informazioni correlate*
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

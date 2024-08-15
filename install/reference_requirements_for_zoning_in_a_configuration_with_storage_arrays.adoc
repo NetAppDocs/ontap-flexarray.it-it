@@ -1,0 +1,27 @@
+---
+permalink: install/reference_requirements_for_zoning_in_a_configuration_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, zone, configuration, storage, arrays 
+summary: È necessario seguire i requisiti di zoning nella configurazione ONTAP con gli storage array per garantire che il sistema ONTAP possa accedere al set corretto di LUN. 
+---
+= Requisiti per la creazione di zone in una configurazione con array di storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario seguire i requisiti di zoning nella configurazione ONTAP con gli storage array per garantire che il sistema ONTAP possa accedere al set corretto di LUN.
+
+* La _matrice di interoperabilità_ deve identificare uno switch e il firmware dello switch come supportati per la configurazione ONTAP.
+* La suddivisione in zone deve essere configurata in modo da limitare ogni porta iniziatore a una singola porta di destinazione su ciascun array di storage.
+* Sullo switch, le porte sul sistema ONTAP e le porte sullo storage array devono essere assegnate alla stessa zona.
++
+In questo modo, i sistemi ONTAP possono accedere ai LUN degli storage array.
+
+* Quando le porte degli array di storage sono condivise tra sistemi eterogenei, i LUN degli array del sistema ONTAP non possono essere esposti ad altri sistemi.
++
+È necessario utilizzare la sicurezza LUN o l'array LUN masking per garantire che le LUN dell'array per lo storage ONTAP siano visibili solo ai sistemi ONTAP.
+
+* Una porta di configurazione host non deve essere inclusa nella stessa zona di una porta di destinazione.
+

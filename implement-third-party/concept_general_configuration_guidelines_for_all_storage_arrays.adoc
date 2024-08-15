@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/concept_general_configuration_guidelines_for_all_storage_arrays.html 
+sidebar: sidebar 
+keywords: configuration, guidelines, storage, arrays 
+summary: Esistono determinate linee guida per la configurazione da seguire per gli storage array supportati da ONTAP. 
+---
+= Linee guida generali per la configurazione di tutti gli array di storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esistono determinate linee guida per la configurazione da seguire per gli storage array supportati da ONTAP.

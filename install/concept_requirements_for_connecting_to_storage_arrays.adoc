@@ -1,0 +1,27 @@
+---
+permalink: install/concept_requirements_for_connecting_to_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, connect, storage, arrays 
+summary: Quando si pianifica come connettere il sistema ONTAP a uno storage array, il piano di connettività porta-porta deve affrontare la ridondanza, il percorso e altre linee guida. 
+---
+= Requisiti per il collegamento agli storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando si pianifica come connettere il sistema ONTAP a uno storage array, il piano di connettività porta-porta deve affrontare la ridondanza, il percorso e altre linee guida.
+
+I requisiti per impostare le connessioni sono i seguenti:
+
+* Ciascuna connessione di una coppia di porte ridondanti dello storage array deve essere collegata a una diversa porta FC Initiator del sistema ONTAP.
+* Le porte utilizzate sugli switch FC devono essere ridondanti.
+* La connettività deve essere impostata per evitare un SPOF.
++
+Accertarsi che le porte sull'array di storage che si selezionano per accedere a un determinato LUN siano di componenti diversi, in modo da evitare un single point of failure, ad esempio da controller, cluster o enclosure alternativi. Il motivo è che non si desidera che tutto l'accesso a un array LUN venga perso in caso di guasto di un componente.
+
+* Il numero di percorsi non può superare il numero di percorsi supportati per la release di ONTAP.
+* Se si desidera impostare una configurazione in cui una porta FC Initiator è condivisa con più porte di destinazione o una porta di destinazione è condivisa con più porte FC Initiator, è necessario attenersi alle regole appropriate.
+* Se lo storage array supporta un numero di LUN per gruppo di host per porta inferiore al numero di LUN utilizzati dai sistemi ONTAP, è necessario aggiungere altri cavi tra il sistema ONTAP e lo storage array.
+

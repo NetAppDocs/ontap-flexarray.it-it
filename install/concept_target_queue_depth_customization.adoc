@@ -1,0 +1,28 @@
+---
+permalink: install/concept_target_queue_depth_customization.html 
+sidebar: sidebar 
+keywords: target, queue, depth, customization 
+summary: 'La profondità della coda di destinazione definisce il numero di comandi ONTAP che è possibile mettere in coda (in sospeso) su una porta di destinazione di un array di storage. ONTAP fornisce un valore predefinito. Per la maggior parte delle distribuzioni, la profondità della coda di destinazione predefinita è appropriata; tuttavia, è possibile modificarla per correggere i problemi di prestazioni.' 
+---
+= Personalizzazione della profondità della coda di destinazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La profondità della coda di destinazione definisce il numero di comandi ONTAP che è possibile mettere in coda (in sospeso) su una porta di destinazione di un array di storage. ONTAP fornisce un valore predefinito. Per la maggior parte delle distribuzioni, la profondità della coda di destinazione predefinita è appropriata; tuttavia, è possibile modificarla per correggere i problemi di prestazioni.
+
+La profondità predefinita della coda di destinazione differisce in base alle diverse versioni di ONTAP:
+
+* Per ONTAP, il valore predefinito è 512.
+* Per tutte le versioni precedenti a Data ONTAP 8,2, l'impostazione predefinita è 256.
+
+
+Quando un array di storage è configurato con più iniziatori che condividono le porte di destinazione, non si desidera che i comandi eccellenti presenti nel buffer delle code di tutti gli iniziatori insieme superino ciò che l'array di storage è in grado di gestire. In caso contrario, le performance di tutti gli host potrebbero risentirne. Gli array di archiviazione differiscono per il numero di comandi che possono gestire nel buffer delle code.
+
+[NOTE]
+====
+La profondità della coda di destinazione può anche essere definita come "`lunghezza della coda di destinazione,`'"`Q-Depth,`" o "`accelerazione massima.»
+
+====

@@ -1,0 +1,14 @@
+---
+permalink: install/concept_invalid_path_setup_examples.html 
+sidebar: sidebar 
+keywords: invalid, path, setup, examples 
+summary: La configurazione del percorso può non essere valida perché i percorsi a un array LUN non sono ridondanti oppure il numero di percorsi a un array LUN non soddisfa i requisiti ONTAP. 
+---
+= Esempi di impostazione del percorso non validi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La configurazione del percorso può non essere valida perché i percorsi a un array LUN non sono ridondanti oppure il numero di percorsi a un array LUN non soddisfa i requisiti ONTAP.

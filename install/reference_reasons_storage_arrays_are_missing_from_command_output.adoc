@@ -1,0 +1,28 @@
+---
+permalink: install/reference_reasons_storage_arrays_are_missing_from_command_output.html 
+sidebar: sidebar 
+keywords: reasons, storage, arrays, miss, command, output 
+summary: 'Un array di archiviazione non collegato al sistema ONTAP non viene visualizzato nell"output di configurazione dell"array di archiviazione. I problemi relativi al cablaggio, alla suddivisione in zone e alla configurazione dei gruppi di host possono impedire la connessione tra i due dispositivi.' 
+---
+= Motivi per cui gli array di storage non sono presenti nell'output del comando
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un array di archiviazione non collegato al sistema ONTAP non viene visualizzato nell' `storage array config show` output. I problemi relativi al cablaggio, alla suddivisione in zone e alla configurazione dei gruppi di host possono impedire la connessione tra i due dispositivi.
+
+
+
+== Risoluzione del problema
+
+. Controllare il cablaggio, la configurazione del gruppo host e la suddivisione in zone come indicato di seguito:
++
+** Controllare che i cavi siano collegati.
+** Verificare che i WWPN degli iniziatori FC sui sistemi ONTAP siano nel gruppo host.
+** Verificare che lo storage array e l'iniziatore FC si trovino nella stessa zona.
+
+
+. Una volta risolto il problema, eseguire `storage array config show` in ONTAP per confermare che il problema è stato risolto.
+

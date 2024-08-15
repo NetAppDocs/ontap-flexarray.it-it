@@ -1,0 +1,86 @@
+---
+permalink: implement-third-party/reference_workaround_when_luns_are_not_visible_with_hitachi_storage_arrays.html 
+sidebar: sidebar 
+keywords: workaround, luns, not, visible, hitachi, storage, arrays, aggregates, created, ontap, system, 
+summary: 'È necessario impostare i parametri dell"array di storage specificati nei parametri richiesti per gli array di storage Hitachi con sistemi che eseguono la sezione ONTAP e associare i LUN ai gruppi di host prima di assegnare lo switch per collegare il sistema ONTAP che utilizza i LUN dell"array a un array di storage Hitachi.' 
+---
+= Soluzione alternativa quando i LUN non sono visibili con gli array di storage Hitachi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario impostare i parametri dell'array di storage specificati nei parametri richiesti per gli array di storage Hitachi con sistemi che eseguono la sezione ONTAP e associare i LUN ai gruppi di host prima di assegnare lo switch per collegare il sistema ONTAP che utilizza i LUN dell'array a un array di storage Hitachi.
+
+xref:reference_required_parameters_for_hitachi_storage_arrays_with_ontap_systems.adoc[Parametri necessari per gli storage array Hitachi con sistemi che eseguono ONTAP]
+
+Se è stato configurato lo zoning prima di impostare i parametri e mappare i LUN ai gruppi di host, è possibile risolvere il problema dei LUN non visibili eseguendo una reinizializzazione del percorso. La reinizializzazione del percorso impone il rilevamento delle LUN degli array mappate da uno storage array Hitachi.
+
+La procedura utilizzata dipende dal fatto che gli aggregati con gli array LUN Hitachi siano già stati configurati sul sistema ONTAP. (Nelle procedure seguenti, si supponga che Node-1 e Node-2 siano i nomi dei nodi ONTAP).
+
+
+
+== Se gli aggregati con gli array LUN Hitachi sono già stati creati in un sistema ONTAP che utilizza gli array LUN
+
+. Esegui il seguente comando per assicurarti che la configurazione ha sia abilitata nei tuoi sistemi ONTAP: *`cluster ha show`*
++
+Viene visualizzato il seguente output:
+
++
+[listing]
+----
+
+High Availability Configured: true
+----
+. Eseguire il seguente comando per verificare che il failover dello storage sia configurato sul sistema ONTAP: *`storage failover show`*
++
+Viene visualizzato il seguente output:
+
++
+[listing]
+----
+          Takeover
+Node           Partner        Possible State Description
+-------------- -------------- -------- -------------------------------------
+Node-1    Node-2    true     Connected to Node-2
+Node-2    Node-1    true     Connected to Node-1
+2 entries were displayed.
+----
+. Eseguire il seguente comando per eseguire un'operazione di takeover su Node-1: *`storage failover takeover -ofnode Node-1`*
+. Eseguire nuovamente il comando seguente per verificare che Node-2 sia pronto per un'operazione di giveback: *`storage failover show`*
++
+Viene visualizzato il seguente output:
+
++
+[listing]
+----
+          Takeover
+Node           Partner        Possible State Description
+-------------- -------------- -------- -------------------------------------
+Node-2    Node-1    false    In takeover, Auto giveback will be
+                                      initiated in 348 seconds
+Node-1    Node-2    -        Waiting for giveback (HA mailboxes)
+2 entries were displayed.
+----
+. Eseguire il seguente comando per eseguire un'operazione di giveback su Node-1: *`storage failover giveback -ofnode Node-1 -require-partner-waiting true`*
+. Da altri nodi nel cluster, ripetere i passaggi da 3 a 5.
+
+
+
+
+== Se non sono stati creati aggregati con gli array LUN Hitachi su un sistema ONTAP che utilizza array LUN
+
+. Eseguire il seguente comando per visualizzare un elenco di tutte le porte dell'iniziatore FC di ONTAP connesse all'array di storage Hitachi: *`system node run -node <node name> -command "sysconfig -v"`*
++
+Ad esempio: *`system node run -node Node-1 -command "sysconfig -v"`*
+
+. Eseguire il seguente comando per mettere tutte le porte elencate offline: *`system node run -node <node name> -command "priv set advanced;fcadmin offline <adapter>"`*
++
+Ad esempio: *`system node run -node Node-1 -command "priv set advanced;fcadmin offline 0a"`*
+
+. Eseguire il seguente comando per portare online tutte le porte elencate: *`system node run -node <node name> -command "priv set advanced;fcadmin online <adapter>"`*
++
+Ad esempio: *`system node run -node Node-1 -command "priv set advanced;fcadmin online 0a"`*
+
+

@@ -1,0 +1,192 @@
+---
+permalink: install/concept_formulas_for_calculating_array_lun_size_considering_checksum_type.html 
+sidebar: sidebar 
+keywords: formulas, calculate, array, lun, size, checksum, type, usable, capacity, snapshot, reserve, maximum 
+summary: Un certo numero di elementi, incluso il tipo di checksum, influisce sulla capacità utilizzabile di un array LUN. È possibile utilizzare una formula per calcolare la capacità utilizzabile che sarebbe in una determinata dimensione array LUN o per calcolare la dimensione che deve essere grande un array LUN per fornire la quantità di storage desiderata. 
+---
+= Formule per il calcolo della dimensione LUN della matrice in base al tipo di checksum
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un certo numero di elementi, incluso il tipo di checksum, influisce sulla capacità utilizzabile di un array LUN. È possibile utilizzare una formula per calcolare la capacità utilizzabile che sarebbe in una determinata dimensione array LUN o per calcolare la dimensione che deve essere grande un array LUN per fornire la quantità di storage desiderata.
+
+Un certo numero di elementi, incluso il tipo di checksum, influisce sulle dimensioni del LUN dell'array richiesto per la quantità di _capacità utilizzabile_. La capacità utilizzabile è la quantità di spazio disponibile per lo storage.
+
+Nella tabella seguente sono illustrati i modi per calcolare le dimensioni LUN dell'array necessarie:
+
+[cols="2*"]
+|===
+| Se si sa... | Vuoi saperne di più... 
+
+
+ a| 
+Quanto sono grandi le LUN dell'array
+ a| 
+Quanta capacità è disponibile per lo storage (capacità utilizzabile). È necessario considerare la quantità di spazio richiesta per tutti gli elementi.
+
+
+
+ a| 
+La quantità di storage desiderata nell'array LUN
+ a| 
+Le dimensioni di un array LUN richieste. È necessario tenere conto della quantità di spazio e di spazio necessari per gli altri elementi.
+
+|===
+[NOTE]
+====
+2 TB in queste formule rappresenta 2 TiB, o 2199023255552 byte, che è 2097,152 GnaB o 2,097 TnaB secondo il modo in cui ONTAP calcola le misurazioni.
+
+====
+
+
+== Formula per il calcolo della capacità utilizzabile
+
+Quando si conoscono le dimensioni delle LUN degli array, è possibile utilizzare la seguente formula per determinare la capacità utilizzabile per lo storage in un array LUN. Questa formula tiene conto della riserva istantanea.
+
+* Y è la capacità utilizzabile per lo storage.
+* N è la capacità totale del LUN dell'array.
+
+
+[cols="2*"]
+|===
+| Tipologia di checksum | Formula 
+
+
+ a| 
+BCS: Array LUN inferiori a 2 TB
+ a| 
+N x {0,875 x 0,9 x 0,99 x (1 - Snapshot Reserve)} = Y
+
+
+
+ a| 
+BCS--array LUN superiori a 2 TB
+ a| 
+N x {0,875 x 0,9 x 0,998 x (1 - Snapshot Reserve)} = Y
+
+
+
+ a| 
+AZCS: Array LUN inferiori a 2 TB
+ a| 
+N x {0,984 x 0,9 x 0,99 x (1 - Snapshot Reserve)} = Y
+
+
+
+ a| 
+AZCS--array LUN superiori a 2 TB
+ a| 
+N x {0,984 x 0,9 x 0,998 x (1 - Snapshot Reserve)} = Y
+
+|===
+
+
+== Esempio 1: Calcoli _con_ una riserva istantanea
+
+Nell'esempio seguente, la capacità totale dell'array LUN è di 4 GB, con un volume Snapshot Reserve impostato sul valore predefinito per Data ONTAP 8.1.1 (5%).
+
+I seguenti esempi si riferiscono a un array LUN di dimensioni inferiori a 2 TB:
+
+[cols="2*"]
+|===
+| Tipologia di checksum | Formula 
+
+
+ a| 
+BCS (array LUN inferiore a 2 TB)
+ a| 
+4 x {0,875 x 0,9 x 0,99 x 0,95}= 2,96 GB di spazio utilizzabile per lo storage
+
+
+
+ a| 
+AZCS (array LUN inferiore a 2 TB)
+ a| 
+4 x {0,984 x 0,9 x 0,99 x 0,95}=3,33 GB di spazio utilizzabile per lo storage
+
+|===
+
+
+== Formula per il calcolo della dimensione massima del LUN dell'array necessaria
+
+Quando si conosce la capacità LUN dell'array necessaria per ottenere la capacità di storage desiderata, è possibile utilizzare la seguente formula per determinare le dimensioni LUN dell'array totali necessarie, tenendo conto degli elementi che richiedono spazio nel LUN.
+
+* Y è l'esatta quantità di spazio nel LUN dell'array desiderato.
+* Se stai utilizzando copie Snapshot, viene presa in considerazione la Snapshot Reserve.
+
+
+I seguenti esempi si riferiscono a un array LUN di dimensioni inferiori a 2 TB:
+
+[cols="2*"]
+|===
+| Tipologia di checksum | Formula 
+
+
+ a| 
+BCS (array LUN inferiore a 2 TB)
+ a| 
+Y ÷ {0,875 x 0,9 x 0,99 x (1 - Snapshot Reserve)} = capacità effettiva richiesta
+
+
+
+ a| 
+AZCS (array LUN inferiore a 2 TB)
+ a| 
+Y ÷ {0,984 x 0,9 x 0,99 x (1 - Snapshot Reserve)} = capacità effettiva richiesta
+
+|===
+
+
+== Esempio 2: Calcoli _con_ riserve di istantanea
+
+In questo esempio, l'impostazione predefinita per Data ONTAP 8.1.1 (5%) è la riserva istantanea del volume.
+
+I seguenti esempi si riferiscono a un array LUN di dimensioni inferiori a 2 TB:
+
+[cols="2*"]
+|===
+| Tipologia di checksum | Formula 
+
+
+ a| 
+BCS (array LUN inferiore a 2 TB)
+ a| 
+10 GB ÷ {0,875 x 0,9 x 0,99 x 0,95}=13,5 GB di capacità effettiva richiesta
+
+
+
+ a| 
+AZCS (array LUN inferiore a 2 TB)
+ a| 
+10 GB ÷ {0,984 x 0,9 x 0,99 x 0,95} = 12,05 GB di capacità effettiva richiesta
+
+|===
+
+
+== Esempio 3: Calcoli _senza_ riserve di istantanea
+
+Desiderate 10 GB di capacità utilizzabile per lo storage. L'esempio seguente mostra il calcolo delle dimensioni effettive del LUN dell'array quando non si utilizzano copie Snapshot.
+
+I seguenti esempi si riferiscono a un array LUN di dimensioni inferiori a 2 TB:
+
+[cols="2*"]
+|===
+| Tipologia di checksum | Formula 
+
+
+ a| 
+BCS (array LUN inferiore a 2 TB)
+ a| 
+10 GB ÷ {0,875 x 0,9 x 0,99} = 12,8 GB di capacità effettiva richiesta
+
+
+
+ a| 
+AZCS (array LUN inferiore a 2 TB)
+ a| 
+10 GB ÷ {0,984 x 0,9 x 0,99} = 11,41 GB di capacità effettiva richiesta
+
+|===

@@ -1,0 +1,219 @@
+---
+permalink: install/reference_terminology_comparison_between_storage_array_vendors.html 
+sidebar: sidebar 
+keywords: terminology, comparison, between, storage, array, vendors 
+summary: Diversi vendor di storage array utilizzano occasionalmente termini diversi per descrivere concetti simili. Al contrario, il significato dello stesso termine potrebbe essere diverso da quello di un vendor di array. 
+---
+= Confronto terminologico fra vendor di storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Diversi vendor di storage array utilizzano occasionalmente termini diversi per descrivere concetti simili. Al contrario, il significato dello stesso termine potrebbe essere diverso da quello di un vendor di array.
+
+La tabella seguente fornisce una mappatura tra alcuni termini comuni dei fornitori:
+
+|===
+| Termine | Vendor | Definizione 
+
+
+ a| 
+gruppo host
+ a| 
+Hitachi
+ a| 
+Entità di configurazione che consente di specificare l'accesso dell'host alle porte dello storage array. Vengono identificati i WWN delle porte FC Initiator per il sistema ONTAP a cui si desidera accedere ai LUN. Il processo varia in base al vendor e a volte differisce in base ai diversi modelli di storage array dello stesso vendor.
+
+
+
+ a| 
+HP XP
+ a| 
+
+
+
+| Gruppo di storage  a| 
+EMC CX, EMC VNX
+ a| 
+
+
+
+| definizione host  a| 
+3PAR
+ a| 
+
+
+
+| host  a| 
+3PAR, HP EVA, HP XP, HITACHI
+ a| 
+
+
+
+ a| 
+
+
+
+| gruppo di parità  a| 
+Hitachi, HP XP
+ a| 
+La disposizione dei dischi nel back-end che insieme formano il livello RAID definito.
+
+
+
+ a| 
+Gruppo RAID
+ a| 
+ONTAP, EMC CX, EMC VNX
+ a| 
+
+
+
+| gruppo di dischi  a| 
+HP EVA
+ a| 
+Set di dischi fisici che formano pool di storage da cui è possibile creare dischi virtuali.
+
+
+
+ a| 
+Set di parità, set RAID
+ a| 
+3PAR
+ a| 
+Un gruppo di _pezzi_ protetti da parità. (Un chunklet è un blocco di 256 MB di spazio contiguo su un disco fisico).
+
+
+
+ a| 
+ a| 
+|  
+
+
+| cluster  a| 
+ONTAP
+ a| 
+In ONTAP , un raggruppamento di nodi che consente a più nodi di raggruppare le proprie risorse in un server virtuale di grandi dimensioni e di distribuire il lavoro all'interno del cluster.
+
+
+
+ a| 
+| Hitachi, HP XP  a| 
+Componente hardware degli array di storage che contiene le porte a cui gli host si collegano.
+
+
+
+ a| 
+ a| 
+|  
+
+
+| controller  a| 
+ONTAP
+ a| 
+Componente di un sistema storage che esegue il sistema operativo ONTAP e interagisce con gli storage array back-end. I controller sono anche chiamati a volte heads o moduli CPU.
+
+
+
+ a| 
+| HITACHI, HP EVA, HP XP  a| 
+Hardware dell'array di storage in cui si trovano le porte di destinazione.
+
+
+
+ a| 
+nodo
+ a| 
+3-PAR
+ a| 
+Componente hardware degli array di storage che contiene le porte a cui gli host si collegano.
+
+
+
+ a| 
+Consiglio di amministrazione di FEBE
+ a| 
+EMC Symmetrix
+ a| 
+
+
+
+| Processore di storage (SP)  a| 
+EMC CX, EMC VNX
+ a| 
+
+
+
+ a| 
+LUN
+ a| 
+Numerosi array di storage
+ a| 
+Raggruppamento di uno o più dischi o partizioni del disco in un'unica area di spazio di archiviazione su disco. Nella documentazione di ONTAP, questa operazione è denominata _array LUN_.
+
+
+
+ a| 
+LDEV
+ a| 
+Hitachi, HP XP
+ a| 
+
+
+
+| LUN  a| 
+ONTAP
+ a| 
+Il sistema ONTAP può virtualizzare lo storage ad esso collegato e servire lo storage come LUN per le applicazioni e i client esterni (ad esempio tramite iSCSI e FC). I client non sono a conoscenza della posizione di archiviazione di un LUN front-end.
+
+
+
+ a| 
+LUN, disco virtuale
+ a| 
+HP EVA
+ a| 
+Un disco virtuale (chiamato _Vdisk_ nell'interfaccia utente) è un'unità disco simulata creata in un gruppo di dischi. È possibile assegnare una combinazione di caratteristiche a un disco virtuale, ad esempio un nome, un livello di ridondanza e una dimensione. La presentazione di un disco virtuale offre il proprio spazio di archiviazione a un host.
+
+
+
+ a| 
+Array LUN (LUN array)
+ a| 
+Documentazione ONTAP, tool di gestione dello storage ONTAP
+ a| 
+La documentazione di ONTAP utilizza il termine _array LUN_ per distinguere i LUN degli storage array dai LUN front-end ( ONTAP LUN).
+
+
+
+ a| 
+VLUN
+ a| 
+3PAR
+ a| 
+(Volume-LUN) Un'associazione tra un volume virtuale e un LUN (Logical Unit Number). Perché un host possa vedere un volume virtuale, il volume deve essere esportato come LUN creando vLUN sullo storage array.
+
+
+
+ a| 
+ a| 
+|  
+
+
+| volume  a| 
+ONTAP
+ a| 
+Un'entità logica che contiene dati utente accessibili tramite uno o più protocolli di accesso supportati da ONTAP, inclusi NFS (Network file System), CIFS (Common Internet File System), HTTP (Hypertext Transfer Protocol), FC (Fibre Channel) e iSCSI (Internet SCSI).
+
+
+
+ a| 
+volume virtuale
+ a| 
+3PAR
+ a| 
+Unità di archiviazione virtuale creata mappando i dati da uno o più dischi logici.
+
+|===

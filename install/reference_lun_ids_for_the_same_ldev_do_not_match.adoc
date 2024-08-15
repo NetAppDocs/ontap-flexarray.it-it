@@ -1,0 +1,169 @@
+---
+permalink: install/reference_lun_ids_for_the_same_ldev_do_not_match.html 
+sidebar: sidebar 
+keywords: lun, ids, same, ldev, not, match 
+summary: 'Un dispositivo logico (LDEV) deve essere mappato allo stesso ID LUN su tutte le porte dell"array di storage su cui deve essere visibile ai sistemi ONTAP. L"output degli errori di storage identifica i LDEV i cui ID LUN non corrispondono.' 
+---
+= Gli ID LUN per lo stesso LDEV non corrispondono
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un dispositivo logico (LDEV) deve essere mappato allo stesso ID LUN su tutte le porte dell'array di storage su cui deve essere visibile ai sistemi ONTAP. L' `storage errors show` output identifica i LDEV i cui ID LUN non corrispondono.
+
+ONTAP non consente di assegnare LUN di array a un sistema ONTAP se gli ID LUN non corrispondono.
+
+
+
+== Gli errori di memorizzazione mostrano il messaggio
+
+[listing]
+----
+
+HIT-1.4 (4849544143484920443630303035323430303132): This Array LUN is using multiple LUN IDs.  Only one LUN ID per serial number is supported.
+----
+
+
+== Spiegazione
+
+Durante la configurazione dello storage array è stato commesso uno dei seguenti errori:
+
+* L'LDEV viene presentato alla stessa porta iniziatore FC del sistema ONTAP da più porte di destinazione e gli ID LUN non sono coerenti.
+* Gli ID LUN di due LDEV vengono scambiati.
++
+In questo caso, viene segnalato un errore per ogni LUN dell'array.
+
+* Vengono utilizzati ID LUN diversi per lo stesso LDEV durante la mappatura del LDEV alle porte degli array di storage che presentano il LDEV al sistema ONTAP.
+
+
+[NOTE]
+====
+Questo errore si verifica con maggiore probabilità sugli array di storage in cui ogni porta è configurata separatamente, ad esempio sugli array di storage Hitachi. Su alcuni storage array, ad esempio storage array IBM, le porte non sono configurate separatamente.
+
+====
+* L'impostazione di indirizzamento del set di volumi non è coerente sulle porte su cui è mappato il LUN.
++
+In un array di storage EMC Symmetrix, il problema potrebbe essere dovuto al fatto che l'impostazione di indirizzamento del set di volumi varia sulle porte del channel director.
+
+
+
+
+
+== Scenario di problema
+
+In questo scenario viene discusso il caso di ID LUN non coerenti in quanto si applica alla maggior parte degli array di storage. Per una descrizione di questo stesso messaggio di errore nel contesto dell'indirizzamento di un set di volumi configurato in modo errato, vedere la sezione indirizzamento del set di volumi non coerente.
+
+xref:reference_volume_set_addressing_is_inconsistent.adoc[L'indirizzamento del set di volumi non è coerente]
+
+Si supponga che l'amministratore dello storage array crei un nuovo LDEV Z. l'ID LUN per LDEV Z dovrebbe essere LUN 3. Tuttavia, l'amministratore presenta LDEV Z come LUN 3 sulla porta 1A del controller dello storage array e come LUN 4 sulla porta 2A del controller dello storage array, come mostra la seguente illustrazione:
+
+image::../media/inconsistent_lun_ids_for_an_ldev.gif[Questo grafico è descritto nel testo circostante.]
+
+Per risolvere questo problema, è necessario assegnare lo stesso ID LUN a un LDEV su tutte le porte a cui è mappato il LDEV. In questo esempio, l'LDEV deve essere presentato come LUN ID 3 su entrambe le porte.
+
+
+
+== Risoluzione dei problemi e risoluzione dei problemi
+
+Per risolvere il problema, l'amministratore dello storage array deve mappare nuovamente il LUN, utilizzando l'ID LUN corretto. I comandi ONTAP possono essere utilizzati per ottenere le informazioni necessarie per fornire all'amministratore dello storage le informazioni relative al problema.
+
+. Esaminare l' `storage errors show` output per identificare il LUN dell'array i cui ID LUN non corrispondono.
++
+Quando gli ID LUN per lo stesso LDEV non corrispondono, l'output identifica il numero di serie del LDEV con il problema. Ad esempio:
+
++
+[listing]
+----
+
+mysystem1a::> storage errors show
+Disk: HIT-1.4
+UID: 48495441:43484920:44363030:30353234:30303132:00000000:...
+----------
+
+HITACHI_DF600F_1
+----------
+HIT-1.4 (4849544143484920443630303035323430303132): This Array LUN is using multiple LUN IDs.  Only one LUN ID per serial number is supported.
+----
++
+[NOTE]
+====
+L'UID in questo esempio è 48495441:43484920:44363030:30353234:30303132:00000000:00000000:00000000:00000000:00000000. È troncato nell'esempio a causa dello spazio.
+
+====
+. Ottenere dettagli sugli ID LUN utilizzati per lo stesso LDEV digitando il seguente comando: `storage disk show arrayLUNname`
++
+L' `storage disk show` output di questo esempio mostra quanto segue:
+
++
+[listing]
+----
+
+mysystem1a::> storage disk show -disk HIT-1.4
+                  Disk: HIT-1.4
+        Container Type: unassigned
+            Owner/Home: -  / -
+               DR Home: -
+                 Array: HITACHI_DF600F_1
+                Vendor: HITACHI
+                 Model: DF600F
+         Serial Number: D600020C000C
+                   UID: 48495441:43484920:44363030:30353234:30303132:00000000:...
+                   BPS: 512
+         Physical Size: -
+              Position: present
+Checksum Compatibility: block
+             Aggregate: -
+                  Plex: -
+Paths:
+                     LUN  Initiator Side  Target Side
+Controller Initiator ID   Switch Port     Switch Port      Acc Use  Target Port     TPGN...
+---------- --------- -------------------- ----------------- --- ---  --------------- ----
+mysystem1a   0c       4  vgci9148s76:1-2  vgci9148s76:1-9  AO  INU  50060e80004291c1  1
+mysystem1a   0a       3  vgbr300s89:1     vgbr300s89:9     S   RDY  50060e80004291c0  2
+mysystem1b   0c       4  vgci9148s76:1-4  vgci9148s76:1-9  AO  INU  50060e80004291c1  1
+mysystem1b   0a       3  vgbr300s89:3     vgbr300s89:10    S   RDY  50060e80004291c2  2
+
+Errors:
+HIT-1.4 (4849544143484920443630303035323430303132): This Array LUN is using multiple LUN IDs.  Only one LUN ID per serial number is supported.
+----
+
+
+[NOTE]
+====
+L'UID in questo esempio è 48495441:43484920:44363030:30353234:30303132:00000000:00000000:00000000:00000000:00000000. È troncato nell'esempio a causa dello spazio.
+
+====
+Osservando gli ID LUN nella sezione Paths dell'output show del disco di archiviazione, è possibile vedere che gli ID LUN 3 e 4 sono entrambi utilizzati per questo LDEV.
+
+. Determinare quale ID LUN non è corretto per il sistema LDEV.
++
+L'ID LUN 4 è l'ID LUN errato in questo esempio.
+
+. In ONTAP, utilizzare il `storage path quiesce` comando per chiudere il percorso non corretto per il LUN dell'array.
++
+Nell'esempio seguente vengono illustrate le opzioni da aggiungere al `storage path quiesce` comando per il percorso in cui viene interrotto--LUN ID 4 sull'iniziatore 0C.
+
++
+[listing]
+----
+
+storage path quiesce -node mysystem1a -initiator 0c -target-wwpn 50060e80004291c1 -lun-number 4
+----
++
+ `storage path quiesce`Il comando sospende temporaneamente l'i/o di un LUN di array specifico su un percorso specifico. Alcuni storage array richiedono di interrompere l'i/o per un periodo di tempo in cui occorre rimuovere o spostare una LUN dell'array.
+
++
+Una volta inattivo il percorso, ONTAP non è più in grado di rilevare tale LUN.
+
+. Attendere un minuto per la scadenza del timer di attività dell'array di archiviazione.
++
+Sebbene non tutti gli storage array richiedano di interrompere l'i/o per un certo periodo di tempo, è buona norma farlo.
+
+. Nell'array di archiviazione, eseguire nuovamente il mapping del LUN alla porta di destinazione utilizzando l'ID LUN corretto, ID LUN 3 in questo scenario.
++
+Alla successiva esecuzione del processo di rilevamento di ONTAP, viene rilevato il nuovo array LUN. Il rilevamento viene eseguito ogni minuto.
+
+. Una volta completato il rilevamento ONTAP, eseguire `storage array config show` nuovamente ONTAP per confermare che non si è più verificato un errore.
+

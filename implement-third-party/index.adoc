@@ -1,0 +1,12 @@
+---
+permalink: implement-third-party/index.html 
+sidebar: sidebar 
+keywords: flexarray, virtualization, implementation, third-Party, storage 
+summary: Benvenuto nella raccolta di informazioni di ONTAP FlexArray. Qui troverai informazioni su come utilizzare uno storage array di terze parti come storage back-end per i cluster. 
+---
+= Implementazione della virtualizzazione FlexArray® per lo storage di terze parti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

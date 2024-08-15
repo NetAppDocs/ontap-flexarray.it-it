@@ -1,0 +1,14 @@
+---
+permalink: install/concept_planning_for_paths_to_array_luns.html 
+sidebar: sidebar 
+keywords: plan, paths, array, luns 
+summary: 'I percorsi rappresentano le connessioni fisiche tra il sistema ONTAP e lo storage array. Sono necessari percorsi ridondanti per eliminare ogni single point of failure (SPOF) tra il sistema ONTAP e lo storage array.' 
+---
+= Pianificazione dei percorsi alle LUN dell'array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I percorsi rappresentano le connessioni fisiche tra il sistema ONTAP e lo storage array. Sono necessari percorsi ridondanti per eliminare ogni single point of failure (SPOF) tra il sistema ONTAP e lo storage array.

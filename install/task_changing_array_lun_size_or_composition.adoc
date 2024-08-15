@@ -1,0 +1,36 @@
+---
+permalink: install/task_changing_array_lun_size_or_composition.html 
+sidebar: sidebar 
+keywords: change, array, lun, size, composition 
+summary: 'La riconfigurazione delle dimensioni o della composizione di un array LUN deve essere eseguita sullo storage array. Se un array LUN è già stato assegnato a un sistema ONTAP, è necessario utilizzare ONTAP per modificare lo stato del LUN dell"array in inutilizzato prima che l"amministratore dello storage array possa riconfigurarlo.' 
+---
+= Modifica delle dimensioni o della composizione del LUN della matrice
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La riconfigurazione delle dimensioni o della composizione di un array LUN deve essere eseguita sullo storage array. Se un array LUN è già stato assegnato a un sistema ONTAP, è necessario utilizzare ONTAP per modificare lo stato del LUN dell'array in inutilizzato prima che l'amministratore dello storage array possa riconfigurarlo.
+
+*Cosa ti serve*
+
+Il LUN dell'array deve essere un LUN dell'array di riserva prima di poterne modificare lo stato in inutilizzato.
+
+.Fasi
+. Nel sistema ONTAP, immettere il seguente comando per rimuovere le informazioni sulla proprietà: `storage disk removeowner  -disk arrayLUNname`
+. Sull'array di archiviazione, completare i seguenti passaggi:
++
+.. Rimuovere la mappatura (annullare la presenza) del LUN dell'array dai sistemi ONTAP in modo che non possano più vedere il LUN dell'array.
+.. Modificare la dimensione o la composizione del LUN della matrice.
+.. Se si desidera che ONTAP utilizzi nuovamente l'array LUN, presentare nuovamente l'array LUN ai sistemi ONTAP.
++
+A questo punto, l'array LUN è visibile alle porte dell'iniziatore FC a cui è stato presentato l'array LUN, ma non può ancora essere utilizzato da sistemi ONTAP.
+
+
+
+. Immettere il seguente comando sul sistema ONTAP che si desidera sia proprietario dell'array LUN: `storage disk assign -disk arrayLUNname -owner nodename`
++
+Una volta rimosse le informazioni di proprietà, il LUN dell'array non può essere utilizzato da alcun sistema ONTAP finché il LUN dell'array non viene nuovamente assegnato a un sistema. È possibile lasciare il LUN dell'array come unità di riserva o aggiungerlo a un aggregato. È necessario aggiungere la LUN dell'array a un aggregato prima di poter utilizzare la LUN dell'array per lo storage.
+
+

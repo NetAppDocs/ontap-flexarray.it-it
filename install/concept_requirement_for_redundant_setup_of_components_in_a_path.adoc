@@ -1,0 +1,39 @@
+---
+permalink: install/concept_requirement_for_redundant_setup_of_components_in_a_path.html 
+sidebar: sidebar 
+keywords: requirements, redundant, setup, components, path, fc switch, ontap, systems, storage, array 
+summary: 'I sistemi ONTAP devono collegarsi all"array di storage mediante una rete FC (Fibre Channel) ridondante. Sono richieste due reti FC per proteggere da errori di connessione e così che le porte o gli switch fabric possono essere portati offline per aggiornamenti e sostituzioni senza influire sui sistemi ONTAP.' 
+---
+= Requisiti per la configurazione ridondante dei componenti in un percorso
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I sistemi ONTAP devono collegarsi all'array di storage mediante una rete FC (Fibre Channel) ridondante. Sono richieste due reti FC per proteggere da errori di connessione e così che le porte o gli switch fabric possono essere portati offline per aggiornamenti e sostituzioni senza influire sui sistemi ONTAP.
+
+
+
+== Requisiti di ridondanza dei sistemi ONTAP
+
+* Ciascuna connessione deve essere collegata a una porta FC Initiator diversa nella coppia di porte dei sistemi ONTAP.
+* Ogni porta FC Initiator nella stessa coppia di porte FC Initiator deve trovarsi su un bus diverso.
+
+
+
+
+== Requisiti di ridondanza degli switch FC
+
+* È necessario utilizzare switch ridondanti.
+
+
+
+
+== Requisiti di ridondanza degli storage array
+
+Accertarsi che le porte sull'array di storage che si selezionano per accedere a un determinato LUN siano di componenti diversi, in modo da evitare un single point of failure, ad esempio da controller, cluster o enclosure alternativi. Il motivo è che non si desidera che tutto l'accesso a un array LUN venga perso in caso di guasto di un componente.
+
+L'illustrazione seguente mostra la selezione corretta e non corretta della porta dell'array di archiviazione per la ridondanza. L'impostazione del percorso nell'esempio a sinistra è corretta perché i percorsi al LUN dell'array sono ridondanti--ogni connessione è a una porta su un controller diverso sull'array di storage.
+
+image::../media/redundant_array_port_selection.gif[I percorsi a un array LUN devono essere ridondanti. Non è corretto che entrambi i percorsi vadano allo stesso controller dello storage array.]

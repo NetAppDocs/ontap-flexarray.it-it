@@ -1,0 +1,28 @@
+---
+permalink: install/concept_rules_for_sharing_a_target_port_with_multiple_fc_initiator_ports.html 
+sidebar: sidebar 
+keywords: rules, share, target, port, multiple, fc initiator 
+summary: 'È supportato il collegamento di un massimo di due porte FC Initiator ONTAP a una singola porta di destinazione sull"array di storage. Ciascuna porta di destinazione è suddivisa in due porte FC Initiator, una da ciascun nodo del cluster. La condivisione di una porta di destinazione connessa a sistemi ONTAP con qualsiasi altro host non è supportata.' 
+---
+= Regole per la condivisione di una porta di destinazione con più porte FC Initiator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È supportato il collegamento di un massimo di due porte FC Initiator ONTAP a una singola porta di destinazione sull'array di storage. Ciascuna porta di destinazione è suddivisa in due porte FC Initiator, una da ciascun nodo del cluster. La condivisione di una porta di destinazione connessa a sistemi ONTAP con qualsiasi altro host non è supportata.
+
+La condivisione di una porta di destinazione con initiator multipli consente di ottimizzare l'utilizzo delle porte di storage array per la connettività con i sistemi ONTAP.
+
+Le regole per questa configurazione sono le seguenti:
+
+* Quando i sistemi ONTAP si trovano in una coppia ha, ciascun nodo può condividere al massimo una porta FC Initiator con la stessa porta di destinazione.
+* Tutti gli storage array devono essere dello stesso vendor e della stessa famiglia di modelli.
+* Il collegamento di una singola porta di destinazione a più porte FC Initiator è supportato per le configurazioni MetroCluster.
+* La procedura consigliata per la creazione di zone consiste nel fare in modo che ogni coppia di porte FC Initiator-target venga eseguita in una zona separata (1:1).
+
+
+*Informazioni correlate*
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["Installazione e configurazione di Fabric-Attached MetroCluster"]

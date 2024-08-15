@@ -1,0 +1,14 @@
+---
+permalink: install/concept_planning_for_raid_implementation.html 
+sidebar: sidebar 
+keywords: plan, raid, implementation 
+summary: È necessario pianificare le dimensioni e il numero di LUN nei gruppi RAID degli array di storage e decidere se condividere il gruppo RAID tra gli host. 
+---
+= Pianificazione dell'implementazione RAID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario pianificare le dimensioni e il numero di LUN nei gruppi RAID degli array di storage e decidere se condividere il gruppo RAID tra gli host.

@@ -1,0 +1,18 @@
+---
+permalink: implement-third-party/concept_requirements_for_configuring_the_hp_eva_storage_management_server.html 
+sidebar: sidebar 
+keywords: requirements, configuring, hp, eva, storage, management, server 
+summary: La condivisione delle porte FC Initiator presenti su un sistema ONTAP e delle porte Initiator presenti su un server di gestione archiviazione HP EVA con porte di destinazione EVA comuni causa problemi di compatibilità. 
+---
+= Requisiti per la configurazione di HP EVA Storage Management Server
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La condivisione delle porte FC Initiator presenti su un sistema ONTAP e delle porte Initiator presenti su un server di gestione archiviazione HP EVA con porte di destinazione EVA comuni causa problemi di compatibilità.
+
+I problemi di compatibilità derivano dalle diverse impostazioni dell'host per le porte dell'iniziatore FC presenti su un sistema ONTAP e le porte dell'iniziatore del server di gestione storage EVA.
+
+HP consiglia di configurare qualsiasi server HP EVA Storage Management che risiede in un fabric in una zona separata da tutti i sistemi operativi.

@@ -1,0 +1,85 @@
+---
+permalink: install/reference_the_storage_errors_show_messages_and_their_resolution.html 
+sidebar: sidebar 
+keywords: storage, errors, show, messages, resolution 
+summary: 'Quando gli errori di archiviazione indicano una condizione di errore, è necessario determinare il motivo per cui si è verificato l"errore e come risolverlo.' 
+---
+= Gli errori di memorizzazione mostrano i messaggi e la relativa risoluzione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando `storage errors show` contrassegna una condizione di errore, è necessario determinare il motivo per cui si è verificato l'errore e come risolverlo.
+
+La tabella seguente elenca gli errori di configurazione back-end rilevati da `storage errors show` e fa riferimento a informazioni dettagliate sulle cause di ciascun errore e sulla relativa risoluzione.
+
+|===
+| `storage errors show` messaggio | Per ulteriori informazioni su questo messaggio, vedere... 
+
+
+ a| 
+`NAME (Serial #): All paths to this array LUN are connected to the same fault domain. This is a single point of failure``.
+ a| 
+xref:reference_all_paths_to_an_array_lun_are_on_the_same_storage_array_controller.adoc[Tutti i percorsi a un array LUN si trovano sullo stesso controller dello storage array]
+
+
+
+ a| 
+`NAME (Serial #), port WWPN1: LUN 1 occurs more than once. LUNs cannot be reused on the same array target port`.
+ a| 
+xref:reference_duplicate_lun_ids_on_a_target_port.adoc[ID LUN duplicati su una porta di destinazione]
+
+
+
+ a| 
+`NAME (Serial #): This array LUN is an access control LUN. It is not supported and should be masked off or disabled``.
+ a| 
+xref:reference_an_access_control_lun_is_presented_to_ontap.adoc[LUN per il controllo dell'accesso presentato]
+
+
+
+ a| 
+`NAME (Serial #) This array LUN is configured with conflicting failover modes. Each path to this LUN must use the same mode`.
+ a| 
+xref:reference_array_luns_are_configured_with_conflicting_failover_modes_clustered_data_ontap_8_2_and_later.adoc[Gli array LUN sono configurati con modalità di failover in conflitto]
+
+
+
+ a| 
+`NAME (Serial #): This Array LUN is only available on one path. Proper configuration requires two paths`.
+ a| 
+xref:reference_fewer_than_two_paths_to_an_array_lun.adoc[Meno di due percorsi a un array LUN]
+
+
+
+ a| 
+`NAME (Serial #): This array LUN is too large and is not usable. The maximum array LUN size supported is xTB`.
+ a| 
+xref:reference_array_lun_is_either_smaller_or_larger_than_the_supported_values.adoc[Array LUN is too Small or too large]
+
+
+
+ a| 
+`NAME (Serial #): This array LUN is too small and is not usable. The minimum array LUN size supported is 1GB`.
+ a| 
+xref:reference_array_lun_is_either_smaller_or_larger_than_the_supported_values.adoc[Array LUN is too Small or too large]
+
+
+
+ a| 
+`NAME (Serial #): This Array LUN is using multiple LUN IDs. Only one LUN ID per serial number is supported`.
+ a| 
+xref:reference_lun_ids_for_the_same_ldev_do_not_match.adoc[Gli ID LUN per lo stesso LDEV non corrispondono]
+
+L'indirizzamento del set di volumi non è coerente
+
+
+
+ a| 
+`NAME (Serial #): This array LUN is marked foreign and has a reservation`.
+ a| 
+xref:reference_array_lun_is_marked_foreign_and_has_a_reservation_data_ontap_8_3_and_later.adoc[Array LUN è contrassegnato come straniero e ha una prenotazione]
+
+|===

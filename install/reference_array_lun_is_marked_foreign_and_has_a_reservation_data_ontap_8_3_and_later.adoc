@@ -1,0 +1,60 @@
+---
+permalink: install/reference_array_lun_is_marked_foreign_and_has_a_reservation_data_ontap_8_3_and_later.html 
+sidebar: sidebar 
+keywords: array, lun, marked, foreign, reservation, show, message, troubleshoot, resolution, problem 
+summary: 'Puoi importare in ONTAP i dati ospitati sugli array LUN nel loro formato nativo. Il processo di importazione del contenuto di un LUN di array contrassegnato come estraneo potrebbe essere influenzato se il LUN di array dispone di prenotazioni host esterne durante l"importazione.' 
+---
+= Array LUN è contrassegnato come straniero e ha una prenotazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi importare in ONTAP i dati ospitati sugli array LUN nel loro formato nativo. Il processo di importazione del contenuto di un LUN di array contrassegnato come *straniero* potrebbe essere influenzato se il LUN di array dispone di prenotazioni host esterne durante l'importazione.
+
+
+
+== Gli errori di memorizzazione mostrano il messaggio
+
+[listing]
+----
+
+EMC-1.3 (600000e00d1000000010000e00030000): This array LUN is marked foreign and has a reservation.
+----
+
+
+== Spiegazione
+
+Questa condizione di errore si verifica quando le prenotazioni create dalle applicazioni host esterne sul LUN non vengono cancellate prima che l'amministratore di ONTAP avvii il processo di importazione. L'operazione di importazione non riesce e il messaggio viene visualizzato come output del `storage errors show` comando.
+
+Affinché l'operazione di importazione abbia esito positivo, è necessario cancellare le prenotazioni.
+
+
+
+== Risoluzione dei problemi e risoluzione dei problemi
+
+Per risolvere il problema, l'amministratore dello storage array deve rimuovere la prenotazione persistente dall'array LUN.
+
+È possibile rimuovere la prenotazione persistente dall'host esterno che accede ai dati LUN dell'array nel formato nativo oppure utilizzando i comandi ONTAP. Per rimuovere la prenotazione è possibile utilizzare i seguenti comandi ONTAP:
+
+. Esaminare l' `storage errors show` output per identificare il LUN dell'array con le prenotazioni, come mostrato nell'esempio seguente:
++
+[listing]
+----
+
+system1a::> storage errors show
+EMC_SYMMETRIX_1
+--------------------------------------
+EMC-1.3 (600000e00d1000000010000e00030000): This array LUN is marked foreign and has a reservation.
+----
+. Eseguire `set -privilege advanced` il comando per passare alla modalità _Advanced_, poiché non è possibile importare il contenuto del LUN dell'array in modalità _admin_.
+. Utilizzare il `storage disk -remove-reservation` comando per rimuovere la prenotazione persistente dal LUN dell'array identificato.
++
+[listing]
+----
+
+system1a::>* storage disk remove-reservation -disk EMC-1.3
+----
+. Utilizzare il `lun import start` comando per avviare il processo di importazione del contenuto dell'array LUN in ONTAP.
+

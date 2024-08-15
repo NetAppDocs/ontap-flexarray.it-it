@@ -1,0 +1,63 @@
+---
+permalink: install/concept_planning_summary_for_a_v_series_system_using_native_disks.html 
+sidebar: sidebar 
+keywords: plan, summary, v-series, system, native, disks, additional, considerations, setup, array, luns 
+summary: 'È possibile installare shelf di dischi nativi su sistemi V-Series nuovi o esistenti. Tuttavia, se si intende installare shelf di dischi nativi su sistemi V-Series, è necessario considerare alcuni fattori aggiuntivi rispetto all"installazione degli shelf di dischi sui sistemi FAS.' 
+---
+= Riepilogo della pianificazione per un sistema V-Series che utilizza dischi nativi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile installare shelf di dischi nativi su sistemi V-Series nuovi o esistenti. Tuttavia, se si intende installare shelf di dischi nativi su sistemi V-Series, è necessario considerare alcuni fattori aggiuntivi rispetto all'installazione degli shelf di dischi sui sistemi FAS.
+
+
+
+== Ulteriori considerazioni di pianificazione per la configurazione di base su sistemi V-Series con dischi
+
+Per determinare i requisiti di installazione e configurazione di base per il sistema V-Series che utilizza dischi nativi, occorre prendere in considerazione quanto segue:
+
+* Se il sistema V-Series viene ordinato con shelf di dischi, il volume root viene configurato in fabbrica e vengono installate le licenze e il software ONTAP, proprio come per i sistemi FAS.
+* Se il sistema V-Series non viene ordinato con gli shelf di dischi, è necessario pianificare l'installazione del software ONTAP e delle licenze appropriate.
+* ONTAP assegna automaticamente la proprietà ai dischi nativi collegati al sistema V-Series.
+
+
+
+
+== Considerazioni aggiuntive di pianificazione se il sistema V-Series utilizza sia dischi che array LUN
+
+Nella tabella seguente sono riportate ulteriori considerazioni sulla pianificazione e la posizione delle informazioni necessarie per ciascuna attività.
+
+|===
+| Considerazione di pianificazione | Dove trovare le linee guida 
+
+
+ a| 
+Posizione del volume root
+ a| 
+xref:concept_location_of_the_root_volume.adoc[Posizione del volume root]
+
+
+
+ a| 
+Il numero di dischi e array LUN combinati può essere assegnato senza superare il limite massimo supportato per il sistema V-Series
+ a| 
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+
+
+ a| 
+Utilizzo della porta FC Initiator
+ a| 
+xref:concept_requirements_for_v_series_fc_initiator_port_usage.adoc[Requisiti per l'utilizzo della porta FC Initiator]
+
+
+
+ a| 
+Il tipo di dati che devono risiedere sui dischi e il tipo di dati che dovrebbero risiedere sui LUN dell'array
+ a| 
+Occorre valutare il tipo di dati da gestire e quindi decidere se i dati possono risiedere su dischi nativi o array LUN.
+
+|===

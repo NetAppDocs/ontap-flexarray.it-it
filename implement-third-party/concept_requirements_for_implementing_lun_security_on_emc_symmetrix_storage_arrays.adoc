@@ -1,0 +1,32 @@
+---
+permalink: implement-third-party/concept_requirements_for_implementing_lun_security_on_emc_symmetrix_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, implementing, lun, security, emc, symmetrix, storage, arrays 
+summary: Viene utilizzata la protezione LUN per eliminare la possibilità che un host scriva i dati su un LUN non di proprietà di tale host. 
+---
+= Requisiti per l'implementazione della sicurezza LUN sugli array di storage EMC Symmetrix
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Viene utilizzata la protezione LUN per eliminare la possibilità che un host scriva i dati su un LUN non di proprietà di tale host.
+
+Per eliminare la possibilità che un host non ONTAP sovrascriva le LUN degli array EMC Symmetrix di proprietà di un sistema ONTAP o viceversa, è necessario presentare i dispositivi logici Symmetrix attraverso le porte director dell'host (canale) in uno dei seguenti modi:
+
+* Presentare solo i dispositivi logici Symmetrix per ONTAP su porte host (canale) director specifiche Symmetrix dedicate all'uso di ONTAP.
++
+Se le porte non possono essere dedicate a ONTAP, è necessario verificare che tutti gli altri host che utilizzano tali porte siano compatibili con i requisiti ONTAP. Questo perché ogni host connesso all'array Symmetrix ha requisiti per diverse impostazioni degli attributi della porta. La condivisione delle porte tra più host connessi allo storage array Symmetrix può determinare una configurazione impossibile da implementare.
+
+* Per gli array di storage VMAX, creare viste di mascheramento per la mappatura e il masking richiesti creando gruppi di porte, gruppi di archiviazione e gruppi iniziatori.
++
+A tale scopo, è necessario abilitare prima l'attributo della porta ACLX sulle porte dell'array di archiviazione VMAX.
+
+
+
+[NOTE]
+====
+Non presentare il LUN VCMDB a tutti gli host per impostazione predefinita. Configurare l'impostazione globale per limitare la visibilità al VCMDB a meno che non sia stata specificamente resa visibile a un host specifico.
+
+====

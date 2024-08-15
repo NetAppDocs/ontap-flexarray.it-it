@@ -1,0 +1,67 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_hp_xp_storage_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, hp, xp, storage, arrays, ontap, workaround 
+summary: Affinché questo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri. 
+---
+= Parametri richiesti per gli array di storage HP XP con ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Affinché questo storage array possa funzionare correttamente con i sistemi ONTAP, sono necessarie alcune impostazioni dei parametri.
+
+
+
+== Parametri di sistema richiesti per gli array di storage HP XP
+
+Le impostazioni dei parametri richieste sono riportate nella tabella seguente:
+
+|===
+| Parametro | Impostazione 
+
+
+ a| 
+`Host mode`
+ a| 
+Standard o 00
+
+
+
+ a| 
+`Port security`
+ a| 
+Attivato
+
+
+
+ a| 
+[NOTE]
+====
+Per ogni coppia di porte iniziatore-destinazione è necessario creare un gruppo host separato dai gruppi host predefiniti.
+
+====
+|===
+I parametri dell'array di archiviazione devono essere impostati e i LUN devono essere mappati ai gruppi di host prima che lo switch venga compresso per connettere il sistema ONTAP a un array di archiviazione HP XP.
+
+Se le porte dell'iniziatore FC di ONTAP sono assegnate alle porte di destinazione degli array HP XP prima che vengano impostati i parametri dell'array di archiviazione e i LUN sono mappati ai gruppi di host, potrebbe non essere possibile visualizzare i LUN presentati all'interfaccia ONTAP.
+
+In questa situazione, ONTAP genera uno dei seguenti messaggi EMS:
+
+[listing]
+----
+[fci.device.login.reject:info] The PLOGI transmitted by port XX was rejected by port_id 0xYYYY with reason code 0x9 'Invalid R_CTL Field', explanation code 0x29 'Insufficient Resources to Support Login'
+----
+[listing]
+----
+[fci.device.login.reject:info]: The PLOGI transmitted by port XX was rejected by port_id 0xYYYY with reason code 0x3 'Nx_Port Not Available, Temporary', explanation code 0x29 'Insufficient Resources to Support Login'
+----
+
+
+== Soluzione alternativa
+
+Se la suddivisione in zone è stata configurata prima di impostare i parametri e mappare i LUN ai gruppi di host, è possibile risolvere il problema dei LUN non visibili eseguendo una nuova inizializzazione del percorso per forzare un nuovo rilevamento dei LUN dell'array mappati dall'array di storage HP XP.
+
+xref:reference_workaround_when_luns_are_not_visible_with_hp_xp_storage_arrays.adoc[Soluzione alternativa quando i LUN non sono visibili con gli array di storage HP XP]

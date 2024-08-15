@@ -1,0 +1,60 @@
+---
+permalink: implement-third-party/concept_where_to_find_information_about_support_for_storage_arrays.html 
+sidebar: sidebar 
+keywords: find, information, ontap, support, storage, arrays 
+summary: 'Non tutte le release di ONTAP supportano le stesse funzioni, configurazioni, modelli di sistema e modelli di storage array. Durante la pianificazione dell"implementazione, è necessario controllare le informazioni di supporto ONTAP per verificare che l"implementazione sia conforme ai requisiti hardware e software di ONTAP per tutti i sistemi dell"implementazione.' 
+---
+= Dove trovare informazioni sul supporto ONTAP per gli storage array
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Non tutte le release di ONTAP supportano le stesse funzioni, configurazioni, modelli di sistema e modelli di storage array. Durante la pianificazione dell'implementazione, è necessario controllare le informazioni di supporto ONTAP per verificare che l'implementazione sia conforme ai requisiti hardware e software di ONTAP per tutti i sistemi dell'implementazione.
+
+Nella tabella seguente sono elencate le fonti di informazioni che contengono i dettagli dei requisiti hardware e software associati ai sistemi ONTAP:
+
+[cols="2*"]
+|===
+| Per informazioni su... | Dovreste guardare qui... 
+
+
+ a| 
+Attività per l'implementazione di ONTAP con array di storage, tra cui:
+
+* Pianificazione dell'implementazione
+* Collegamento dei sistemi ONTAP e dell'array
+* Verifica dell'installazione
+
+ a| 
+https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["Requisiti e riferimenti per l'installazione della virtualizzazione FlexArray"]
+
+
+
+ a| 
+ONTAP che funziona con i dispositivi, tra cui:
+
+* Firmware degli storage array e degli storage array supportati
+* Switch supportati e firmware degli switch
+* Se l'array di storage supporta l'aggiornamento live (senza interruzione) del firmware dell'array di storage
+* Se una configurazione MetroCluster è supportata con il tuo storage array
+
+ a| 
+https://mysupport.netapp.com/matrix["Tool di matrice di interoperabilità NetApp"]
+
+
+
+ a| 
+Limiti ONTAP per release e piattaforme, tra cui:
+
+* Dimensioni minime e massime di array LUN, incluse le dimensioni minime di array LUN per il volume root e di array core di ricambio
+* Dimensione minima dell'aggregato per aggregati con array LUN
+* Dimensioni dei blocchi supportate
+* Capacità minima e massima
+* Limiti di vicinato
+
+ a| 
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+|===

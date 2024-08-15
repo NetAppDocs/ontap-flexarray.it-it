@@ -1,0 +1,20 @@
+---
+permalink: install/task_setting_the_target_queue_depth_clustered_data_ontap_prior_to_8_2.html 
+sidebar: sidebar 
+keywords: set, target, queue, depth, ontap, 8.2 
+summary: La profondità predefinita della coda di destinazione è accettabile per la maggior parte delle implementazioni, ma è possibile modificare il valore predefinito, se necessario. 
+---
+= Impostazione della profondità della coda di destinazione (ONTAP precedente a 8,2)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La profondità predefinita della coda di destinazione è accettabile per la maggior parte delle implementazioni, ma è possibile modificare il valore predefinito, se necessario.
+
+Questa impostazione si applica a tutti i sistemi ONTAP e a tutte le porte di destinazione su tutti gli storage array. Per i sistemi ONTAP con versione precedente alla 8,2, è possibile utilizzare questa opzione.
+
+.Fase
+. Utilizzare l'opzione seguente per impostare la profondità della coda di destinazione: `options disk.target_port.cmd_queue_depth value`
+

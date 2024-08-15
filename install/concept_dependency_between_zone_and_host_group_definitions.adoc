@@ -1,0 +1,90 @@
+---
+permalink: install/concept_dependency_between_zone_and_host_group_definitions.html 
+sidebar: sidebar 
+keywords: dependency, between, zone, host, group, definitions, common, errors, cascading, effect 
+summary: Gli errori commessi nelle definizioni delle zone possono richiedere la riconfigurazione delle definizioni dei gruppi di host e il contrario. 
+---
+= Dipendenza tra le definizioni di zona e gruppo host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gli errori commessi nelle definizioni delle zone possono richiedere la riconfigurazione delle definizioni dei gruppi di host e il contrario.
+
+Quando viene creata una definizione di zona, vengono specificate due porte: Il WWPN della porta FC Initiator sul sistema ONTAP e la porta WWPN o WWNN dell'array di archiviazione per tale zona. Allo stesso modo, quando il gruppo host per il sistema ONTAP è configurato sull'array di archiviazione, vengono specificati i WWPN delle porte iniziatore FC che si desidera essere membri del gruppo host.
+
+L'ordine tipico della configurazione è il seguente:
+
+. Costruire una definizione di zona.
+. Creare il gruppo host sull'array di archiviazione (selezionando il WWPN della porta iniziatore FC sul sistema ONTAP dall'elenco).
+. Presenza di array LUN alle porte.
+
+
+Tuttavia, a volte i gruppi di host vengono configurati prima delle definizioni di zona, il che richiede l'immissione manuale dei WWPN nella configurazione del gruppo di host sull'array di archiviazione.
+
+
+
+== Errori comuni
+
+In uscita ONTAP, le porte di iniziatore FC sul sistema ONTAP sono identificate dal numero della scheda, ad esempio 0A, 0b, 0C, 0d, e così via per i modelli con porte integrate. I WWPN sono mostrati nella GUI dello switch e nella GUI dello storage array. Poiché i WWPN sono lunghi e in formato esadecimale, sono comuni i seguenti errori:
+
+[cols="2*"]
+|===
+| Come vengono specificati i WWPN | Errore comune 
+
+
+ a| 
+L'amministratore digita WWPN
+ a| 
+Viene commesso un errore di digitazione.
+
+
+
+ a| 
+I WWPN vengono rilevati automaticamente dallo switch
+ a| 
+La porta dell'iniziatore FC WWPN errata è selezionata dall'elenco.
+
+|===
+[NOTE]
+====
+Quando i sistemi, gli switch e gli array di storage ONTAP sono cablati insieme, lo switch rileva automaticamente i WWPN dei sistemi ONTAP e delle porte degli array di storage. I WWPN sono quindi disponibili nelle liste di selezione nella GUI dello switch, abilitando la selezione del WWPN di ciascun membro della zona piuttosto che digitarlo. Per eliminare la possibilità di errori di digitazione, si consiglia di scoprire i WWPN.
+
+====
+
+
+== Effetto a cascata degli errori
+
+Un primo passo ovvio durante la risoluzione dei problemi con una configurazione fabric-attached è controllare se la zoning è stata configurata correttamente. È importante anche considerare la relazione tra il gruppo host e le definizioni di zona. La risoluzione di un problema potrebbe richiedere la riconfigurazione della definizione della zona e del gruppo host, a seconda del punto in cui è stato commesso l'errore durante il processo di configurazione.
+
+Se lo switch rileva automaticamente i WWPN e le definizioni delle zone vengono configurate per prime, i WWPN delle porte dell'iniziatore FC che verranno utilizzate per accedere ai LUN sull'array di archiviazione vengono propagati automaticamente agli elenchi di selezione della configurazione del gruppo host nella GUI dell'array di archiviazione. Pertanto, eventuali errori di zoning vengono propagati anche agli elenchi di selezione dei gruppi di host dell'array di archiviazione. Gli elenchi di scelta mostrano i WWPN lunghi e esadecimali invece delle etichette corte delle porte dell'iniziatore FC visibili sul sistema ONTAP (ad esempio, 0A, 0b e così via). Pertanto, non è facile vedere che il WWPN che ci si aspettava di essere elencati non è lì.
+
+La tabella seguente mostra gli effetti di alcuni errori:
+
+[cols="3*"]
+|===
+| Definizione della zona sull'interruttore | Configurazione del gruppo di host sull'array di storage | Sintomo nell'uscita ONTAP 
+
+
+ a| 
+La porta FC Initiator nella definizione della zona non è corretta. Ciò ha causato la propagazione della porta WWPN dell'iniziatore FC errata alla configurazione del gruppo host.
+ a| 
+È stato selezionato il WWPN della porta iniziatore FC mostrata nell'elenco, non il WWPN desiderato.
+ a| 
+Gli array LUN non sono visibili sulla porta FC Initiator su cui sarebbero visibili i LUN previsti.
+
+
+
+ a| 
+La definizione della zona include la porta FC Initiator corretta.
+ a| 
+Il WWPN nella definizione del gruppo host non è corretto a causa di uno dei seguenti fattori:
+
+* È stato selezionato il codice WWPN errato.
+* I gruppi host sono stati configurati manualmente prima della configurazione della definizione della zona e si è verificato un errore di digitazione durante la digitazione nella WWPN della porta iniziatore FC.
+
+ a| 
+
+|===

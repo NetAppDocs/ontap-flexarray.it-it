@@ -1,0 +1,18 @@
+---
+permalink: install/concept_required_number_of_paths_to_an_array_lun.html 
+sidebar: sidebar 
+keywords: required, number, paths, array, lun 
+summary: 'ONTAP supporta quattro o due percorsi alle LUN dell"array.' 
+---
+= Numero richiesto di percorsi a un array LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP supporta quattro o due percorsi alle LUN dell'array.
+
+ONTAP si aspetta e richiede che uno storage array fornisca l'accesso a uno specifico array LUN su almeno due porte storage array ridondanti, ovvero tramite un minimo di due percorsi ridondanti.
+
+Accertarsi che le porte sull'array di storage che si selezionano per accedere a un determinato LUN siano di componenti diversi, in modo da evitare un single point of failure, ad esempio da controller, cluster o enclosure alternativi. Il motivo è che non si desidera che tutto l'accesso a un array LUN venga perso in caso di guasto di un componente.

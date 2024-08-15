@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/concept_guidelines_for_configuring_ports_on_hp_xp_storage_arrays.html 
+sidebar: sidebar 
+keywords: guidelines, configuring, ports, hp xp, storage, arrays 
+summary: Durante la configurazione delle porte sugli array di storage HP XP, è necessario seguire alcune linee guida. 
+---
+= Istruzioni per la configurazione delle porte sugli array di storage HP XP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante la configurazione delle porte sugli array di storage HP XP, è necessario seguire alcune linee guida.
+
+Le linee guida per la configurazione delle porte sugli array di storage HP XP sono le seguenti:
+
+* Aggiungere un solo gruppo di host per porta.
+* È necessario assicurarsi che un gruppo host includa tutte le porte FC Initiator dei sistemi V-Series in una risorsa LUN di array.
+
